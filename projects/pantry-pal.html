@@ -6,22 +6,10 @@
 <title>Pantry Pal — Niik Seah</title>
 <meta name="description" content="A mobile app that tackles food waste by simplifying pantry management and meal planning — designed for 18–24 year olds, and aimed at the point of purchase rather than the point of disposal." />
 
-<!-- Prevent theme flash: runs before first paint -->
-<script>
-  (function () {
-    var stored = null;
-    try { stored = window.__theme || null; } catch (e) {}
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (stored === 'dark' || (stored === null && prefersDark)) {
-      document.documentElement.classList.add('dark');
-    }
-  })();
-</script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
-    darkMode: 'class',
     theme: {
       extend: {
         fontFamily: {
@@ -47,7 +35,6 @@
 
 <style>
   :root { color-scheme: light; }
-  .dark { color-scheme: dark; }
 
   html { scroll-padding-top: 5.5rem; }
 
@@ -76,7 +63,7 @@
 </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent-200 selection:text-accent-900 dark:bg-slate-950 dark:text-slate-100 dark:selection:bg-accent-500/40 dark:selection:text-white transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent-200 selection:text-accent-900 transition-colors duration-300">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:rounded-lg focus:bg-accent-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white">Skip to content</a>
 
@@ -85,21 +72,14 @@
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <nav id="nav-shell" class="mt-4 flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5">
       <a href="../index.html" class="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-        <span class="grid h-8 w-8 place-items-center rounded-lg bg-slate-900 text-sm font-bold text-white transition-transform duration-300 group-hover:-rotate-6 dark:bg-white dark:text-slate-900">N</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-slate-900 text-sm font-bold text-white transition-transform duration-300 group-hover:-rotate-6">N</span>
         Niik Seah
       </a>
 
       <div class="flex items-center gap-1.5">
-        <a href="../projects.html" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block dark:text-slate-400 dark:hover:text-white">All projects</a>
-        <a href="../index.html#contact" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block dark:text-slate-400 dark:hover:text-white">Contact</a>
+        <a href="../projects.html" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block">All projects</a>
+        <a href="../index.html#contact" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block">Contact</a>
 
-        <button id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode"
-                class="relative ml-1 grid h-9 w-[62px] shrink-0 place-items-start rounded-full border border-slate-200 bg-slate-100 p-1 transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900">
-          <span id="theme-knob" class="pointer-events-none grid h-7 w-7 translate-x-0 place-items-center rounded-full bg-white shadow-sm ring-1 ring-slate-900/5 transition-transform duration-300 ease-[cubic-bezier(.16,1,.3,1)] dark:translate-x-[26px] dark:bg-slate-950 dark:ring-white/10">
-            <svg class="h-4 w-4 text-amber-500 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-            <svg class="hidden h-4 w-4 text-slate-300 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          </span>
-        </button>
       </div>
     </nav>
   </div>
@@ -112,45 +92,45 @@
 <section class="pt-32 pb-10 sm:pt-40">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
 
-    <nav aria-label="Breadcrumb" class="reveal flex flex-wrap items-center gap-2 font-mono text-xs text-slate-400 dark:text-slate-600">
-      <a href="../index.html" class="transition-colors hover:text-slate-700 dark:hover:text-slate-300">Home</a>
+    <nav aria-label="Breadcrumb" class="reveal flex flex-wrap items-center gap-2 font-mono text-xs text-slate-400">
+      <a href="../index.html" class="transition-colors hover:text-slate-700">Home</a>
       <span>/</span>
-      <a href="../projects.html" class="transition-colors hover:text-slate-700 dark:hover:text-slate-300">Projects</a>
+      <a href="../projects.html" class="transition-colors hover:text-slate-700">Projects</a>
       <span>/</span>
-      <span class="text-slate-600 dark:text-slate-400">Pantry Pal</span>
+      <span class="text-slate-600">Pantry Pal</span>
     </nav>
 
     <div class="reveal mt-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">UI/UX · NUS</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">UI/UX · NUS</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Pantry Pal</h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">A mobile app that tackles food waste by simplifying pantry management and meal planning — designed for 18–24 year olds, and aimed at the point of purchase rather than the point of disposal.</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A mobile app that tackles food waste by simplifying pantry management and meal planning — designed for 18–24 year olds, and aimed at the point of purchase rather than the point of disposal.</p>
     </div>
 
-    <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4 dark:border-slate-800">
+    <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4">
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Role</dt>
+        <dt class="font-mono text-xs text-slate-400">Role</dt>
         <dd class="mt-1.5 text-sm font-medium">UI Designer, UX Researcher</dd>
       </div>
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Timeline</dt>
+        <dt class="font-mono text-xs text-slate-400">Timeline</dt>
         <dd class="mt-1.5 text-sm font-medium">1 month · Oct — Nov 2024</dd>
       </div>
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Team</dt>
+        <dt class="font-mono text-xs text-slate-400">Team</dt>
         <dd class="mt-1.5 text-sm font-medium">Solo — NM4259 Mobile Interaction Design, NUS</dd>
       </div>
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Tools</dt>
+        <dt class="font-mono text-xs text-slate-400">Tools</dt>
         <dd class="mt-1.5 text-sm font-medium">Figma</dd>
       </div>
     </dl>
 
     <div class="reveal mt-6">
       <ul class="flex flex-wrap gap-1.5">
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">User research</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Empathy mapping</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Prototyping</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Figma</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">User research</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Empathy mapping</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Prototyping</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Figma</li>
       </ul>
     </div>
 
@@ -162,8 +142,8 @@
      <img src="../images/pantry-pal.jpg" alt="…" class="h-full w-full object-cover" />
      Use a 21:9 crop (e.g. 1680×720) and keep it under ~400 KB. -->
 <div class="mx-auto max-w-6xl px-5 sm:px-8">
-  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-lime-100 to-green-200 dark:from-lime-900/40 dark:to-green-900/40">
-    <div class="flex h-full items-center justify-center text-lime-700/60 dark:text-lime-300/40">
+  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-lime-100 to-green-200">
+    <div class="flex h-full items-center justify-center text-lime-700/60">
       <svg class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M5 9h14M9 5v2M9 12v2.5"/></svg>
     </div>
   </div>
@@ -174,49 +154,49 @@
   <div class="mx-auto max-w-3xl px-5 sm:px-8">
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Context</p>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">Food waste is one of the five largest waste streams in Singapore. The apps that exist to fight it — food-sharing platforms like Olio, surplus-purchasing platforms like Treatsure — all act after the waste has been created. This project was done solo for NM4259: Mobile Interaction Design at NUS, taken through to the first hi-fi design.</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">Food waste is one of the five largest waste streams in Singapore. The apps that exist to fight it — food-sharing platforms like Olio, surplus-purchasing platforms like Treatsure — all act after the waste has been created. This project was done solo for NM4259: Mobile Interaction Design at NUS, taken through to the first hi-fi design.</p>
     </div>
 
-    <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8 dark:bg-slate-900">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">The problem</p>
+    <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
       <p class="mt-4 font-display text-2xl leading-snug">Existing solutions treat the symptom. None of them touch the root cause: unsustainable consumer habits at the point of purchase. Without intervention there, the problem keeps escalating no matter how good the redistribution layer gets.</p>
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Target audience</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Youths aged 18 to 24 — identified as a key demographic generating food waste. They need an intuitive, engaging solution that helps them plan smarter and builds habits that outlast the novelty of a new app.</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Target audience</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Youths aged 18 to 24 — identified as a key demographic generating food waste. They need an intuitive, engaging solution that helps them plan smarter and builds habits that outlast the novelty of a new app.</p>
     </div>
 
     <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Design process</p></div>
+      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design process</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">01</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">01</span>
           <h3 class="font-display text-xl leading-snug">Barriers to action</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Two semi-structured interviews with the target audience surfaced why Singaporean youths disengage from waste-reducing practices. Four themes emerged: awareness of the environmental impact, a lack of immediate consequences, convenience winning over sustainability, and the sheer tediousness of waste-reducing practices.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Two semi-structured interviews with the target audience surfaced why Singaporean youths disengage from waste-reducing practices. Four themes emerged: awareness of the environmental impact, a lack of immediate consequences, convenience winning over sustainability, and the sheer tediousness of waste-reducing practices.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">02</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">02</span>
           <h3 class="font-display text-xl leading-snug">Empathy map and persona</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Interview findings were built into an empathy map and a persona to hold the interviewees' perspectives steady through the rest of the process.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Interview findings were built into an empathy map and a persona to hold the interviewees' perspectives steady through the rest of the process.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">03</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">03</span>
           <h3 class="font-display text-xl leading-snug">Existing vs. proposed user flow</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">The existing flow follows John Tan through impulse buys, a duplicate frozen pizza his parents already bought, a forgotten ingredient, and finally expired food. The proposed flow replaces each of those failures with a specific feature — meal planning, a shared family list, real-time cart tracking, storage guidance, and expiry management.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The existing flow follows John Tan through impulse buys, a duplicate frozen pizza his parents already bought, a forgotten ingredient, and finally expired food. The proposed flow replaces each of those failures with a specific feature — meal planning, a shared family list, real-time cart tracking, storage guidance, and expiry management.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">04</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">04</span>
           <h3 class="font-display text-xl leading-snug">Lo-fi → testing → mid-fi</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">The lo-fi prototype was tested across eight areas of the app, and the findings drove the mid-fi revision.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The lo-fi prototype was tested across eight areas of the app, and the findings drove the mid-fi revision.</p>
         </li>
       </ol>
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Key features</p>
-      <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Key features</p>
+      <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Meal Planner</strong> — plan meals, generate accurate shopping lists, avoid impulse buying</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Expiry Date Tracker</strong> — timely reminders plus recipe suggestions based on what's expiring</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Family Integration</strong> — shared pantry and grocery list, so nobody buys the pizza twice</span></li>
@@ -227,49 +207,49 @@
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">What testing changed</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Two users read the “Cancel” button in the text-input field as “clear”, so it was redesigned as “Back”. A participant asked for the “Pantry” button to sit in the centre of the nav bar; it moved, because it matches user convention, while “Profile” stayed on the right as the least-accessed tab.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">A/B testing settled two open questions: participants overwhelmingly preferred a grid view for expired groceries, because they identify food by its packaging, and preferred the whole week visible in the Meal Planner, because that matches weekly grocery habits. For the “XX days left” expiry notice, the smaller bottom-left placement won — noticeable but unobtrusive.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Watching two users try to find recipes from expiring ingredients on the Pantry page led to a new Ingredients page, where recipes, nutritional value, storage, and quantity all live together.</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">What testing changed</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two users read the “Cancel” button in the text-input field as “clear”, so it was redesigned as “Back”. A participant asked for the “Pantry” button to sit in the centre of the nav bar; it moved, because it matches user convention, while “Profile” stayed on the right as the least-accessed tab.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">A/B testing settled two open questions: participants overwhelmingly preferred a grid view for expired groceries, because they identify food by its packaging, and preferred the whole week visible in the Meal Planner, because that matches weekly grocery habits. For the “XX days left” expiry notice, the smaller bottom-left placement won — noticeable but unobtrusive.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Watching two users try to find recipes from expiring ingredients on the Pantry page led to a new Ingredients page, where recipes, nutritional value, storage, and quantity all live together.</p>
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Design decisions</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Receipt scanning was suggested and rejected: receipts carry no expiry dates and abbreviate item names past recognition. Manual expiry entry stayed, which has the side effect of making the shopper think about shelf life at the moment they're handling the food.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The Diet Tracker moved to the Profile page. Pantry Pal is a pantry manager first; diet tracking is secondary and optional, activated after account creation rather than pushed on everyone.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The colour scheme leans green to signal the sustainability goal, with calm tones chosen for contrast and accessibility.</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design decisions</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Receipt scanning was suggested and rejected: receipts carry no expiry dates and abbreviate item names past recognition. Manual expiry entry stayed, which has the side effect of making the shopper think about shelf life at the moment they're handling the food.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The Diet Tracker moved to the Profile page. Pantry Pal is a pantry manager first; diet tracking is secondary and optional, activated after account creation rather than pushed on everyone.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The colour scheme leans green to signal the sustainability goal, with calm tones chosen for contrast and accessibility.</p>
     </div>
 
     <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">By the numbers</p></div>
+      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">By the numbers</p></div>
       <div class="reveal mt-6 grid gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
           <p class="font-display text-4xl leading-none tracking-tight">6</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-500">Key features in the mid-fi build</p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-500">Key features in the mid-fi build</p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
           <p class="font-display text-4xl leading-none tracking-tight">2</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-500">Semi-structured interviews</p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-500">Semi-structured interviews</p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
           <p class="font-display text-4xl leading-none tracking-tight">8</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-500">Areas covered in user testing</p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-500">Areas covered in user testing</p>
         </div>
       </div>
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Skills practised</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Skills practised</p>
       <ul class="mt-5 flex flex-wrap gap-2">
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">User research and analysis</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Data gathering and analysis</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">User interviews</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Empathy mapping</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Affinity diagram</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Heuristic evaluation</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Wireframing and prototyping</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Personas</li>
-        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">Scenarios</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">User research and analysis</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Data gathering and analysis</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">User interviews</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Empathy mapping</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Affinity diagram</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Heuristic evaluation</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Wireframing and prototyping</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Personas</li>
+        <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">Scenarios</li>
       </ul>
     </div>
 
@@ -277,20 +257,20 @@
 </section>
 
 <!-- ==================== NEXT / PREV ==================== -->
-<section class="border-t border-slate-200 py-16 dark:border-slate-900">
+<section class="border-t border-slate-200 py-16">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
     <div class="reveal flex flex-col gap-4 sm:flex-row">
-      <a href="telegram-trip-planner.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 ">
-        <p class="font-mono text-xs text-slate-400 dark:text-slate-600">← Previous project</p>
-        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600 dark:group-hover:text-accent-400">Telegram Bot for Trip Planning</p>
+      <a href="telegram-trip-planner.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5">
+        <p class="font-mono text-xs text-slate-400">← Previous project</p>
+        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">Telegram Bot for Trip Planning</p>
       </a>
-      <a href="nusmart-dining-revamp.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 sm:text-right">
-        <p class="font-mono text-xs text-slate-400 dark:text-slate-600">Next project →</p>
-        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600 dark:group-hover:text-accent-400">NUSmart Dining Revamp</p>
+      <a href="nusmart-dining-revamp.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 sm:text-right">
+        <p class="font-mono text-xs text-slate-400">Next project →</p>
+        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">NUSmart Dining Revamp</p>
       </a>
     </div>
     <div class="reveal mt-10 text-center">
-      <a href="../projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600 dark:text-slate-400 dark:hover:text-accent-400">
+      <a href="../projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600">
         See every project
         <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -302,20 +282,20 @@
 </main>
 
 <!-- ==================== FOOTER ==================== -->
-<footer class="border-t border-slate-200 py-10 dark:border-slate-900">
+<footer class="border-t border-slate-200 py-10">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
-    <p class="text-sm text-slate-500 dark:text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
+    <p class="text-sm text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
     <div class="flex items-center gap-1">
-      <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
+      <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.2 2.3 4.2 5.4v6.2zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7z"/></svg>
       </a>
-      <a href="mailto:niikseah@u.nus.edu" aria-label="Email" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
+      <a href="mailto:niikseah@u.nus.edu" aria-label="Email" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
       </a>
-      <a href="../projects.html" aria-label="All projects" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
+      <a href="../projects.html" aria-label="All projects" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       </a>
-      <a href="../index.html" aria-label="Back to homepage" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900 dark:hover:text-white">
+      <a href="../index.html" aria-label="Back to homepage" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
       </a>
     </div>
@@ -326,30 +306,9 @@
 (function () {
   'use strict';
 
-  /* ---------------- Theme (dark / light) ---------------- */
-  var root = document.documentElement;
-  var toggle = document.getElementById('theme-toggle');
-
-  function isDark() { return root.classList.contains('dark'); }
-  function syncToggle() { toggle.setAttribute('aria-checked', String(isDark())); }
-  syncToggle();
-
-  toggle.addEventListener('click', function () {
-    root.classList.toggle('dark');
-    window.__theme = isDark() ? 'dark' : 'light';
-    syncToggle();
-  });
-
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  mq.addEventListener('change', function (e) {
-    if (window.__theme) return;
-    root.classList.toggle('dark', e.matches);
-    syncToggle();
-  });
-
   /* ---------------- Sticky header state ---------------- */
   var shell = document.getElementById('nav-shell');
-  var scrolledClasses = ['border-slate-200', 'bg-white/75', 'backdrop-blur-xl', 'shadow-lg', 'shadow-slate-900/5', 'dark:border-slate-800', 'dark:bg-slate-950/75'];
+  var scrolledClasses = ['border-slate-200', 'bg-white/75', 'backdrop-blur-xl', 'shadow-lg', 'shadow-slate-900/5'];
 
   function onScroll() {
     var scrolled = window.scrollY > 16;

@@ -6,22 +6,10 @@
 <title>From Blind Box to Brochure — Niik Seah</title>
 <meta name="description" content="An advocacy toolkit for a Singaporean youth non-profit: a blind box that unfolds into a brochure, plus a character keychain — designed to start conversations rather than end them." />
 
-<!-- Prevent theme flash: runs before first paint -->
-<script>
-  (function () {
-    var stored = null;
-    try { stored = window.__theme || null; } catch (e) {}
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (stored === 'dark' || (stored === null && prefersDark)) {
-      document.documentElement.classList.add('dark');
-    }
-  })();
-</script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
-    darkMode: 'class',
     theme: {
       extend: {
         fontFamily: {
@@ -47,7 +35,6 @@
 
 <style>
   :root { color-scheme: light; }
-  .dark { color-scheme: dark; }
 
   html { scroll-padding-top: 5.5rem; }
 
@@ -73,7 +60,7 @@
 </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent-200 selection:text-accent-900 dark:bg-slate-950 dark:text-slate-100 dark:selection:bg-accent-500/40 dark:selection:text-white transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent-200 selection:text-accent-900 transition-colors duration-300">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:rounded-lg focus:bg-accent-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white">Skip to content</a>
 
@@ -81,19 +68,12 @@
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <nav id="nav-shell" class="mt-4 flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5">
       <a href="../index.html" class="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-        <span class="grid h-8 w-8 place-items-center rounded-lg bg-slate-900 text-sm font-bold text-white transition-transform duration-300 group-hover:-rotate-6 dark:bg-white dark:text-slate-900">N</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-slate-900 text-sm font-bold text-white transition-transform duration-300 group-hover:-rotate-6">N</span>
         Niik Seah
       </a>
       <div class="flex items-center gap-1.5">
-        <a href="../projects.html" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block dark:text-slate-400 dark:hover:text-white">All projects</a>
-        <a href="../index.html#contact" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block dark:text-slate-400 dark:hover:text-white">Contact</a>
-        <button id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode"
-                class="relative ml-1 grid h-9 w-[62px] shrink-0 place-items-start rounded-full border border-slate-200 bg-slate-100 p-1 transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900">
-          <span id="theme-knob" class="pointer-events-none grid h-7 w-7 translate-x-0 place-items-center rounded-full bg-white shadow-sm ring-1 ring-slate-900/5 transition-transform duration-300 ease-[cubic-bezier(.16,1,.3,1)] dark:translate-x-[26px] dark:bg-slate-950 dark:ring-white/10">
-            <svg class="h-4 w-4 text-amber-500 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-            <svg class="hidden h-4 w-4 text-slate-300 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          </span>
-        </button>
+        <a href="../projects.html" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block">All projects</a>
+        <a href="../index.html#contact" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block">Contact</a>
       </div>
     </nav>
   </div>
@@ -106,45 +86,45 @@
 <section class="pt-32 pb-10 sm:pt-40">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
 
-    <nav aria-label="Breadcrumb" class="reveal flex flex-wrap items-center gap-2 font-mono text-xs text-slate-400 dark:text-slate-600">
-      <a href="../index.html" class="transition-colors hover:text-slate-700 dark:hover:text-slate-300">Home</a>
+    <nav aria-label="Breadcrumb" class="reveal flex flex-wrap items-center gap-2 font-mono text-xs text-slate-400">
+      <a href="../index.html" class="transition-colors hover:text-slate-700">Home</a>
       <span>/</span>
-      <a href="../projects.html" class="transition-colors hover:text-slate-700 dark:hover:text-slate-300">Projects</a>
+      <a href="../projects.html" class="transition-colors hover:text-slate-700">Projects</a>
       <span>/</span>
-      <span class="text-slate-600 dark:text-slate-400">From Blind Box to Brochure</span>
+      <span class="text-slate-600">From Blind Box to Brochure</span>
     </nav>
 
     <div class="reveal mt-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Comms Design · Kita</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Comms Design · Kita</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">From Blind Box to Brochure</h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">An advocacy toolkit for a Singaporean youth non-profit: a blind box that unfolds into a brochure, plus a character keychain — designed to start conversations rather than end them.</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">An advocacy toolkit for a Singaporean youth non-profit: a blind box that unfolds into a brochure, plus a character keychain — designed to start conversations rather than end them.</p>
     </div>
 
-    <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4 dark:border-slate-800">
+    <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4">
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Role</dt>
+        <dt class="font-mono text-xs text-slate-400">Role</dt>
         <dd class="mt-1.5 text-sm font-medium">✏️ Add your role</dd>
       </div>
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Timeline</dt>
+        <dt class="font-mono text-xs text-slate-400">Timeline</dt>
         <dd class="mt-1.5 text-sm font-medium">✏️ Mon Year — Mon Year</dd>
       </div>
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Context</dt>
+        <dt class="font-mono text-xs text-slate-400">Context</dt>
         <dd class="mt-1.5 text-sm font-medium">✏️ Group project — add the team size</dd>
       </div>
       <div>
-        <dt class="font-mono text-xs text-slate-400 dark:text-slate-600">Tools</dt>
+        <dt class="font-mono text-xs text-slate-400">Tools</dt>
         <dd class="mt-1.5 text-sm font-medium">✏️ Add tools</dd>
       </div>
     </dl>
 
     <div class="reveal mt-8 flex flex-wrap items-center gap-3">
-      <a href="https://niikseah.github.io/kitablindbox/standalone.html" target="_blank" rel="noopener noreferrer" class="group/l inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-accent-600 dark:bg-white dark:text-slate-900 dark:hover:bg-accent-500 dark:hover:text-white">
+      <a href="https://niikseah.github.io/kitablindbox/standalone.html" target="_blank" rel="noopener noreferrer" class="group/l inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-accent-600">
         3D interactive prototype
         <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
-      <a href="https://drive.google.com/drive/folders/1nBfyNA2MHpyBWUfpNTWGyDVVPECXWYSQ?usp=sharing" target="_blank" rel="noopener noreferrer" class="group/l inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:text-white">
+      <a href="https://drive.google.com/drive/folders/1nBfyNA2MHpyBWUfpNTWGyDVVPECXWYSQ?usp=sharing" target="_blank" rel="noopener noreferrer" class="group/l inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900">
         Designs &amp; templates
         <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
@@ -157,8 +137,8 @@
      <img src="../images/kita-blind-box-cover.jpg" alt="…" class="h-full w-full object-cover" />
      21:9 crop (e.g. 1680×720), under ~400 KB. -->
 <div class="mx-auto max-w-6xl px-5 sm:px-8">
-  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-teal-100 to-cyan-200 dark:from-teal-900/40 dark:to-cyan-900/40">
-    <div class="flex h-full items-center justify-center text-teal-700/60 dark:text-teal-300/40">
+  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-teal-100 to-cyan-200">
+    <div class="flex h-full items-center justify-center text-teal-700/60">
       <svg class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 8.5h18V21H3z"/><path d="M3 8.5 5.5 3h13L21 8.5"/><path d="M12 3v18"/></svg>
     </div>
   </div>
@@ -169,158 +149,158 @@
   <div class="mx-auto max-w-3xl px-5 sm:px-8">
 
     <div class="reveal">
-      <p class="font-mono text-xs text-slate-400 dark:text-slate-600">Methods</p>
+      <p class="font-mono text-xs text-slate-400">Methods</p>
       <ul class="mt-3 flex flex-wrap gap-1.5">
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Communication design</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Stakeholder research</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Print</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Communication design</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Stakeholder research</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Print</li>
       </ul>
     </div>
 
     <div class="reveal mt-14">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Context</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Kita is a Singaporean non-profit dedicated to helping youths claim their agency and build belonging, expression, and skills. Despite the impact of its work, it faces a strategic problem that threatens its long-term sustainability: a significant deficit in formal communication and advocacy infrastructure.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">We targeted potential advocates and donors. Empowered by the financial capital and influential networks they hold, these individuals can amplify Kita's reach — a core tenet of stakeholder theory, which holds that an organisation's long-term viability depends on managing relationships with every group that supplies critical resources, not only the beneficiaries of its services (Freeman, 1984).</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Kita is a Singaporean non-profit dedicated to helping youths claim their agency and build belonging, expression, and skills. Despite the impact of its work, it faces a strategic problem that threatens its long-term sustainability: a significant deficit in formal communication and advocacy infrastructure.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">We targeted potential advocates and donors. Empowered by the financial capital and influential networks they hold, these individuals can amplify Kita's reach — a core tenet of stakeholder theory, which holds that an organisation's long-term viability depends on managing relationships with every group that supplies critical resources, not only the beneficiaries of its services (Freeman, 1984).</p>
     </div>
 
-    <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8 dark:bg-slate-900">
+    <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
       <p class="font-display text-2xl leading-snug">Kita's fundamental issue was not a lack of information, but a lack of means for starting conversations and sharing them.</p>
     </div>
 
     <div class="reveal mt-14">
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Traditional brochures are one-way, terminal points of information. They run on an outdated diffusion model of communication, insufficient for motivating the organic, peer-to-peer advocacy Kita needs. Shifting toward participatory communication was what could turn passive sympathisers into active ambassadors (Servaes, 1996).</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">So the objective became: create a resource that acts not as a final statement but as a conversation starter — engaging, aesthetically compelling, easily shareable, and motivating enough that advocates champion Kita inside their own professional and social circles.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Traditional brochures are one-way, terminal points of information. They run on an outdated diffusion model of communication, insufficient for motivating the organic, peer-to-peer advocacy Kita needs. Shifting toward participatory communication was what could turn passive sympathisers into active ambassadors (Servaes, 1996).</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">So the objective became: create a resource that acts not as a final statement but as a conversation starter — engaging, aesthetically compelling, easily shareable, and motivating enough that advocates champion Kita inside their own professional and social circles.</p>
     </div>
 
     <div class="reveal mt-14">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Research approach</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Research approach</p>
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">Desk research and a board member</h2>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Extensive qualitative desk research across three themes — Kita's organisational context, Singapore's at-risk youth, and Singaporean advocate and donor profiles — plus one physical interview.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">For organisational context we reviewed the websites, publications, and social channels of Kita, its predecessor Hatch, and comparable organisations. Using purposive sampling we selected Praxium and Trybe for their close alignment with Kita's work, then ran a SWOT analysis on each organisation's branding, programme presentation, and outreach. For donor profiles we reviewed public data on platforms such as GiveAsia alongside philanthropic trend reports, covering younger digitally-savvy donors, older established contributors, and volunteers and partners at varying engagement levels.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The interview was with Kwek Jim See, one of Kita's board members, to get first-hand insight from an existing advocate — the demographics, behaviour and preferences of advocates, and how information currently flows to potential ones.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Extensive qualitative desk research across three themes — Kita's organisational context, Singapore's at-risk youth, and Singaporean advocate and donor profiles — plus one physical interview.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">For organisational context we reviewed the websites, publications, and social channels of Kita, its predecessor Hatch, and comparable organisations. Using purposive sampling we selected Praxium and Trybe for their close alignment with Kita's work, then ran a SWOT analysis on each organisation's branding, programme presentation, and outreach. For donor profiles we reviewed public data on platforms such as GiveAsia alongside philanthropic trend reports, covering younger digitally-savvy donors, older established contributors, and volunteers and partners at varying engagement levels.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The interview was with Kwek Jim See, one of Kita's board members, to get first-hand insight from an existing advocate — the demographics, behaviour and preferences of advocates, and how information currently flows to potential ones.</p>
     </div>
 
     <div class="mt-16">
-      <p class="reveal text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Findings</p>
+      <p class="reveal text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Findings</p>
       <h2 class="reveal mt-4 font-display text-3xl leading-snug tracking-tight">Five findings, and what each meant for the design</h2>
       <div class="reveal mt-6 grid gap-4 sm:grid-cols-2">
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
           <h3 class="font-display text-lg leading-snug">1 — Awareness is thin outside existing networks</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">As a recently established non-profit with minimal press and social presence, Kita is largely unknown beyond its current supporters. <strong>So:</strong> the toolkit had to be a clear entry point — eye-catching and informative enough to spark and sustain conversations.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">As a recently established non-profit with minimal press and social presence, Kita is largely unknown beyond its current supporters. <strong>So:</strong> the toolkit had to be a clear entry point — eye-catching and informative enough to spark and sustain conversations.</p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
           <h3 class="font-display text-lg leading-snug">2 — Advocate profiles differ sharply</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Donors split between younger people making online micro-donations and older donors giving larger, consistent amounts. Both Kita's team and Jim See flagged the need to tailor messaging to different motivations and familiarity with the social service landscape. <strong>So:</strong> visually engaging, interactive resources setting out several avenues for support.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Donors split between younger people making online micro-donations and older donors giving larger, consistent amounts. Both Kita's team and Jim See flagged the need to tailor messaging to different motivations and familiarity with the social service landscape. <strong>So:</strong> visually engaging, interactive resources setting out several avenues for support.</p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
           <h3 class="font-display text-lg leading-snug">3 — Youth-led agency is the differentiator</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Research on at-risk youth showed their experiences stem from social and familial factors including intergenerational offending and educational pressure — which is why genuine involvement matters. Jim See reached for “agency” and “co-creation” when he wanted to catch someone's interest. <strong>So:</strong> foreground the collaborative ethos.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Research on at-risk youth showed their experiences stem from social and familial factors including intergenerational offending and educational pressure — which is why genuine involvement matters. Jim See reached for “agency” and “co-creation” when he wanted to catch someone's interest. <strong>So:</strong> foreground the collaborative ethos.</p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
           <h3 class="font-display text-lg leading-snug">4 — Language choice is not cosmetic</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Framing narratives around strength and potential rather than deficits or “sob stories” lets advocates communicate authentically without trading on pity. Kita's team specifically cautioned against “empower”, which implies the youths were powerless to begin with. <strong>So:</strong> language that spotlights space and opportunity, not rescue.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Framing narratives around strength and potential rather than deficits or “sob stories” lets advocates communicate authentically without trading on pity. Kita's team specifically cautioned against “empower”, which implies the youths were powerless to begin with. <strong>So:</strong> language that spotlights space and opportunity, not rescue.</p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
           <h3 class="font-display text-lg leading-snug">5 — There was no single grounded document</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Both Kita's team and Jim See described the same gap: nowhere consolidated that brings together key information and clear ways to contribute. <strong>So:</strong> the toolkit had to be that document.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Both Kita's team and Jim See described the same gap: nowhere consolidated that brings together key information and clear ways to contribute. <strong>So:</strong> the toolkit had to be that document.</p>
         </div>
       </div>
     </div>
 
     <div class="reveal mt-14">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">The intervention</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The intervention</p>
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">A blind box that unfolds into a brochure</h2>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The toolkit is a brochure shaped as a blind box on the theme of home, plus an identity artefact — a character keychain with a matching card. Unfolded, the box becomes the brochure.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The keychain is modelled on Kita's four characters: Bubu, Roro, Kiki and Pebbie. Each comes with a card explaining the character's origins and what it represents about Kita. The idea came from Victor Zhu, Kita's executive director, who wears Kita's character pins to conferences to start conversations and leave an impression. Keychains were chosen for being conspicuous, attractive, and flexible in how they're displayed.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The blind box format carries Kita's visual identity into a medium that stands out among advocacy materials, reinforcing recognition and recall. The unboxing extends engagement past passive reading into something with emotional resonance — which is what makes the information stick.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The toolkit is a brochure shaped as a blind box on the theme of home, plus an identity artefact — a character keychain with a matching card. Unfolded, the box becomes the brochure.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The keychain is modelled on Kita's four characters: Bubu, Roro, Kiki and Pebbie. Each comes with a card explaining the character's origins and what it represents about Kita. The idea came from Victor Zhu, Kita's executive director, who wears Kita's character pins to conferences to start conversations and leave an impression. Keychains were chosen for being conspicuous, attractive, and flexible in how they're displayed.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The blind box format carries Kita's visual identity into a medium that stands out among advocacy materials, reinforcing recognition and recall. The unboxing extends engagement past passive reading into something with emotional resonance — which is what makes the information stick.</p>
     </div>
 
     <figure class="reveal mt-12">
       <!-- ✏️ Export this figure from Notion and drop it in:
-           <img src="../images/kita-blind-box-brochure.jpg" alt="The blind box, unfolded into a brochure" class="w-full rounded-2xl border border-slate-200 dark:border-slate-800" /> -->
-      <div class="grid aspect-[16/9] place-items-center rounded-2xl border border-dashed border-slate-300 bg-slate-100/60 dark:border-slate-800 dark:bg-slate-900/50">
-        <div class="flex flex-col items-center gap-3 px-6 text-center text-teal-700/60 dark:text-teal-300/40">
+           <img src="../images/kita-blind-box-brochure.jpg" alt="The blind box, unfolded into a brochure" class="w-full rounded-2xl border border-slate-200" /> -->
+      <div class="grid aspect-[16/9] place-items-center rounded-2xl border border-dashed border-slate-300 bg-slate-100/60">
+        <div class="flex flex-col items-center gap-3 px-6 text-center text-teal-700/60">
           <svg class="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8.5h18V21H3z"/><path d="M3 8.5 5.5 3h13L21 8.5"/><path d="M12 3v18"/></svg>
           <span class="font-mono text-xs uppercase tracking-widest">images/kita-blind-box-brochure.jpg</span>
         </div>
       </div>
-      <figcaption class="mt-3 text-center text-sm text-slate-500 dark:text-slate-500">The blind box, unfolded into a brochure</figcaption>
+      <figcaption class="mt-3 text-center text-sm text-slate-500">The blind box, unfolded into a brochure</figcaption>
     </figure>
 
     <figure class="reveal mt-12">
       <!-- ✏️ Export this figure from Notion and drop it in:
-           <img src="../images/kita-blind-box-keychains.jpg" alt="Character keychains — Bubu, Roro, Kiki, Pebbie" class="w-full rounded-2xl border border-slate-200 dark:border-slate-800" /> -->
-      <div class="grid aspect-[16/9] place-items-center rounded-2xl border border-dashed border-slate-300 bg-slate-100/60 dark:border-slate-800 dark:bg-slate-900/50">
-        <div class="flex flex-col items-center gap-3 px-6 text-center text-teal-700/60 dark:text-teal-300/40">
+           <img src="../images/kita-blind-box-keychains.jpg" alt="Character keychains — Bubu, Roro, Kiki, Pebbie" class="w-full rounded-2xl border border-slate-200" /> -->
+      <div class="grid aspect-[16/9] place-items-center rounded-2xl border border-dashed border-slate-300 bg-slate-100/60">
+        <div class="flex flex-col items-center gap-3 px-6 text-center text-teal-700/60">
           <svg class="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8.5h18V21H3z"/><path d="M3 8.5 5.5 3h13L21 8.5"/><path d="M12 3v18"/></svg>
           <span class="font-mono text-xs uppercase tracking-widest">images/kita-blind-box-keychains.jpg</span>
         </div>
       </div>
-      <figcaption class="mt-3 text-center text-sm text-slate-500 dark:text-slate-500">Character keychains — Bubu, Roro, Kiki, Pebbie</figcaption>
+      <figcaption class="mt-3 text-center text-sm text-slate-500">Character keychains — Bubu, Roro, Kiki, Pebbie</figcaption>
     </figure>
 
     <div class="mt-16">
-      <p class="reveal text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Design process</p>
+      <p class="reveal text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design process</p>
       <h2 class="reveal mt-4 font-display text-3xl leading-snug tracking-tight">Five constraints that shaped it</h2>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">01</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">01</span>
           <h3 class="font-display text-xl leading-snug">Scalability</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Accessibility and visibility were the critical gaps, so the medium had to be cost-effective and easy to produce in bulk within a growing organisation's tight resources. The design is straightforward to assemble, which also simplifies inventory — and an interactive 3D brochure demonstrates the fold.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Accessibility and visibility were the critical gaps, so the medium had to be cost-effective and easy to produce in bulk within a growing organisation's tight resources. The design is straightforward to assemble, which also simplifies inventory — and an interactive 3D brochure demonstrates the fold.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">02</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">02</span>
           <h3 class="font-display text-xl leading-snug">Digestibility</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">The cuboid gives twelve sides, which let us segregate information by proximity into clear categories. Visual hierarchy steers the eye toward critical information and clear calls to action, and the copy balances depth against skimmability.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The cuboid gives twelve sides, which let us segregate information by proximity into clear categories. Visual hierarchy steers the eye toward critical information and clear calls to action, and the copy balances depth against skimmability.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">03</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">03</span>
           <h3 class="font-display text-xl leading-snug">Portability</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Jim See described advocates carrying the toolkit around and using it when an opportunity arises — so it had to be compact and light enough that carrying it isn't a decision.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Jim See described advocates carrying the toolkit around and using it when an opportunity arises — so it had to be compact and light enough that carrying it isn't a decision.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">04</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">04</span>
           <h3 class="font-display text-xl leading-snug">Durability</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">A blind box has to protect the keychain while being carried. A thicker material strengthens the structure and extends its life — and a box that stays in an advocate's space keeps generating touchpoints.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">A blind box has to protect the keychain while being carried. A thicker material strengthens the structure and extends its life — and a box that stays in an advocate's space keeps generating touchpoints.</p>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">05</span>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">05</span>
           <h3 class="font-display text-xl leading-snug">Configurability</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">Kita's mission centres on co-creation and youth agency, but we had no opportunity to collaborate with Kita's youths directly. So the design was made configurable, in the sense of infrastructuring (Dantec &amp; DiSalvo, 2013): elements are deliberately left empty for youths to personalise. Rather than prescribing a finished solution, it provides a foundation — which turns beneficiaries into co-creators of how Kita is represented.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Kita's mission centres on co-creation and youth agency, but we had no opportunity to collaborate with Kita's youths directly. So the design was made configurable, in the sense of infrastructuring (Dantec &amp; DiSalvo, 2013): elements are deliberately left empty for youths to personalise. Rather than prescribing a finished solution, it provides a foundation — which turns beneficiaries into co-creators of how Kita is represented.</p>
         </li>
       </ol>
     </div>
 
     <div class="reveal mt-14">
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">The balance it had to strike</h2>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Innovation against practical organisational needs, and youthfulness against professionalism — enough of the latter not to undermine the seriousness of the cause. The blind box is unconventional but culturally relevant, and its trendiness is doing work: it's built to be shared. What would otherwise be a generic brochure becomes a memorable first touchpoint.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Innovation against practical organisational needs, and youthfulness against professionalism — enough of the latter not to undermine the seriousness of the cause. The blind box is unconventional but culturally relevant, and its trendiness is doing work: it's built to be shared. What would otherwise be a generic brochure becomes a memorable first touchpoint.</p>
     </div>
 
     <div class="reveal mt-14">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Evaluation</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Evaluation</p>
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">How we'd measure it</h2>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Two outcomes: improve current advocates' knowledge of Kita and their confidence in communicating its mission, and drive measurable engagement — traffic to Kita's site and donation platforms.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400"><strong>Quantitatively</strong>, pre- and post-surveys for current advocates measuring knowledge and confidence before and after receiving the toolkit, and a single survey for new advocates covering perceived knowledge of Kita, frequency of advocacy activity, frequency of donation, and what motivates and sustains their interest. Alongside that, engagement metrics across Kita's social, website, and donation channels before and after distribution.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400"><strong>Qualitatively</strong>, field observation at Kita outreach events to see how advocates actually use the toolkit, and focus groups after a period of distribution to learn which elements help and which create friction. Tying both together, a longitudinal check at six months to a year to test whether any effect is sustained past the initial distribution.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two outcomes: improve current advocates' knowledge of Kita and their confidence in communicating its mission, and drive measurable engagement — traffic to Kita's site and donation platforms.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600"><strong>Quantitatively</strong>, pre- and post-surveys for current advocates measuring knowledge and confidence before and after receiving the toolkit, and a single survey for new advocates covering perceived knowledge of Kita, frequency of advocacy activity, frequency of donation, and what motivates and sustains their interest. Alongside that, engagement metrics across Kita's social, website, and donation channels before and after distribution.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600"><strong>Qualitatively</strong>, field observation at Kita outreach events to see how advocates actually use the toolkit, and focus groups after a period of distribution to learn which elements help and which create friction. Tying both together, a longitudinal check at six months to a year to test whether any effect is sustained past the initial distribution.</p>
     </div>
 
     <div class="reveal mt-14">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Conclusion</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">The project shows how co-creation informed a communication toolkit built for Kita's emerging support ecosystem. Engaging directly with a representative of Kita's advocates clarified the motivations and interaction preferences that make advocacy work, and working closely with Kita's team kept organisational needs and design outcomes aligned.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">Prototyping surfaced a real tension between meaningful storytelling and practical usability, which led to clearer instructions and more durable structural choices. Next would be testing with a broader advocate base and building in more participatory elements — user-driven customisation especially — to support sustained engagement and Kita's longer-term outreach goals.</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Conclusion</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The project shows how co-creation informed a communication toolkit built for Kita's emerging support ecosystem. Engaging directly with a representative of Kita's advocates clarified the motivations and interaction preferences that make advocacy work, and working closely with Kita's team kept organisational needs and design outcomes aligned.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Prototyping surfaced a real tension between meaningful storytelling and practical usability, which led to clearer instructions and more durable structural choices. Next would be testing with a broader advocate base and building in more participatory elements — user-driven customisation especially — to support sustained engagement and Kita's longer-term outreach goals.</p>
     </div>
 
-    <div class="reveal mt-16 border-t border-slate-200 pt-8 dark:border-slate-800">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">Works cited</p>
+    <div class="reveal mt-16 border-t border-slate-200 pt-8">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Works cited</p>
       <ul class="mt-4 space-y-2">
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Dantec, C. A. L., &amp; DiSalvo, C. (2013). Infrastructuring and the formation of publics in participatory design. <em>Social Studies of Science, 43</em>(2), 241–264.</li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Freeman, R. E. (1984). <em>Strategic management: A stakeholder approach.</em> Pitman.</li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Hasanica, N., Ramić-Čatak, A., Mujezinović, A., Begagić, S., Galijašević, K., &amp; Oruč, M. (2020). The effectiveness of leaflets and posters as a health education method. <em>Materia Socio-Medica, 32</em>(2), 135–139.</li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Kita. (2024). <em>Our story and impact.</em> Singapore: Kita.</li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Kita's GiveAsia. (2024). <em>Donate to Kita.</em></li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">NVPC. (2024). <em>National Giving Study.</em></li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Putnam, R. D. (2000). <em>Bowling Alone: The Collapse and Revival of American Community.</em> Simon &amp; Schuster.</li>
-        <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-500">Servaes, J. (1996). Participatory communication and research in development settings. In <em>Participatory Communication for Social Change</em> (pp. 13–25). Sage.</li>
+        <li class="text-sm leading-relaxed text-slate-500">Dantec, C. A. L., &amp; DiSalvo, C. (2013). Infrastructuring and the formation of publics in participatory design. <em>Social Studies of Science, 43</em>(2), 241–264.</li>
+        <li class="text-sm leading-relaxed text-slate-500">Freeman, R. E. (1984). <em>Strategic management: A stakeholder approach.</em> Pitman.</li>
+        <li class="text-sm leading-relaxed text-slate-500">Hasanica, N., Ramić-Čatak, A., Mujezinović, A., Begagić, S., Galijašević, K., &amp; Oruč, M. (2020). The effectiveness of leaflets and posters as a health education method. <em>Materia Socio-Medica, 32</em>(2), 135–139.</li>
+        <li class="text-sm leading-relaxed text-slate-500">Kita. (2024). <em>Our story and impact.</em> Singapore: Kita.</li>
+        <li class="text-sm leading-relaxed text-slate-500">Kita's GiveAsia. (2024). <em>Donate to Kita.</em></li>
+        <li class="text-sm leading-relaxed text-slate-500">NVPC. (2024). <em>National Giving Study.</em></li>
+        <li class="text-sm leading-relaxed text-slate-500">Putnam, R. D. (2000). <em>Bowling Alone: The Collapse and Revival of American Community.</em> Simon &amp; Schuster.</li>
+        <li class="text-sm leading-relaxed text-slate-500">Servaes, J. (1996). Participatory communication and research in development settings. In <em>Participatory Communication for Social Change</em> (pp. 13–25). Sage.</li>
       </ul>
     </div>
 
@@ -328,20 +308,20 @@
 </section>
 
 <!-- ==================== NEXT / PREV ==================== -->
-<section class="border-t border-slate-200 py-16 dark:border-slate-900">
+<section class="border-t border-slate-200 py-16">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
     <div class="reveal flex flex-col gap-4 sm:flex-row">
-      <a href="fusion-scanner.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 ">
-        <p class="font-mono text-xs text-slate-400 dark:text-slate-600">← Previous project</p>
-        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600 dark:group-hover:text-accent-400">Fusion Scanner</p>
+      <a href="fusion-scanner.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5">
+        <p class="font-mono text-xs text-slate-400">← Previous project</p>
+        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">Fusion Scanner</p>
       </a>
-      <a href="brand-style-guide.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 sm:text-right">
-        <p class="font-mono text-xs text-slate-400 dark:text-slate-600">Next project →</p>
-        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600 dark:group-hover:text-accent-400">Brand Style Guide</p>
+      <a href="brand-style-guide.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 sm:text-right">
+        <p class="font-mono text-xs text-slate-400">Next project →</p>
+        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">Brand Style Guide</p>
       </a>
     </div>
     <div class="reveal mt-10 text-center">
-      <a href="../projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600 dark:text-slate-400 dark:hover:text-accent-400">
+      <a href="../projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600">
         See every project
         <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -352,17 +332,17 @@
 </article>
 </main>
 
-<footer class="border-t border-slate-200 py-10 dark:border-slate-900">
+<footer class="border-t border-slate-200 py-10">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
-    <p class="text-sm text-slate-500 dark:text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
+    <p class="text-sm text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
     <div class="flex items-center gap-1">
-      <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
+      <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.2 2.3 4.2 5.4v6.2zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7z"/></svg>
       </a>
-      <a href="../projects.html" aria-label="All projects" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
+      <a href="../projects.html" aria-label="All projects" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       </a>
-      <a href="../index.html" aria-label="Back to homepage" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900 dark:hover:text-white">
+      <a href="../index.html" aria-label="Back to homepage" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
       </a>
     </div>
@@ -373,27 +353,8 @@
 (function () {
   'use strict';
 
-  var root = document.documentElement;
-  var toggle = document.getElementById('theme-toggle');
-  function isDark() { return root.classList.contains('dark'); }
-  function syncToggle() { toggle.setAttribute('aria-checked', String(isDark())); }
-  syncToggle();
-
-  toggle.addEventListener('click', function () {
-    root.classList.toggle('dark');
-    window.__theme = isDark() ? 'dark' : 'light';
-    syncToggle();
-  });
-
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  mq.addEventListener('change', function (e) {
-    if (window.__theme) return;
-    root.classList.toggle('dark', e.matches);
-    syncToggle();
-  });
-
   var shell = document.getElementById('nav-shell');
-  var scrolledClasses = ['border-slate-200', 'bg-white/75', 'backdrop-blur-xl', 'shadow-lg', 'shadow-slate-900/5', 'dark:border-slate-800', 'dark:bg-slate-950/75'];
+  var scrolledClasses = ['border-slate-200', 'bg-white/75', 'backdrop-blur-xl', 'shadow-lg', 'shadow-slate-900/5'];
   function onScroll() {
     var scrolled = window.scrollY > 16;
     scrolledClasses.forEach(function (c) { shell.classList.toggle(c, scrolled); });

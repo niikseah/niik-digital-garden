@@ -6,22 +6,10 @@
 <title>Niik Seah — Product Designer & Product Manager</title>
 <meta name="description" content="Portfolio of Niik Seah — a Singapore-based product designer and product manager working across research, design systems, and front-end code." />
 
-<!-- Prevent theme flash: runs before first paint -->
-<script>
-  (function () {
-    var stored = null;
-    try { stored = window.__theme || null; } catch (e) {}
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (stored === 'dark' || (stored === null && prefersDark)) {
-      document.documentElement.classList.add('dark');
-    }
-  })();
-</script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
-    darkMode: 'class',
     theme: {
       extend: {
         fontFamily: {
@@ -55,7 +43,6 @@
 
 <style>
   :root { color-scheme: light; }
-  .dark { color-scheme: dark; }
 
   html { scroll-padding-top: 5.5rem; }
 
@@ -96,10 +83,7 @@
   .rail { scrollbar-width: none; -ms-overflow-style: none; }
   .rail::-webkit-scrollbar { display: none; }
 
-  /* Edge fades. --rail-bg matches the work section's background: white in light
-     mode, and slate-900/30 composited over slate-950 (#020617) in dark mode. */
   .rail-fade { --rail-bg: #ffffff; --tw-gradient-from: var(--rail-bg); --tw-gradient-to: rgba(255,255,255,0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
-  .dark .rail-fade { --rail-bg: #060b1d; --tw-gradient-to: rgba(6,11,29,0); }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -117,7 +101,7 @@
 </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent-200 selection:text-accent-900 dark:bg-slate-950 dark:text-slate-100 dark:selection:bg-accent-500/40 dark:selection:text-white transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent-200 selection:text-accent-900 transition-colors duration-300">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:rounded-lg focus:bg-accent-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white">Skip to content</a>
 
@@ -127,34 +111,22 @@
     <nav id="nav-shell" class="mt-4 flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5">
       <!-- Logo -->
       <a href="#hero" class="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-        <img src="logo.png" width = 50vh height = 50vw >
-        <span class="hidden sm:inline">Niik Seah</span>
+        <img src="logo.png" width = 50vh height = 50vw alt="Niik Seah" >
       </a>
 
       <!-- Desktop nav -->
       <ul class="hidden items-center gap-7 md:flex">
-        <li><a href="#about" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">About</a></li>
-        <li><a href="#work" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Work</a></li>
-        <li><a href="#working-on" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Working on</a></li>
-        <li><a href="#experience" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Experience</a></li>
-        <li><a href="#contact" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Contact</a></li>
+        <li><a href="#about" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">About</a></li>
+        <li><a href="#work" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Work</a></li>
+        <li><a href="#experience" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Experience</a></li>
+        <li><a href="#contact" class="nav-link relative text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Contact</a></li>
       </ul>
 
       <div class="flex items-center gap-2">
-        <!-- Theme toggle -->
-        <button id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode"
-          class="group relative inline-flex h-9 w-[62px] shrink-0 items-center rounded-full border border-slate-300 bg-slate-200/70 p-1 transition-colors duration-300 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800">
-          <span id="theme-knob" class="pointer-events-none grid h-7 w-7 translate-x-0 place-items-center rounded-full bg-white shadow-sm ring-1 ring-slate-900/5 transition-transform duration-300 ease-[cubic-bezier(.16,1,.3,1)] dark:translate-x-[26px] dark:bg-slate-950 dark:ring-white/10">
-            <!-- sun -->
-            <svg class="h-4 w-4 text-amber-500 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-            <!-- moon -->
-            <svg class="hidden h-4 w-4 text-accent-300 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          </span>
-        </button>
 
         <!-- Mobile menu button -->
         <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"
-          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-300 text-slate-700 transition-colors hover:bg-slate-200/60 md:hidden dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
+          class="grid h-9 w-9 place-items-center rounded-lg border border-slate-300 text-slate-700 transition-colors hover:bg-slate-200/60 md:hidden">
           <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
           <svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
@@ -164,12 +136,11 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="grid grid-rows-[0fr] overflow-hidden transition-all duration-300 ease-[cubic-bezier(.16,1,.3,1)] md:hidden">
       <div class="min-h-0">
-        <ul class="mt-2 space-y-1 rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-lg shadow-slate-900/5 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/90">
-          <li><a href="#about" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">About</a></li>
-          <li><a href="#work" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Work</a></li>
-          <li><a href="#working-on" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Working on</a></li>
-          <li><a href="#experience" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Experience</a></li>
-          <li><a href="#contact" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Contact</a></li>
+        <ul class="mt-2 space-y-1 rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-lg shadow-slate-900/5 backdrop-blur-xl">
+          <li><a href="#about" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100">About</a></li>
+          <li><a href="#work" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100">Work</a></li>
+          <li><a href="#experience" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100">Experience</a></li>
+          <li><a href="#contact" class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -181,51 +152,50 @@
 <!-- ==================== HERO ==================== -->
 <section id="hero" class="relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
   <div class="grid-backdrop pointer-events-none absolute inset-0 -z-10"></div>
-  <div class="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[520px] w-[880px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-accent-300/25 via-sky-200/20 to-transparent blur-3xl dark:from-accent-600/20 dark:via-sky-500/10"></div>
+  <div class="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[520px] w-[880px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-accent-300/25 via-sky-200/20 to-transparent blur-3xl"></div>
 
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class="reveal max-w-3xl">
-      <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+      <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-700">
         <span class="relative flex h-2 w-2">
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
           <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
         </span>
-        Open to product design &amp; product management roles
+        Open to Product Management and Product Design roles
       </span>
 
       <h1 class="mt-7 font-display text-[2.75rem] leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-        I turn messy problems into products people can <em class="italic text-accent-600 dark:text-accent-400">actually use</em>.
+        I turn messy problems into products people can <em class="italic text-accent-600">actually use</em>.
       </h1>
 
-      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-        I'm Niik — a product designer and product manager based in Singapore. I've spent internships at Shopee, GovTech,
-        DBS, and Micron doing the same thing in different clothes: sitting between users, business, and engineering,
-        and making sure what gets built is the thing that was actually needed. NUS, Communications and New Media with a
-        second major in Computer Science.
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-slate-600">
+        Hello, my name is Niik! I have experience in a variety of roles from Product Management, to Product Design,
+        and Software Development; at the heart of it, my passion lies in Product. I live at the intersection between
+        users, business, and engineering, and ensure that what is needed to be built is built.
       </p>
 
       <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a href="#work"
-          class="group inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-slate-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-900/20 active:translate-y-0 dark:bg-white dark:text-slate-900 dark:shadow-black/40 dark:hover:bg-slate-200">
+          class="group inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-slate-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-900/20 active:translate-y-0">
           View Work
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <a href="#contact"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white active:translate-y-0 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-900">
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white active:translate-y-0">
           Get in touch
         </a>
       </div>
 
       <!-- Socials -->
       <div class="mt-12 flex items-center gap-1">
-        <span class="mr-3 text-xs font-medium uppercase tracking-widest text-slate-400 dark:text-slate-600">Find me</span>
-        <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-white">
+        <span class="mr-3 text-xs font-medium uppercase tracking-widest text-slate-400">Find me</span>
+        <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.2 2.3 4.2 5.4v6.2zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7z"/></svg>
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-white">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.6 5.6.6 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6a11.4 11.4 0 0 0 7.8-10.8C23.4 5.6 18.3.5 12 .5z"/></svg>
         </a>
-        <a href="mailto:niikseah@u.nus.edu" aria-label="Email" class="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-white">
+        <a href="mailto:niikseah@u.nus.edu" aria-label="Email" class="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 7 8.2 5.5a1.5 1.5 0 0 0 1.6 0L21 7"/></svg>
         </a>
       </div>
@@ -234,99 +204,175 @@
 </section>
 
 <!-- ==================== ABOUT ==================== -->
-<section id="about" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32 dark:border-slate-900">
+<section id="about" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class="reveal">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">01 — About</p>
-      <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">A designer who thinks in systems, a PM who still opens Figma</h2>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">01 — About</p>
+      <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">An interdisciplinary background capable of creative and computational thinking.</h2>
     </div>
 
     <div class="mt-14 grid gap-12 lg:grid-cols-[380px,1fr] lg:gap-16">
       <!-- Headshot placeholder -->
       <div class="reveal">
         <div class="group relative">
-          <div class="absolute -inset-3 -z-10 rounded-[28px] bg-gradient-to-br from-accent-200/60 to-sky-200/40 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100 dark:from-accent-600/30 dark:to-sky-600/20"></div>
-          <div class="aspect-[4/5] w-full overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 dark:border-slate-800 dark:from-slate-900 dark:to-slate-800">
-            <div class="flex h-full flex-col items-center justify-center gap-3 text-slate-400 transition-transform duration-500 group-hover:scale-[1.03] dark:text-slate-600">
+          <div class="absolute -inset-3 -z-10 rounded-[28px] bg-gradient-to-br from-accent-200/60 to-sky-200/40 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200">
+            <div class="flex h-full flex-col items-center justify-center gap-3 text-slate-400 transition-transform duration-500 group-hover:scale-[1.03]">
               <svg class="h-14 w-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8.5" r="4"/><path d="M3.5 21a8.5 8.5 0 0 1 17 0"/></svg>
               <span class="text-xs font-medium uppercase tracking-widest">Headshot — 1200×1500</span>
             </div>
           </div>
         </div>
-        <p class="mt-4 text-center text-xs text-slate-400 dark:text-slate-600">Drop a portrait in here — 4:5 crop, ideally under 200&nbsp;KB.</p>
+        <p class="mt-4 text-center text-xs text-slate-400">Drop a portrait in here — 4:5 crop, ideally under 200&nbsp;KB.</p>
       </div>
 
       <!-- Copy + skills -->
       <div class="reveal">
-        <div class="space-y-5 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">
+        <div class="space-y-5 text-[17px] leading-relaxed text-slate-600">
           <p>
-            I studied Communications and New Media at NUS with a second major in Computer Science and a minor in
-            Interactive Media Design — which is a roundabout way of saying I never wanted to pick between understanding
-            people and understanding the system they're using.
-          </p>
-          <p>
-            In practice that's meant carrying work from both ends. At GovTech I turned ambiguous questions from seven
-            organisations into requirements a team could build against, distilling 450+ responses from a
-            6,000-participant study into an MVP scope covering 70% of target users. At Shopee I ran competitor
-            benchmarking and journey mapping to expand Buyer Self-Collection coverage from 30% to 40%, then owned UAT
-            end to end so it actually shipped clean.
-          </p>
-          <p>
-            Outside internships I led a team of five designers at NUS Developer Group, built Figma design systems that
-            cut turnaround time, and wrote the scraping pipeline and Leaflet map behind a travel tool at NUS Fintech
-            Society. I like the parts of this job where research, design, and code stop being separate departments.
+            I recently graduated from NUS with a degree in Communications and New Media. I also have a second major in
+            Computer Science and a minor in Interactive Media Design.
           </p>
         </div>
 
         <div class="mt-10">
-          <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-600">Design &amp; research</h3>
+          <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Programming</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Figma &amp; design systems</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Wireframing &amp; prototyping</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Usability testing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Contextual inquiry</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Affinity diagramming</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Personas &amp; storyboards</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Adobe Suite</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">HTML</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">CSS</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">JavaScript</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Python</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Java</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">C</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Unity3D</li>
           </ul>
 
-          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-600">Product</h3>
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Design</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Agile / Scrum</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">User Acceptance Testing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Competitive analysis</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">A/B testing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">BRDs &amp; requirements</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Data analytics</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Figma</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Adobe Illustrator</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Adobe Photoshop</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Adobe InDesign</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Balsamiq</li>
           </ul>
 
-          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-600">Engineering</h3>
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">User Experience</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">JavaScript</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Python</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Java</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">C</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">HTML / CSS</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">SQL</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-accent-500 dark:hover:text-accent-300">Unity3D</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Wireframing</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Prototyping</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Testing</li>
+          </ul>
+
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">User Research</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Affinity Diagram</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Contextual Inquiry</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Interview</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Persona</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Storyboard</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Survey</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Usability Testing</li>
+          </ul>
+
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Product Strategy</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Competitive Analysis</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">A/B Testing</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Business Requirement Documents</li>
+          </ul>
+
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Product Management</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Agile / Scrum Methodology</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Acceptance Testing (UAT)</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Data Analytics (SQL / Python)</li>
+          </ul>
+
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Data Analysis</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">SQL</li>
+          </ul>
+
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Interests</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">UI/UX</li>
+            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Tennis</li>
           </ul>
         </div>
       </div>
+    </div>
+
+    <!-- Licenses & certifications -->
+    <div class="reveal mt-16">
+      <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Licenses &amp; certifications</h3>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+          <h4 class="font-display text-lg leading-snug">Product Management: An Introduction</h4>
+          <p class="mt-1 text-sm font-medium text-accent-600">IBM</p>
+          <p class="mt-2 font-mono text-xs text-slate-400">Issued Aug 2026 · ID IIGZN6N1W453</p>
+          <a href="https://www.coursera.org/account/accomplishments/records/IIGZN6N1W453" target="_blank" rel="noopener noreferrer" class="group/l mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors hover:text-accent-600">
+            Show credential
+            <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </li>
+
+        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+          <h4 class="font-display text-lg leading-snug">Databases and SQL for Data Science with Python</h4>
+          <p class="mt-1 text-sm font-medium text-accent-600">IBM</p>
+          <p class="mt-2 font-mono text-xs text-slate-400">Issued Jun 2026 · ID VJNH0QOHL1VA</p>
+          <a href="https://www.coursera.org/account/accomplishments/records/VJNH0QOHL1VA" target="_blank" rel="noopener noreferrer" class="group/l mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors hover:text-accent-600">
+            Show credential
+            <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </li>
+
+        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+          <h4 class="font-display text-lg leading-snug">Google UX Design Certificate</h4>
+          <p class="mt-1 text-sm font-medium text-accent-600">Google</p>
+          <p class="mt-2 font-mono text-xs text-slate-400">Issued Jun 2024 · ID 5U9GYQU7PKUQ</p>
+          <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/5U9GYQU7PKUQ" target="_blank" rel="noopener noreferrer" class="group/l mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors hover:text-accent-600">
+            Show credential
+            <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </li>
+
+        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+          <h4 class="font-display text-lg leading-snug">Introduction to Front-End Development</h4>
+          <p class="mt-1 text-sm font-medium text-accent-600">Meta</p>
+          <p class="mt-2 font-mono text-xs text-slate-400">Issued Sep 2024 · ID P39XBDN6WJ08</p>
+          <a href="https://www.coursera.org/account/accomplishments/records/P39XBDN6WJ08" target="_blank" rel="noopener noreferrer" class="group/l mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors hover:text-accent-600">
+            Show credential
+            <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </li>
+
+        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+          <h4 class="font-display text-lg leading-snug">Two Year Programme</h4>
+          <p class="mt-1 text-sm font-medium text-accent-600">Ridge View Residential College</p>
+          <p class="mt-2 font-mono text-xs text-slate-400">Issued Oct 2024</p>
+          <!-- ✏️ The badge and certificate links you sent are LinkedIn overlay URLs that only
+               resolve while signed in as you, so they aren't linked here. Swap in a public
+               URL or a hosted PDF and add a "Show credential" link like the cards above. -->
+        </li>
+
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- ==================== PROJECTS ==================== -->
-<section id="work" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32 dark:border-slate-900 dark:bg-slate-900/30">
+<section id="work" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class="reveal flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">02 — Selected work</p>
+        <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">02 — Work</p>
         <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Things I've shipped</h2>
       </div>
 
       <div class="flex items-center gap-4">
-        <a href="projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600 dark:text-slate-400 dark:hover:text-accent-400">
+        <a href="projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600">
           All projects
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -334,11 +380,11 @@
         <!-- Rail controls — hidden on touch-first widths, where swiping is the obvious move -->
         <div class="hidden items-center gap-2 sm:flex">
           <button id="work-prev" type="button" aria-label="Previous projects" aria-controls="work-rail"
-                  class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-white">
+                  class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
           <button id="work-next" type="button" aria-label="Next projects" aria-controls="work-rail"
-                  class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-700 dark:hover:text-white">
+                  class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
           </button>
         </div>
@@ -354,31 +400,31 @@
       <div id="work-rail" tabindex="0" role="region" aria-label="Selected work, horizontally scrollable"
            class="rail -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-5 px-5 pb-4 sm:-mx-8 sm:scroll-pl-8 sm:px-8">
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/40">
-        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-200 dark:from-emerald-900/40 dark:to-teal-900/40">
-          <div class="flex h-full items-center justify-center text-emerald-700/60 dark:text-emerald-300/40 transition-transform duration-500 group-hover:scale-105">
+      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-200">
+          <div class="flex h-full items-center justify-center text-emerald-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 9h16l-1.4 10.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="m8 9 2-5M16 9l-2-5"/></svg>
           </div>
-          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur dark:bg-slate-950/70 dark:text-slate-300">UI/UX · NUS</span>
+          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">UI/UX · NUS</span>
         </div>
         <div class="flex flex-1 flex-col p-6">
           <h3 class="font-display text-2xl leading-snug">
-            <a href="projects/pantry-pal.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600 dark:group-hover:text-accent-400">Pantry Pal</a>
+            <a href="projects/pantry-pal.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600">Pantry Pal</a>
           </h3>
-          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">
             A mobile app that attacks food waste at the point of purchase — meal planning, expiry tracking, and a shared family pantry — designed for 18–24 year olds who already know food waste matters but find waste-reducing habits tedious.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Figma</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Mobile IxD</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Usability testing</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Figma</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Mobile IxD</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Usability testing</li>
           </ul>
-          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5 dark:border-slate-800">
-            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
+            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
               Case study
               <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </span>
-            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 dark:text-slate-600">
+            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400">
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 4 10 5-10 5L2 9z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
               NM4259 · NUS
             </span>
@@ -386,62 +432,62 @@
         </div>
       </article>
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/40">
-        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200 dark:from-indigo-900/40 dark:to-blue-900/40">
-          <div class="flex h-full items-center justify-center text-indigo-700/60 dark:text-indigo-300/40 transition-transform duration-500 group-hover:scale-105">
+      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200">
+          <div class="flex h-full items-center justify-center text-indigo-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 3 15 21l-2.6-8.4L4 10z"/><path d="M22 3 12.4 12.6"/></svg>
           </div>
-          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur dark:bg-slate-950/70 dark:text-slate-300">Software Dev · NUS Fintech</span>
+          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">Software Dev · NUS Fintech</span>
         </div>
         <div class="flex flex-1 flex-col p-6">
           <h3 class="font-display text-2xl leading-snug">
-            <a href="projects/telegram-trip-planner.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600 dark:group-hover:text-accent-400">Telegram Bot for Trip Planning</a>
+            <a href="projects/telegram-trip-planner.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600">Telegram Bot for Trip Planning</a>
           </h3>
-          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">
             A Telegram-native bot that turns the scattered links in a group chat into one structured, AI-generated trip summary and an interactive pinned map — planning where the planning already happens.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Python</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">LLM</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Telegram Mini App</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Python</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">LLM</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Telegram Mini App</li>
           </ul>
-          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5 dark:border-slate-800">
-            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
+            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
               Case study
               <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </span>
-            <a href="https://t.me/heymax_planner_bot" target="_blank" rel="noopener noreferrer" class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-500 dark:hover:text-white">
+            <a href="https://t.me/heymax_planner_bot" target="_blank" rel="noopener noreferrer" class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900">
               Try the bot
             </a>
           </div>
         </div>
       </article>
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/40">
-        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-orange-100 to-amber-200 dark:from-orange-900/40 dark:to-amber-900/40">
-          <div class="flex h-full items-center justify-center text-orange-700/60 dark:text-orange-300/40 transition-transform duration-500 group-hover:scale-105">
+      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-orange-100 to-amber-200">
+          <div class="flex h-full items-center justify-center text-orange-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6a3.5 3.5 0 1 1 7 0v2"/></svg>
           </div>
-          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur dark:bg-slate-950/70 dark:text-slate-300">Product · Shopee</span>
+          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">Product · Shopee</span>
         </div>
         <div class="flex flex-1 flex-col p-6">
           <h3 class="font-display text-2xl leading-snug">
-            <a href="projects/shopee-self-collection.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600 dark:group-hover:text-accent-400">Buyer Self-Collection Expansion</a>
+            <a href="projects/shopee-self-collection.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600">Buyer Self-Collection Expansion</a>
           </h3>
-          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">
             Competitor benchmarking and user journey mapping to grow self-collection coverage from 30% to 40%, plus end-to-end UAT so the supply-chain logic held up before deployment.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Journey mapping</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">UAT</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Benchmarking</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Journey mapping</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">UAT</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Benchmarking</li>
           </ul>
-          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5 dark:border-slate-800">
-            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
+            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
               Case study
               <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </span>
-            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 dark:text-slate-600">
+            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400">
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
               Internal
             </span>
@@ -449,31 +495,31 @@
         </div>
       </article>
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/40">
-        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-violet-100 to-indigo-200 dark:from-violet-900/40 dark:to-indigo-900/40">
-          <div class="flex h-full items-center justify-center text-violet-700/60 dark:text-violet-300/40 transition-transform duration-500 group-hover:scale-105">
+      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-violet-100 to-indigo-200">
+          <div class="flex h-full items-center justify-center text-violet-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2M8.5 11h5M11 8.5v5"/></svg>
           </div>
-          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur dark:bg-slate-950/70 dark:text-slate-300">Research · GovTech</span>
+          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">Research · GovTech</span>
         </div>
         <div class="flex flex-1 flex-col p-6">
           <h3 class="font-display text-2xl leading-snug">
-            <a href="projects/govtech-research-synthesis.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600 dark:group-hover:text-accent-400">Cross-Agency Research Synthesis</a>
+            <a href="projects/govtech-research-synthesis.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600">Cross-Agency Research Synthesis</a>
           </h3>
-          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">
             Distilled 450+ responses from a 6,000-participant initiative into requirements that defined MVP scope for 70% of target users, across seven organisations with competing definitions of the problem.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Research synthesis</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Requirements</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">MVP scoping</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Research synthesis</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Requirements</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">MVP scoping</li>
           </ul>
-          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5 dark:border-slate-800">
-            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
+            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
               Case study
               <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </span>
-            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 dark:text-slate-600">
+            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400">
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
               Internal
             </span>
@@ -481,31 +527,31 @@
         </div>
       </article>
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/40">
-        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-fuchsia-100 to-pink-200 dark:from-fuchsia-900/40 dark:to-pink-900/40">
-          <div class="flex h-full items-center justify-center text-fuchsia-700/60 dark:text-fuchsia-300/40 transition-transform duration-500 group-hover:scale-105">
+      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-fuchsia-100 to-pink-200">
+          <div class="flex h-full items-center justify-center text-fuchsia-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6.5 8v8M17.5 8v8M3.5 10.5v3M20.5 10.5v3M6.5 12h11"/></svg>
           </div>
-          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur dark:bg-slate-950/70 dark:text-slate-300">UI/UX · NUS</span>
+          <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">UI/UX · NUS</span>
         </div>
         <div class="flex flex-1 flex-col p-6">
           <h3 class="font-display text-2xl leading-snug">
-            <a href="projects/flexijio.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600 dark:group-hover:text-accent-400">FlexiJio</a>
+            <a href="projects/flexijio.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600">FlexiJio</a>
           </h3>
-          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          <p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">
             A desktop video-conferencing platform built specifically for fitness — one class, two difficulty tracks — so friends at different fitness levels can finally work out together instead of one of them compromising.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Miro</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Personas</li>
-            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Heuristic evaluation</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Miro</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Personas</li>
+            <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Heuristic evaluation</li>
           </ul>
-          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5 dark:border-slate-800">
-            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+          <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
+            <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
               Case study
               <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </span>
-            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 dark:text-slate-600">
+            <span class="relative z-[1] inline-flex items-center gap-1.5 text-sm font-medium text-slate-400">
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 4 10 5-10 5L2 9z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
               NM3243 · NUS
             </span>
@@ -516,28 +562,23 @@
       </div>
     </div>
 
-    <p class="reveal mt-6 text-center font-mono text-xs text-slate-400 sm:hidden dark:text-slate-600">Swipe for more →</p>
-  </div>
-</section>
+    <p class="reveal mt-6 text-center font-mono text-xs text-slate-400 sm:hidden">Swipe for more →</p>
 
-<!-- ==================== WORKING ON ==================== -->
-<section id="working-on" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32 dark:border-slate-900">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-
+    <!-- ── Working on — subsection of Work ──────────────────────────────── -->
+    <div id="working-on" class="mt-24 scroll-mt-24 border-t border-slate-200 pt-16">
     <div class="reveal max-w-2xl">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">03 — Working on</p>
-      <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Working on</h2>
-      <p class="mt-5 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+      <h3 class="font-display text-3xl tracking-tight sm:text-4xl">Working on</h3>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">
         Unfinished things, in public. Build logs rather than case studies — written while I still remember what
         went wrong.
       </p>
     </div>
 
     <!-- ── Pi Boy ───────────────────────────────────────────────────────── -->
-    <article class="reveal group relative mt-14 grid overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 lg:grid-cols-[1.15fr,1fr] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/40">
+    <article class="reveal group relative mt-14 grid overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 lg:grid-cols-[1.15fr,1fr]">
 
       <div class="order-2 flex flex-col p-7 sm:p-9 lg:order-1">
-        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -545,140 +586,141 @@
           In progress
         </span>
 
-        <h3 class="mt-5 font-display text-3xl leading-snug sm:text-4xl">
-          <a href="projects/pi-boy.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600 dark:group-hover:text-accent-400">Pi Boy</a>
-        </h3>
+        <h4 class="mt-5 font-display text-2xl leading-snug sm:text-3xl">
+          <a href="projects/pi-boy.html" class="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-accent-600">Pi Boy</a>
+        </h4>
 
-        <p class="mt-3.5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
+        <p class="mt-3.5 text-[15px] leading-relaxed text-slate-600">
           Named after the Raspberry Pi computer board, Pi Boy is a schedule on an e-ink display for my boyfriend and
           I to stay updated on each other's lives. Inspired by a friend's partner who built one for her — credits to
           them!
         </p>
 
-        <ul class="mt-6 space-y-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+        <ul class="mt-6 space-y-2.5 text-sm leading-relaxed text-slate-600">
           <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span>My boyfriend refuses to use a calendar. Pi Boy runs on Google Calendar's API, which will hopefully incentivise him.</li>
           <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span>We don't actively share and update each other on our plans. With Pi Boy, this will hopefully change.</li>
         </ul>
 
         <ul class="mt-6 flex flex-wrap gap-1.5">
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Raspberry Pi Zero WH</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Python</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Google Calendar API</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-500">Telegram Bot API</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Raspberry Pi Zero WH</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Python</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Google Calendar API</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Telegram Bot API</li>
         </ul>
 
-        <div class="mt-7 flex items-center gap-4 border-t border-slate-100 pt-5 dark:border-slate-800">
-          <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+        <div class="mt-7 flex items-center gap-4 border-t border-slate-100 pt-5">
+          <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
             Read the build log
             <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </span>
         </div>
       </div>
 
-      <div class="order-1 relative min-h-[200px] overflow-hidden bg-gradient-to-br from-red-100 to-rose-200 lg:order-2 dark:from-red-900/40 dark:to-rose-900/40">
-        <div class="flex h-full items-center justify-center py-12 text-red-700/60 transition-transform duration-500 group-hover:scale-105 dark:text-red-300/40">
+      <div class="order-1 relative min-h-[200px] overflow-hidden bg-gradient-to-br from-red-100 to-rose-200 lg:order-2">
+        <div class="flex h-full items-center justify-center py-12 text-red-700/60 transition-transform duration-500 group-hover:scale-105">
           <svg class="h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M7.5 14h3M13.5 14h3M7.5 17.5h3"/>
           </svg>
         </div>
-        <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur dark:bg-slate-950/70 dark:text-slate-300">Hardware · Personal</span>
+        <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">Hardware · Personal</span>
       </div>
     </article>
+    </div>
   </div>
 </section>
 
 <!-- ==================== EXPERIENCE ==================== -->
-<section id="experience" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32 dark:border-slate-900">
+<section id="experience" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class="reveal">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">04 — Experience</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">03 — Experience</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Where I've worked</h2>
     </div>
 
     <ol class="mt-14 space-y-0">
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12 dark:border-slate-800">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500 dark:border-slate-950 dark:bg-slate-700"></span>
+      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
+        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
-          <p class="font-mono text-xs text-slate-400 dark:text-slate-600">Jan — Apr 2026</p>
-          <p class="mt-1 text-xs text-slate-400 dark:text-slate-600">Singapore</p>
+          <p class="font-mono text-xs text-slate-400">Jan — Apr 2026</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
           <h3 class="font-display text-2xl leading-snug">Business Product Management Intern</h3>
-          <p class="mt-1 text-sm font-medium text-accent-600 dark:text-accent-400">Shopee</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Spearheaded a strategic initiative through rigorous competitor benchmarking and user journey mapping to expand Buyer Self-Collection coverage from 30% to 40%.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Aligned cross-functional stakeholders by producing documentation that translated complex product logic into clear terms for non-technical teams, ensuring seamless adoption of new supply-chain solutions.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Served as the quality checkpoint for product reliability, managing User Acceptance Testing end-to-end — tracking, flagging, and following up on bugs to ensure accuracy prior to deployment.</li>
+          <p class="mt-1 text-sm font-medium text-accent-600">Shopee</p>
+          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Spearheaded a strategic initiative through rigorous competitor benchmarking and user journey mapping to expand Buyer Self-Collection coverage from 30% to 40%.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Aligned cross-functional stakeholders by producing documentation that translated complex product logic into clear terms for non-technical teams, ensuring seamless adoption of new supply-chain solutions.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Served as the quality checkpoint for product reliability, managing User Acceptance Testing end-to-end — tracking, flagging, and following up on bugs to ensure accuracy prior to deployment.</li>
           </ul>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12 dark:border-slate-800">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500 dark:border-slate-950 dark:bg-slate-700"></span>
+      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
+        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
-          <p class="font-mono text-xs text-slate-400 dark:text-slate-600">Dec 2025</p>
-          <p class="mt-1 text-xs text-slate-400 dark:text-slate-600">Ho Chi Minh, Vietnam</p>
+          <p class="font-mono text-xs text-slate-400">Dec 2025</p>
+          <p class="mt-1 text-xs text-slate-400">Ho Chi Minh, Vietnam</p>
         </div>
         <div>
           <h3 class="font-display text-2xl leading-snug">Strategy Analyst Intern</h3>
-          <p class="mt-1 text-sm font-medium text-accent-600 dark:text-accent-400">Capital JDI</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Analyzed Capital JDI's 6-stage startup application process; identified bottlenecks and manual tasks consuming 70–80% of team effort.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Researched and compared 15+ SaaS tools; recommended a Zapier + Airtable + Calendly stack for cost-effective, scalable automation.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Delivered an executive presentation and phased 8-week implementation roadmap.</li>
+          <p class="mt-1 text-sm font-medium text-accent-600">Capital JDI</p>
+          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Analyzed Capital JDI's 6-stage startup application process; identified bottlenecks and manual tasks consuming 70–80% of team effort.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Researched and compared 15+ SaaS tools; recommended a Zapier + Airtable + Calendly stack for cost-effective, scalable automation.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Delivered an executive presentation and phased 8-week implementation roadmap.</li>
           </ul>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12 dark:border-slate-800">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500 dark:border-slate-950 dark:bg-slate-700"></span>
+      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
+        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
-          <p class="font-mono text-xs text-slate-400 dark:text-slate-600">May — Aug 2025</p>
-          <p class="mt-1 text-xs text-slate-400 dark:text-slate-600">Singapore</p>
+          <p class="font-mono text-xs text-slate-400">May — Aug 2025</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
           <h3 class="font-display text-2xl leading-snug">Product Design Intern</h3>
-          <p class="mt-1 text-sm font-medium text-accent-600 dark:text-accent-400">GovTech</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
+          <p class="mt-1 text-sm font-medium text-accent-600">GovTech</p>
+          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
           </ul>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12 dark:border-slate-800">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500 dark:border-slate-950 dark:bg-slate-700"></span>
+      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
+        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
-          <p class="font-mono text-xs text-slate-400 dark:text-slate-600">Aug — Dec 2024</p>
-          <p class="mt-1 text-xs text-slate-400 dark:text-slate-600">Singapore</p>
+          <p class="font-mono text-xs text-slate-400">Aug — Dec 2024</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
           <h3 class="font-display text-2xl leading-snug">UI/UX Design Intern</h3>
-          <p class="mt-1 text-sm font-medium text-accent-600 dark:text-accent-400">DBS Bank</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
+          <p class="mt-1 text-sm font-medium text-accent-600">DBS Bank</p>
+          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
           </ul>
         </div>
       </li>
 
       <li class="reveal group relative grid gap-2 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500 dark:border-slate-950 dark:bg-slate-700"></span>
-        <span class="absolute -left-px top-1.5 h-full w-px bg-gradient-to-b from-slate-200 to-transparent dark:from-slate-800"></span>
+        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <span class="absolute -left-px top-1.5 h-full w-px bg-gradient-to-b from-slate-200 to-transparent"></span>
         <div class="sm:text-right">
-          <p class="font-mono text-xs text-slate-400 dark:text-slate-600">May — Jul 2024</p>
-          <p class="mt-1 text-xs text-slate-400 dark:text-slate-600">Singapore</p>
+          <p class="font-mono text-xs text-slate-400">May — Jul 2024</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
           <h3 class="font-display text-2xl leading-snug">UX Design Intern</h3>
-          <p class="mt-1 text-sm font-medium text-accent-600 dark:text-accent-400">Micron Technology</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
+          <p class="mt-1 text-sm font-medium text-accent-600">Micron Technology</p>
+          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
           </ul>
         </div>
       </li>
@@ -689,71 +731,74 @@
     <div class="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
 
       <div class="reveal">
-        <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-600">Leadership</h3>
+        <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Co-curricular activities</h3>
         <ul class="mt-6 space-y-6">
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900">
+          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
             <div class="flex flex-wrap items-baseline justify-between gap-2">
               <h4 class="font-display text-xl">Head of Design</h4>
-              <span class="font-mono text-xs text-slate-400 dark:text-slate-600">Jul 2025 — May 2026</span>
+              <span class="font-mono text-xs text-slate-400">Jul 2025 – May 2026 · Singapore</span>
             </div>
-            <p class="mt-0.5 text-sm font-medium text-accent-600 dark:text-accent-400">NUS Developer Group</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Led a team of 5 designers through wireframes, prototypes, and high-fidelity mockups; architected scalable
-              Figma design systems that cut turnaround time and kept visual consistency across the project.
-            </p>
+            <p class="mt-0.5 text-sm font-medium text-accent-600">NUS Developer Group</p>
+            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Led a team of 5 designers, guiding them through design workflows and skill-building to craft design deliverables, including wireframes, interactive prototypes, and high-fidelity mockups.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Architected scalable Figma design systems, significantly reducing design turnaround time and maintaining visual consistency across the project.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Collaborated with Tech and Product leads to bridge the gap between design and development, maintaining alignment on product vision and objectives.</li>
+            </ul>
           </li>
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900">
+          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
             <div class="flex flex-wrap items-baseline justify-between gap-2">
               <h4 class="font-display text-xl">Software Developer</h4>
-              <span class="font-mono text-xs text-slate-400 dark:text-slate-600">Aug 2025 — May 2026</span>
+              <span class="font-mono text-xs text-slate-400">Aug 2025 – May 2026 · Singapore</span>
             </div>
-            <p class="mt-0.5 text-sm font-medium text-accent-600 dark:text-accent-400">NUS Fintech Society</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Built a pipeline to scrape, parse, and extract travel details from social links, a validation tool to
-              filter irrelevant data, and an interactive Leaflet.js map driven by JSON.
-            </p>
+            <p class="mt-0.5 text-sm font-medium text-accent-600">NUS Fintech Society</p>
+            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Built a pipeline to automatically scrape, parse, and extract travel details from TikTok, Instagram, and YouTube links.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Engineered a validation tool to identify and categorize travel-related links, ensuring the system only processes relevant data for a cleaner user experience.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed an interactive map using Leaflet.js to dynamically display travel locations, automatically placing pins and popups from JSON data to show users important information.</li>
+            </ul>
           </li>
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900">
+          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
             <div class="flex flex-wrap items-baseline justify-between gap-2">
               <h4 class="font-display text-xl">UI/UX Designer</h4>
-              <span class="font-mono text-xs text-slate-400 dark:text-slate-600">Sep 2024 — May 2025</span>
+              <span class="font-mono text-xs text-slate-400">Sep 2024 – May 2025 · Singapore</span>
             </div>
-            <p class="mt-0.5 text-sm font-medium text-accent-600 dark:text-accent-400">NUS Google Developer Student Club</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Designed volunteer and donor management systems for Caregiving Welfare Association, plus admin portals,
-              analytics dashboards, and a design system aligned to the non-profit's mission.
-            </p>
+            <p class="mt-0.5 text-sm font-medium text-accent-600">NUS Google Developer Student Club</p>
+            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed Volunteer and Donor Management Systems for Caregiving Welfare Association, a non-profit, replacing manual, error-prone spreadsheet workflows with automated data entry and centralised tracking of volunteers and donors.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Crafted user-centred admin portals and analytics dashboards for volunteer engagement tracking, donation reporting, and automated donor communications, including receipts and thank-you workflows.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Established a design system and brand guidelines aligned with CWA's mission, delivering accessible, mobile-responsive interfaces with consistent visual identity.</li>
+            </ul>
           </li>
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900">
+          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
             <div class="flex flex-wrap items-baseline justify-between gap-2">
               <h4 class="font-display text-xl">Publicity Head</h4>
-              <span class="font-mono text-xs text-slate-400 dark:text-slate-600">Singapore</span>
+              <span class="font-mono text-xs text-slate-400">Singapore</span>
             </div>
-            <p class="mt-0.5 text-sm font-medium text-accent-600 dark:text-accent-400">NUS Netball Recreational Club</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Directed social media strategy and crafted content that raised the club's visibility on campus.
-            </p>
+            <p class="mt-0.5 text-sm font-medium text-accent-600">NUS Netball Recreational Club</p>
+            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Directed social media strategy and crafted engaging content that enhanced the visibility of the club.</li>
+            </ul>
           </li>
         </ul>
       </div>
 
       <div class="reveal">
-        <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-600">Education</h3>
-        <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+        <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Education</h3>
+        <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
           <div class="flex flex-wrap items-baseline justify-between gap-2">
             <h4 class="font-display text-2xl leading-snug">National University of Singapore</h4>
-            <span class="font-mono text-xs text-slate-400 dark:text-slate-600">Aug 2022 — May 2026</span>
+            <span class="font-mono text-xs text-slate-400">Aug 2022 — May 2026</span>
           </div>
-          <p class="mt-1 text-sm font-medium text-accent-600 dark:text-accent-400">Bachelor of Social Sciences (Hons)</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Major in Communications and New Media</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Second Major in Computer Science</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300 dark:bg-slate-700"></span>Minor in Interactive Media Design</li>
+          <p class="mt-1 text-sm font-medium text-accent-600">Bachelor of Social Sciences (Hons)</p>
+          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Major in Communications and New Media</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Second Major in Computer Science</li>
+            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Minor in Interactive Media Design</li>
           </ul>
         </div>
 
         <a href="Niik_Seah_Resume.docx" download
-          class="group mt-6 inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-900">
+          class="group mt-6 inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white">
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13M7 12l5 5 5-5M5 21h14"/></svg>
           Download full résumé
         </a>
@@ -764,72 +809,54 @@
 </section>
 
 <!-- ==================== CONTACT ==================== -->
-<section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32 dark:border-slate-900 dark:bg-slate-900/30">
+<section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
 
       <div class="reveal">
-        <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400">05 — Contact</p>
+        <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">04 — Contact</p>
         <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Let's build something considered</h2>
-        <p class="mt-6 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">
+        <p class="mt-6 text-[17px] leading-relaxed text-slate-600">
           I'm looking for product design and product management roles where research, design, and engineering sit close
           together. If you're hiring — or you just want to talk about a problem you're stuck on — send a note. I reply
           to everything.
         </p>
 
         <div class="mt-10 space-y-1">
-          <a href="mailto:niikseah@u.nus.edu" class="group flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors group-hover:border-accent-400 group-hover:text-accent-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:group-hover:text-accent-400">
+          <a href="mailto:niikseah@u.nus.edu" class="group flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-slate-50">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors group-hover:border-accent-400 group-hover:text-accent-600">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 7 8.2 5.5a1.5 1.5 0 0 0 1.6 0L21 7"/></svg>
             </span>
             <span>
-              <span class="block text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">Email</span>
+              <span class="block text-xs uppercase tracking-widest text-slate-400">Email</span>
               <span class="block text-[15px] font-medium">niikseah@u.nus.edu</span>
             </span>
           </a>
-          <a href="tel:+6582801003" class="group flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors group-hover:border-accent-400 group-hover:text-accent-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:group-hover:text-accent-400">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0-1 .8-2 1.8-2h2c.8 0 1.5.6 1.7 1.4l.7 2.8c.2.7-.1 1.4-.7 1.8l-1.4 1a12 12 0 0 0 5.9 5.9l1-1.4c.4-.6 1.1-.9 1.8-.7l2.8.7c.8.2 1.4.9 1.4 1.7v2c0 1-1 1.8-2 1.8A16 16 0 0 1 4 5z"/></svg>
-            </span>
-            <span>
-              <span class="block text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">Phone</span>
-              <span class="block text-[15px] font-medium">+65 8280 1003</span>
-            </span>
-          </a>
-          <div class="flex items-center gap-4 rounded-xl p-3">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            </span>
-            <span>
-              <span class="block text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">Location</span>
-              <span class="block text-[15px] font-medium">Singapore · SGT (UTC+8)</span>
-            </span>
-          </div>
         </div>
       </div>
 
       <!-- Form -->
       <div class="reveal">
-        <form id="contact-form" novalidate class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 dark:border-slate-800 dark:bg-slate-900">
+        <form id="contact-form" novalidate class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="name" class="block text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-500">Name</label>
+              <label for="name" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Name</label>
               <input id="name" name="name" type="text" required autocomplete="name" placeholder="Alex Rivera"
-                class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-600" />
-              <p class="error mt-1.5 hidden text-xs text-rose-600 dark:text-rose-400"></p>
+                class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20" />
+              <p class="error mt-1.5 hidden text-xs text-rose-600"></p>
             </div>
             <div>
-              <label for="email" class="block text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-500">Email</label>
+              <label for="email" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Email</label>
               <input id="email" name="email" type="email" required autocomplete="email" placeholder="alex@company.com"
-                class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-600" />
-              <p class="error mt-1.5 hidden text-xs text-rose-600 dark:text-rose-400"></p>
+                class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20" />
+              <p class="error mt-1.5 hidden text-xs text-rose-600"></p>
             </div>
           </div>
 
           <div class="mt-5">
-            <label for="subject" class="block text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-500">Reason for reaching out</label>
+            <label for="subject" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Reason for reaching out</label>
             <select id="subject" name="subject"
-              class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-white">
+              class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20">
               <option>Full-time role</option>
               <option>Freelance / contract project</option>
               <option>Portfolio or case study question</option>
@@ -838,23 +865,23 @@
           </div>
 
           <div class="mt-5">
-            <label for="message" class="block text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-500">Message</label>
+            <label for="message" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Message</label>
             <textarea id="message" name="message" rows="5" required placeholder="A sentence or two about the role, the team, and roughly when you'd want to start."
-              class="mt-1.5 w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] leading-relaxed text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-600"></textarea>
+              class="mt-1.5 w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] leading-relaxed text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20"></textarea>
             <div class="mt-1.5 flex items-start justify-between gap-4">
-              <p class="error hidden text-xs text-rose-600 dark:text-rose-400"></p>
-              <p id="char-count" class="ml-auto shrink-0 font-mono text-xs text-slate-400 dark:text-slate-600">0 / 600</p>
+              <p class="error hidden text-xs text-rose-600"></p>
+              <p id="char-count" class="ml-auto shrink-0 font-mono text-xs text-slate-400">0 / 600</p>
             </div>
           </div>
 
           <button type="submit" id="submit-btn"
-            class="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-slate-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
+            class="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-slate-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60">
             <span id="submit-label">Send message</span>
             <svg id="submit-icon" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
 
-          <p id="form-status" role="status" aria-live="polite" class="mt-4 hidden rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-700 dark:text-emerald-400"></p>
-          <p class="mt-4 text-xs leading-relaxed text-slate-400 dark:text-slate-600">
+          <p id="form-status" role="status" aria-live="polite" class="mt-4 hidden rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-700"></p>
+          <p class="mt-4 text-xs leading-relaxed text-slate-400">
             This form is a front-end demo — hook it up to Formspree, Resend, or your own endpoint in
             <span class="font-mono">handleSubmit()</span>.
           </p>
@@ -868,17 +895,11 @@
 </main>
 
 <!-- ==================== FOOTER ==================== -->
-<footer class="border-t border-slate-200 py-10 dark:border-slate-900">
+<footer class="border-t border-slate-200 py-10">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
-    <p class="text-sm text-slate-500 dark:text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
+    <p class="text-sm text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
     <div class="flex items-center gap-1">
-      <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
-        <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.2 2.3 4.2 5.4v6.2zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7z"/></svg>
-      </a>
-      <a href="projects.html" aria-label="All projects" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white">
-        <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-      </a>
-      <a href="#hero" aria-label="Back to top" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900 dark:hover:text-white">
+      <a href="#hero" aria-label="Back to top" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
       </a>
     </div>
@@ -889,34 +910,9 @@
 (function () {
   'use strict';
 
-  /* ---------------- Theme (dark / light) ---------------- */
-  var root = document.documentElement;
-  var toggle = document.getElementById('theme-toggle');
-
-  function isDark() { return root.classList.contains('dark'); }
-  function syncToggle() { toggle.setAttribute('aria-checked', String(isDark())); }
-
-  syncToggle();
-
-  toggle.addEventListener('click', function () {
-    root.classList.toggle('dark');
-    // In-memory persistence (localStorage is intentionally avoided here —
-    // swap the two lines below for localStorage in your own deployment).
-    window.__theme = isDark() ? 'dark' : 'light';
-    syncToggle();
-  });
-
-  // Follow the OS preference until the user makes an explicit choice.
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  mq.addEventListener('change', function (e) {
-    if (window.__theme) return;
-    root.classList.toggle('dark', e.matches);
-    syncToggle();
-  });
-
   /* ---------------- Sticky header state ---------------- */
   var shell = document.getElementById('nav-shell');
-  var scrolledClasses = ['border-slate-200', 'bg-white/75', 'backdrop-blur-xl', 'shadow-lg', 'shadow-slate-900/5', 'dark:border-slate-800', 'dark:bg-slate-950/75'];
+  var scrolledClasses = ['border-slate-200', 'bg-white/75', 'backdrop-blur-xl', 'shadow-lg', 'shadow-slate-900/5'];
 
   function onScroll() {
     var scrolled = window.scrollY > 16;
@@ -1000,7 +996,6 @@
           var active = link.getAttribute('href') === '#' + id;
           link.classList.toggle('active', active);
           link.classList.toggle('text-slate-900', active);
-          link.classList.toggle('dark:text-white', active);
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
