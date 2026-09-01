@@ -47,6 +47,10 @@
   }
   .reveal.is-visible { opacity: 1; transform: none; }
 
+  /* Page drawer — native scroll, no visible scrollbar */
+  .rail { scrollbar-width: none; -ms-overflow-style: none; }
+  .rail::-webkit-scrollbar { display: none; }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -101,7 +105,7 @@
     </nav>
 
     <div class="reveal mt-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Graphic Design · Personal</p>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Graphic Design · NUS</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Brand Style Guide</h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A personal brand system built as a magazine — logo, palette, typography, and a name card reimagined as a wearable lanyard.</p>
     </div>
@@ -113,7 +117,7 @@
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Timeline</dt>
-        <dd class="mt-1.5 text-sm font-medium">2023</dd>
+        <dd class="mt-1.5 text-sm font-medium">2024</dd>
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Team</dt>
@@ -148,6 +152,47 @@
     </div>
   </div>
 </div>
+
+<!-- ==================== THE GUIDE (pdf.js viewer) ==================== -->
+<section class="pb-16">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="reveal">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The guide</p>
+      <h2 class="mt-4 font-display text-3xl tracking-tight sm:text-4xl">Flip through it</h2>
+      <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-600">
+        The whole thing was built to be read like a magazine, so it is here as one. Pick a page from the drawer.
+      </p>
+    </div>
+
+    <div class="reveal mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr),200px]">
+
+      <!-- stage -->
+      <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        <div id="pdfStage" class="flex min-h-[340px] items-center justify-center p-4 sm:min-h-[520px] sm:p-6">
+          <p id="pdfLoading" class="font-mono text-xs text-slate-400">Loading the guide…</p>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 border-t border-slate-100 px-4 py-3">
+          <button id="pdfPrev" type="button" aria-label="Previous page"
+                  class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 transition-all hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <p id="pdfCounter" class="font-mono text-xs text-slate-500" aria-live="polite">—</p>
+          <button id="pdfNext" type="button" aria-label="Next page"
+                  class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 transition-all hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- page drawer -->
+      <div id="pdfThumbs" role="tablist" aria-label="Pages"
+           class="rail flex gap-3 overflow-x-auto pb-2 lg:max-h-[560px] lg:flex-col lg:overflow-y-auto lg:overflow-x-hidden lg:pb-0 lg:pr-1">
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ==================== BODY ==================== -->
 <section class="pb-20 sm:pb-24">
@@ -207,17 +252,7 @@
 <!-- ==================== NEXT / PREV ==================== -->
 <section class="border-t border-slate-200 py-16">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
-    <div class="reveal flex flex-col gap-4 sm:flex-row">
-      <a href="kita-blind-box.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5">
-        <p class="font-mono text-xs text-slate-400">← Previous project</p>
-        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">From Blind Box to Brochure</p>
-      </a>
-      <a href="miscellaneous-works.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 sm:text-right">
-        <p class="font-mono text-xs text-slate-400">Next project →</p>
-        <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">Miscellaneous Works</p>
-      </a>
-    </div>
-    <div class="reveal mt-10 text-center">
+        <div class="reveal mt-10 text-center">
       <a href="../projects.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600">
         See every project
         <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -276,6 +311,116 @@
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script src="https://unpkg.com/pdfjs-dist@3.11.174/legacy/build/pdf.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Hosted from the portfolio repo, which serves it with Access-Control-Allow-Origin: *
+  var PDF_URL = 'https://niikseah.github.io/portfolio/public/documents/brand-style-guide.pdf';
+
+  var stage    = document.getElementById('pdfStage');
+  var thumbs   = document.getElementById('pdfThumbs');
+  var loading  = document.getElementById('pdfLoading');
+  var counter  = document.getElementById('pdfCounter');
+  var prevBtn  = document.getElementById('pdfPrev');
+  var nextBtn  = document.getElementById('pdfNext');
+  if (!stage || !window.pdfjsLib) return;
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://unpkg.com/pdfjs-dist@3.11.174/legacy/build/pdf.worker.min.js';
+
+  var doc = null, total = 0, current = 1, renderToken = 0;
+
+  function fail(msg) {
+    stage.innerHTML = '<p class="max-w-sm text-center font-mono text-xs leading-relaxed text-slate-400">' + msg + '</p>';
+  }
+
+  async function drawPage(n) {
+    if (!doc) return;
+    var token = ++renderToken;
+    var page = await doc.getPage(n);
+    var width = stage.clientWidth - 48;
+    var base = page.getViewport({ scale: 1 });
+    var viewport = page.getViewport({ scale: Math.max(width, 240) / base.width });
+
+    var canvas = document.createElement('canvas');
+    var ratio = window.devicePixelRatio || 1;
+    canvas.width = Math.floor(viewport.width * ratio);
+    canvas.height = Math.floor(viewport.height * ratio);
+    canvas.style.width = '100%';
+    canvas.style.height = 'auto';
+    canvas.className = 'rounded-lg shadow-sm ring-1 ring-slate-900/5';
+
+    await page.render({
+      canvasContext: canvas.getContext('2d'),
+      viewport: viewport,
+      transform: ratio !== 1 ? [ratio, 0, 0, ratio, 0, 0] : null
+    }).promise;
+
+    if (token !== renderToken) return;   // a newer page was requested mid-render
+    stage.innerHTML = '';
+    stage.appendChild(canvas);
+    current = n;
+    counter.textContent = 'Page ' + n + ' of ' + total;
+    prevBtn.disabled = n <= 1;
+    nextBtn.disabled = n >= total;
+
+    Array.prototype.forEach.call(thumbs.children, function (btn, i) {
+      var on = i + 1 === n;
+      btn.setAttribute('aria-selected', String(on));
+      btn.classList.toggle('border-accent-500', on);
+      btn.classList.toggle('border-slate-200', !on);
+    });
+  }
+
+  async function buildThumbs() {
+    for (var i = 1; i <= total; i += 1) {
+      var page = await doc.getPage(i);
+      var base = page.getViewport({ scale: 1 });
+      var viewport = page.getViewport({ scale: 150 / base.width });
+      var canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', String(i === 1));
+      btn.className = 'group shrink-0 rounded-xl border bg-white p-1.5 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ' +
+                      (i === 1 ? 'border-accent-500' : 'border-slate-200');
+      canvas.className = 'block w-[110px] rounded-lg lg:w-full';
+      var label = document.createElement('span');
+      label.className = 'mt-1.5 block text-center font-mono text-[10px] text-slate-400';
+      label.textContent = 'PAGE ' + i;
+      btn.appendChild(canvas);
+      btn.appendChild(label);
+      (function (n) { btn.addEventListener('click', function () { drawPage(n); }); })(i);
+      thumbs.appendChild(btn);
+    }
+  }
+
+  prevBtn.addEventListener('click', function () { if (current > 1) drawPage(current - 1); });
+  nextBtn.addEventListener('click', function () { if (current < total) drawPage(current + 1); });
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { drawPage(current); }, 200);
+  });
+
+  pdfjsLib.getDocument(PDF_URL).promise.then(async function (pdf) {
+    doc = pdf;
+    total = pdf.numPages;
+    if (loading) loading.remove();
+    await drawPage(1);
+    await buildThumbs();
+  }).catch(function (err) {
+    fail('The guide could not be loaded right now.<br>' + (err && err.message ? err.message : ''));
+  });
 })();
 </script>
 </body>
