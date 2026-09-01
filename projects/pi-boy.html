@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pi Boy — Niik Seah</title>
-<meta name="description" content="A schedule on an e-ink display for my boyfriend and I to stay updated on each other&#x27;s lives, named after the Raspberry Pi computer board it runs on." />
+<meta name="description" content="A schedule on an e-ink display for my boyfriend and I to stay updated on each other&#x27;s lives, named after the Raspberry Pi computer it runs on." />
 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -103,25 +103,25 @@
     <div class="reveal mt-8">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Hardware · Personal</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Pi Boy</h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A schedule on an e-ink display for my boyfriend and I to stay updated on each other's lives, named after the Raspberry Pi computer board it runs on.</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A schedule on an e-ink display for my boyfriend and I to stay updated on each other's lives, named after the Raspberry Pi computer it runs on.</p>
     </div>
 
-    <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4">
+    <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-3">
       <div>
         <dt class="font-mono text-xs text-slate-400">Role</dt>
-        <dd class="mt-1.5 text-sm font-medium">Solo build</dd>
+        <dd class="mt-1.5 text-sm font-medium">Solo</dd>
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Timeline</dt>
-        <dd class="mt-1.5 text-sm font-medium">In progress · ✏️ add a start date</dd>
-      </div>
-      <div>
-        <dt class="font-mono text-xs text-slate-400">Team</dt>
-        <dd class="mt-1.5 text-sm font-medium">Personal project</dd>
+        <dd class="mt-1.5 text-sm font-medium">In progress!</dd>
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Tools</dt>
-        <dd class="mt-1.5 text-sm font-medium">Raspberry Pi Zero WH, Python, Google Calendar &amp; Tasks APIs, Telegram Bot API</dd>
+        <dd class="mt-1.5 space-y-0.5 text-sm font-medium">
+          <span class="block">Raspberry Pi Zero WH</span>
+          <span class="block">Python</span>
+          <span class="block">APIs</span>
+        </dd>
       </div>
     </dl>
 
@@ -130,6 +130,7 @@
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Raspberry Pi</li>
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Python</li>
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Google Calendar API</li>
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Google Tasks API</li>
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Telegram Bot API</li>
       </ul>
     </div>
@@ -138,14 +139,10 @@
 </section>
 
 <!-- ==================== COVER ==================== -->
-<!-- ✏️ Swap this whole block for a real image:
-     <img src="../images/pi-boy.jpg" alt="…" class="h-full w-full object-cover" />
-     Use a 21:9 crop (e.g. 1680×720) and keep it under ~400 KB. -->
 <div class="mx-auto max-w-6xl px-5 sm:px-8">
-  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-red-100 to-rose-200">
-    <div class="flex h-full items-center justify-center text-red-700/60">
-      <svg class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M7.5 14h3M13.5 14h3M7.5 17.5h3"/></svg>
-    </div>
+  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-slate-100">
+    <img src="../images/PiBoy.jpg" alt="A Raspberry Pi Zero WH board next to a 16GB SanDisk Extreme SD card"
+         class="h-full w-full object-cover" />
   </div>
 </div>
 
@@ -155,30 +152,25 @@
 
     <div class="reveal mt-16">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600">Pi Boy, named after the Raspberry Pi computer board, is a schedule on an e-ink display for my boyfriend and I to stay updated on each other's lives. I was inspired to build this after seeing my own friend's partner doing it for her, so credits to them!</p>
-    </div>
-
-    <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Started on an opportunity, not a problem</p>
-      <p class="mt-4 font-display text-2xl leading-snug">This project was started more on an opportunity rather than a problem — but it does solve two problems we face.</p>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">This project was started more on an opportunity rather than a problem — but it does solve two problems I faced.</p>
     </div>
 
     <div class="reveal mt-16">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The two problems it solves</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>My boyfriend REFUSES to use a calendar</strong>, for reasons unknown. Pi Boy relies on Google Calendar's API, which will hopefully incentivise him to be proactive in using a schedule. Right now he relies solely on his brain, which I cannot deny is impressive, but causes occasional double-booking or forgetting of plans.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>We do not actively share and update each other on our plans.</strong> Building on his refusal to use a calendar — with Pi Boy, this will hopefully change.</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>My boyfriend REFUSES to use a calendar, for reasons unknown. Right now he relies solely on his brain, which I cannot deny is impressive, but causes occasional double-booking or forgetting of plans. Pi Boy relies on Google Calendar's API, which hopefully incentivises him to proactively use a schedule and stay organised.</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>We do not actively share and update each other on our plans as it slips our minds sometimes, but we wish to do so more. Having Pi Boy will facilitate the solution to both scheduling and communication concerns.</span></li>
       </ul>
     </div>
 
     <div class="reveal mt-16">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Ingredients</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Raspberry Pi Zero WH</strong> — the motherboard, and the foundation of the whole thing</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Raspberry Pi Zero WH</strong> — the computer, and the foundation of it all</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Mini HDMI → standard converter</strong> — HDMI output to the e-ink display</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>USB OTG cable</strong> — USB on-the-go. I still do not know what this is for</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Original PSU, 5V / 2.5A</strong> — power supply</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Original Zero case</strong> — a case for the motherboard</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Original Zero case</strong> — a case for the computer</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Micro SD card</strong> — where Pi Boy's apps live</span></li>
       </ul>
     </div>
@@ -213,13 +205,13 @@
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>A countdown — for motivation</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>Hours left until the end of the day</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>An icon, for cuteness</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>A Telegram counterpart, for ease of use by my lazy boyfriend</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>A Telegram counterpart, for ease of use for my lazy boyfriend</span></li>
       </ul>
     </div>
 
     <div class="reveal mt-16">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">PiBoyTeleBot</p>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600">The Telegram counterpart, for ease of use for my lazy bf. It runs on the Raspberry Pi. Setup, end to end:</p>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">Telegram Bot runs constantly on Raspberry Pi. Setup:</p>
     </div>
 
     <div class="mt-16">
@@ -245,7 +237,7 @@
           </div>
           <ol class="mt-4 list-decimal space-y-2 pl-5 text-[15px] leading-relaxed text-slate-600 marker:font-mono marker:text-xs marker:text-slate-400">
           <li class="pl-1.5">Under “My calendars”, hover your shared calendar → the three-dot icon → <strong>Settings and sharing</strong>.</li>
-          <li class="pl-1.5">Scroll to <strong>Integrate calendar</strong> and copy the Calendar ID — it looks like <code>xyz123…@group.calendar.google.com</code>.</li>
+          <li class="pl-1.5">Scroll to <strong>Integrate calendar</strong> and copy the Calendar ID.</li>
           <li class="pl-1.5">Paste that string into the <code>SHARED_CALENDAR_ID</code> constant in the Python file.</li>
           </ol>
         </li>
@@ -275,7 +267,7 @@ python piboy.py</code></pre></li>
 
     <div class="reveal mt-16">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">On that first run</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">On your very first run, your terminal will open a browser window asking you to log into your Google Account to authorize permissions. Once authorized, a file named <code>token.json</code> will automatically be generated in your folder, saving your login session securely so you don't have to authenticate manually ever again.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Your terminal will open a browser window asking you to log into your Google Account to authorize permissions. Once authorized, a file named <code>token.json</code> will automatically be generated in your folder, saving your login session securely so you don't have to authenticate manually ever again.</p>
     </div>
 
     <div class="reveal mt-16">
