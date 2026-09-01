@@ -608,12 +608,9 @@
         </div>
       </div>
 
-      <div class="order-1 relative min-h-[200px] overflow-hidden bg-gradient-to-br from-red-100 to-rose-200 lg:order-2">
-        <div class="flex h-full items-center justify-center py-12 text-red-700/60 transition-transform duration-500 group-hover:scale-105">
-          <svg class="h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M7.5 14h3M13.5 14h3M7.5 17.5h3"/>
-          </svg>
-        </div>
+      <div class="order-1 relative min-h-[200px] overflow-hidden bg-slate-100 lg:order-2">
+        <img src="images/PiBoy.jpg" alt="A Raspberry Pi Zero WH board next to a 16GB SanDisk Extreme SD card"
+             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
         <span class="absolute left-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[11px] font-medium text-slate-700 backdrop-blur">Hardware · Personal</span>
       </div>
     </article>
@@ -803,18 +800,11 @@
 <!-- ==================== CONTACT ==================== -->
 <section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
+    <div class="reveal max-w-xl">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">04 — Contact</p>
+      <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Let's build something considered</h2>
 
-      <div class="reveal">
-        <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">04 — Contact</p>
-        <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Let's build something considered</h2>
-        <p class="mt-6 text-[17px] leading-relaxed text-slate-600">
-          I'm looking for product design and product management roles where research, design, and engineering sit close
-          together. If you're hiring — or you just want to talk about a problem you're stuck on — send a note. I reply
-          to everything.
-        </p>
-
-        <div class="mt-10 space-y-1">
+      <div class="mt-10 space-y-1">
           <a href="mailto:niikseah@u.nus.edu" class="group flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-slate-50">
             <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors group-hover:border-accent-400 group-hover:text-accent-600">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 7 8.2 5.5a1.5 1.5 0 0 0 1.6 0L21 7"/></svg>
@@ -824,62 +814,16 @@
               <span class="block text-[15px] font-medium">niikseah@u.nus.edu</span>
             </span>
           </a>
-        </div>
+          <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-slate-50">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors group-hover:border-accent-400 group-hover:text-accent-600">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.2 2.3 4.2 5.4v6.2zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7z"/></svg>
+            </span>
+            <span>
+              <span class="block text-xs uppercase tracking-widest text-slate-400">LinkedIn</span>
+              <span class="block text-[15px] font-medium">linkedin.com/in/niikseah</span>
+            </span>
+          </a>
       </div>
-
-      <!-- Form -->
-      <div class="reveal">
-        <form id="contact-form" novalidate class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label for="name" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Name</label>
-              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Alex Rivera"
-                class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20" />
-              <p class="error mt-1.5 hidden text-xs text-rose-600"></p>
-            </div>
-            <div>
-              <label for="email" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email" placeholder="alex@company.com"
-                class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20" />
-              <p class="error mt-1.5 hidden text-xs text-rose-600"></p>
-            </div>
-          </div>
-
-          <div class="mt-5">
-            <label for="subject" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Reason for reaching out</label>
-            <select id="subject" name="subject"
-              class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20">
-              <option>Full-time role</option>
-              <option>Freelance / contract project</option>
-              <option>Portfolio or case study question</option>
-              <option>Something else entirely</option>
-            </select>
-          </div>
-
-          <div class="mt-5">
-            <label for="message" class="block text-xs font-medium uppercase tracking-widest text-slate-500">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="A sentence or two about the role, the team, and roughly when you'd want to start."
-              class="mt-1.5 w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] leading-relaxed text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20"></textarea>
-            <div class="mt-1.5 flex items-start justify-between gap-4">
-              <p class="error hidden text-xs text-rose-600"></p>
-              <p id="char-count" class="ml-auto shrink-0 font-mono text-xs text-slate-400">0 / 600</p>
-            </div>
-          </div>
-
-          <button type="submit" id="submit-btn"
-            class="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-slate-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60">
-            <span id="submit-label">Send message</span>
-            <svg id="submit-icon" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-
-          <p id="form-status" role="status" aria-live="polite" class="mt-4 hidden rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-700"></p>
-          <p class="mt-4 text-xs leading-relaxed text-slate-400">
-            This form is a front-end demo — hook it up to Formspree, Resend, or your own endpoint in
-            <span class="font-mono">handleSubmit()</span>.
-          </p>
-        </form>
-      </div>
-
     </div>
   </div>
 </section>
@@ -889,7 +833,7 @@
 <!-- ==================== FOOTER ==================== -->
 <footer class="border-t border-slate-200 py-10">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
-    <p class="text-sm text-slate-500">© <span id="year">2026</span> Niik Seah. Built with Tailwind and no framework at all.</p>
+    <p class="text-sm text-slate-500">© <span id="year">2026</span> Niik Seah.</p>
     <div class="flex items-center gap-1">
       <a href="#hero" aria-label="Back to top" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -993,129 +937,6 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
 
     sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------------- Contact form ---------------- */
-  var form = document.getElementById('contact-form');
-  var status = document.getElementById('form-status');
-  var btn = document.getElementById('submit-btn');
-  var label = document.getElementById('submit-label');
-  var message = document.getElementById('message');
-  var counter = document.getElementById('char-count');
-  var MAX = 600;
-
-  message.addEventListener('input', function () {
-    var n = message.value.length;
-    counter.textContent = n + ' / ' + MAX;
-    counter.classList.toggle('text-rose-500', n > MAX);
-  });
-
-  function showError(field, text) {
-    var box = field.closest('div');
-    var el = box.querySelector('.error') || box.parentElement.querySelector('.error');
-    field.classList.add('border-rose-500');
-    field.setAttribute('aria-invalid', 'true');
-    if (el) { el.textContent = text; el.classList.remove('hidden'); }
-  }
-
-  function clearError(field) {
-    var box = field.closest('div');
-    var el = box.querySelector('.error') || box.parentElement.querySelector('.error');
-    field.classList.remove('border-rose-500');
-    field.removeAttribute('aria-invalid');
-    if (el) { el.textContent = ''; el.classList.add('hidden'); }
-  }
-
-  ['name', 'email', 'message'].forEach(function (id) {
-    var f = document.getElementById(id);
-    f.addEventListener('input', function () { clearError(f); });
-  });
-
-  function validate() {
-    var ok = true;
-    var name = document.getElementById('name');
-    var email = document.getElementById('email');
-
-    if (!name.value.trim()) { showError(name, 'Please add your name.'); ok = false; }
-
-    if (!email.value.trim()) {
-      showError(email, 'An email address is required.'); ok = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
-      showError(email, "That doesn't look like a valid address."); ok = false;
-    }
-
-    if (message.value.trim().length < 12) {
-      showError(message, 'Tell me a little more — at least a sentence.'); ok = false;
-    } else if (message.value.length > MAX) {
-      showError(message, 'Please keep it under ' + MAX + ' characters.'); ok = false;
-    }
-
-    return ok;
-  }
-
-  function handleSubmit(data) {
-    // Replace with a real request, e.g.:
-    // return fetch('https://formspree.io/f/xxxx', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // });
-    return new Promise(function (resolve) { setTimeout(resolve, 1100); });
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    status.classList.add('hidden');
-    if (!validate()) return;
-
-    btn.disabled = true;
-    label.textContent = 'Sending…';
-
-    handleSubmit(Object.fromEntries(new FormData(form))).then(function () {
-      form.reset();
-      counter.textContent = '0 / ' + MAX;
-      btn.disabled = false;
-      label.textContent = 'Send message';
-      status.textContent = 'Thanks — your message is on its way. I usually reply within two working days.';
-      status.classList.remove('hidden');
-    });
-  });
-
-  /* ---------------- Projects rail ---------------- */
-  var rail = document.getElementById('work-rail');
-  var railPrev = document.getElementById('work-prev');
-  var railNext = document.getElementById('work-next');
-  var fadeL = document.getElementById('work-fade-l');
-  var fadeR = document.getElementById('work-fade-r');
-
-  if (rail && railPrev && railNext) {
-    function railStep() {
-      var card = rail.querySelector('article');
-      if (!card) return rail.clientWidth;
-      var gap = parseFloat(getComputedStyle(rail).columnGap || '24') || 24;
-      return card.getBoundingClientRect().width + gap;
-    }
-
-    function syncRailButtons() {
-      var max = rail.scrollWidth - rail.clientWidth;
-      var atStart = rail.scrollLeft <= 2;
-      var atEnd = rail.scrollLeft >= max - 2;
-      railPrev.disabled = atStart;
-      railNext.disabled = atEnd;
-      fadeL.classList.toggle('opacity-0', atStart);
-      fadeR.classList.toggle('opacity-0', atEnd);
-    }
-
-    railPrev.addEventListener('click', function () {
-      rail.scrollBy({ left: -railStep(), behavior: 'smooth' });
-    });
-    railNext.addEventListener('click', function () {
-      rail.scrollBy({ left: railStep(), behavior: 'smooth' });
-    });
-
-    rail.addEventListener('scroll', syncRailButtons, { passive: true });
-    window.addEventListener('resize', syncRailButtons);
-    syncRailButtons();
   }
 
   /* ---------------- Footer year ---------------- */
