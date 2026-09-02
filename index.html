@@ -116,7 +116,7 @@
     <nav id="nav-shell" class="mt-4 flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5">
       <!-- Logo -->
       <a href="#hero" class="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-        <img src="logo.png" width = 50vh height = 50vw alt="Niik Seah" >
+        <img src="logo.png" alt="Niik Seah" class="h-8 w-auto" />
       </a>
 
       <!-- Desktop nav -->
@@ -358,17 +358,6 @@
           <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
 
-        <!-- Rail controls — hidden on touch-first widths, where swiping is the obvious move -->
-        <div class="hidden items-center gap-2 sm:flex">
-          <button id="work-prev" type="button" aria-label="Previous projects" aria-controls="work-rail"
-                  class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button id="work-next" type="button" aria-label="Next projects" aria-controls="work-rail"
-                  class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-        </div>
       </div>
     </div>
 
