@@ -47,6 +47,11 @@
   }
   .reveal.is-visible { opacity: 1; transform: none; }
 
+  /* A Tailwind display utility (flex/grid) beats the UA's [hidden] rule, so
+     make hiding explicit for anything toggled from JS. */
+  [hidden] { display: none !important; }
+
+
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
