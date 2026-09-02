@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Telegram Bot for Trip Planning — Niik Seah</title>
-<meta name="description" content="A bot native to Telegram that turns the scattered travel links in a group chat into a structured, AI-assisted trip summary and an interactive map — without pulling anyone into another app." />
+<meta name="description" content="A collaboration between NUS Fintech Society and HeyMax to reduce planning chaos in Telegram group chats by turning scattered travel links into a structured, AI-assisted trip summary and interactive map." />
 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -103,7 +103,7 @@
     <div class="reveal mt-8">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Software · NUS Fintech × HeyMax</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Telegram Bot for Trip Planning</h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A bot native to Telegram that turns the scattered travel links in a group chat into a structured, AI-assisted trip summary and an interactive map — without pulling anyone into another app.</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A collaboration between NUS Fintech Society and HeyMax to reduce planning chaos in Telegram group chats by turning scattered travel links into a structured, AI-assisted trip summary and interactive map.</p>
     </div>
 
     <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4">
@@ -113,11 +113,11 @@
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Timeline</dt>
-        <dd class="mt-1.5 text-sm font-medium">Aug 2025 — Aug 2026</dd>
+        <dd class="mt-1.5 text-sm font-medium">Aug 2025 — May 2026</dd>
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Team</dt>
-        <dd class="mt-1.5 text-sm font-medium">NUS Fintech Society, in collaboration with HeyMax</dd>
+        <dd class="mt-1.5 text-sm font-medium">Sub-team of 2, whole team of 8</dd>
       </div>
       <div>
         <dt class="font-mono text-xs text-slate-400">Tools</dt>
@@ -127,17 +127,11 @@
 
     <div class="reveal mt-6">
       <ul class="flex flex-wrap gap-1.5">
+          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Software Development</li>
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Python</li>
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">LLM summarisation</li>
           <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Telegram Mini App</li>
       </ul>
-    </div>
-
-    <div class="reveal mt-8 flex flex-wrap items-center gap-3">
-      <a href="https://t.me/heymax_planner_bot" target="_blank" rel="noopener noreferrer" class="group/l inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-accent-600">
-        Try @heymax_planner_bot
-        <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a>
     </div>
 
     <div class="reveal mt-8">
@@ -168,20 +162,26 @@
 <section class="pb-20 sm:pb-24">
   <div class="mx-auto max-w-3xl px-5 sm:px-8">
 
-    <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600">Young adults — university students especially — plan trips in Telegram. Someone drops a TikTok of a hawker stall, someone else a Reel of a viewpoint, a third person a hotel link, and the plan lives scattered across three hundred messages. Telegram has no specialised features for any of this.</p>
-    </div>
-
     <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
-      <p class="mt-4 font-display text-2xl leading-snug">Trip planning breaks in the chat. Without structure, collaboration is fragmented and time-consuming — and every existing fix asks the group to leave the conversation and adopt a standalone planning app that nobody opens twice.</p>
+      <p class="mt-4 font-display text-2xl leading-snug">Trip planning on Telegram is fragmented; links are scattered across messages, and people waste too much time manually consolidating places, stays, and activities.</p>
     </div>
 
-    <div class="reveal mt-16" data-view="full">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Project scope</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Meet users where they already coordinate: inside Telegram, not another standalone app. The product direction prioritises low-friction adoption by embedding planning tools into existing behaviour, rather than disrupting the flow of conversation.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The result is a command-led bot with LLM summarisation: unstructured messages become travel-planning artefacts — a comprehensive summary embedded with links, plus AI-generated short descriptions of places, accommodations, and activities.</p>
+    <div class="reveal mt-16">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The solution</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Meet users where they already coordinate: inside Telegram, not another standalone planner app.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">This product direction prioritizes low-friction adoption by embedding planning tools into existing group-chat behavior. Instead of asking users to migrate tools, the bot turns current chat activity into structured travel planning artifacts.</p>
+    </div>
+
+    <div class="reveal mt-16">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Core features</p>
+      <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Pre-processing Q&amp;A</strong> — Captures trip background before planning to ensure summaries are personalised.</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Content analysis</strong> — Shared links are parsed to extract destinations, activities, and accommodation options.</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>AI summary message</strong> — A structured, group-ready trip overview with key recommendations is generated.</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Trip overview</strong> — Flights, rough duration, and key timing cues for faster alignment are highlighted.</span></li>
+        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Visual map</strong> — Pinned locations are shown on the map to support visualisation.</span></li>
+      </ul>
     </div>
 
     <div class="mt-16" data-view="full">
@@ -223,24 +223,6 @@
     <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Reiteration</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Users keep sending links after a summary exists. On the next <code>/plan</code>, the bot confirms the trip details: if nothing has changed it generates an updated summary directly, and if something has, it restarts the Q&amp;A before building a new one.</p>
-    </div>
-
-    <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Where it stands</p></div>
-      <div class="reveal mt-6 grid gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-200 bg-white p-6">
-          <p class="font-display text-4xl leading-none tracking-tight">Live</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500">on Telegram as @heymax_planner_bot</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6">
-          <p class="font-display text-4xl leading-none tracking-tight">4</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500">Bot commands</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6">
-          <p class="font-display text-4xl leading-none tracking-tight">3</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500">Artefacts per run — summary, map, links</p>
-        </div>
-      </div>
     </div>
 
     <div class="reveal mt-16" data-view="full">
