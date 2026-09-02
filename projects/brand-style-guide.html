@@ -157,11 +157,9 @@
 <section class="pb-16">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class="reveal">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The guide</p>
-      <h2 class="mt-4 font-display text-3xl tracking-tight sm:text-4xl">Flip through it</h2>
+      <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Flip through it</h2>
       <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-600">
-        The whole thing was built to be read like a magazine, so it is here as one. Pick a page from the drawer and
-        the thinking behind that spread opens up beside it.
+        The whole thing was built to be read like a magazine, so it is here as one.
       </p>
     </div>
 
@@ -170,7 +168,7 @@
       <!-- stage + page drawer -->
       <div>
         <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <div id="pdfStage" class="flex min-h-[340px] items-center justify-center p-4 sm:min-h-[520px] sm:p-6">
+          <div id="pdfStage" class="flex h-[74vh] min-h-[420px] max-h-[780px] items-center justify-center p-4 sm:p-6">
             <p id="pdfLoading" class="font-mono text-xs text-slate-400">Loading the guide&hellip;</p>
           </div>
           <div class="flex items-center justify-between gap-3 border-t border-slate-100 px-4 py-3">
@@ -190,11 +188,8 @@
       </div>
 
       <!-- design process, keyed to the page on screen -->
-      <div class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+      <div class="self-start rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 lg:sticky lg:top-24 lg:max-h-[calc(74vh+92px)] lg:overflow-y-auto">
         <p class="px-1 font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Design process</p>
-        <p id="noteHint" class="mt-3 px-1 text-[13px] leading-relaxed text-slate-500">
-          Pick a page to see the decision behind it.
-        </p>
         <ol id="pdfNotes" class="mt-3 space-y-2">
         <li class="note rounded-xl border border-slate-200 transition-colors" data-pages="1">
           <button type="button" class="note-head flex w-full items-baseline gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-50">
@@ -288,49 +283,6 @@
       <p class="mt-4 text-lg leading-relaxed text-slate-600">A personal brand style guide, themed as a magazine — built around the idea of a reader flipping through it rather than scrolling a spec sheet.</p>
     </div>
 
-    <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Logo</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The two i's in my name give a symmetrical, distinctive foundation for the mark, standing in as eyes for creativity. The dots are set in Flame Pea, tying the logo directly to the idea the colour carries.</p>
-    </div>
-
-    <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Colour scheme</p>
-      <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Flame Pea</strong> (orange-red) — creativity and passion for design. As the dominant accent it draws attention without overpowering.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Observatory</strong> (green) — growth, personal and professional, complementing Flame Pea.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Outer Space</strong> (grey-black) — composure and maturity, grounding the brand in elegance and discipline.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Spring Wood</strong> (muted yellow-white) — clean and fresh, a soft neutral backdrop that lets the stronger colours stand out.</span></li>
-      </ul>
-    </div>
-
-    <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Typography</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">I wanted fonts that read clean and minimal while still holding their own. Neue Haas Grotesk Display Pro carries the body: sleek, modern, clean-lined, and professional enough to match the ethos. Qanelas balances it — bold and modern, bringing weight to headers and key text, elegant but robust against the streamlined rest.</p>
-    </div>
-
-    <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Name card</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Traditional name cards felt outdated, but I still wanted a physical artefact. Repurposing the card as a lanyard makes it memorable and wearable, and taking cues from modern access cards, a QR code carries the digital half — portfolio and contact details — so the object stays uncluttered.</p>
-    </div>
-
-    <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The system</p></div>
-      <div class="reveal mt-6 grid gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-200 bg-white p-6">
-          <p class="font-display text-4xl leading-none tracking-tight">4</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500">Brand colours, each mapped to a trait</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6">
-          <p class="font-display text-4xl leading-none tracking-tight">2</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500">Typefaces — display and body</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6">
-          <p class="font-display text-4xl leading-none tracking-tight">2023</p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-500">Year built</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -412,7 +364,6 @@
   var counter = document.getElementById('pdfCounter');
   var prevBtn = document.getElementById('pdfPrev');
   var nextBtn = document.getElementById('pdfNext');
-  var hint    = document.getElementById('noteHint');
   var notes   = Array.prototype.slice.call(document.querySelectorAll('#pdfNotes .note'));
   if (!stage || !window.pdfjsLib) return;
 
@@ -441,25 +392,29 @@
       body.classList.toggle('grid-rows-[0fr]', !on);
       note.querySelector('.note-head').setAttribute('aria-expanded', String(on));
     });
-    hint.textContent = matched
-      ? 'Showing the decision behind this spread.'
-      : 'No note on this page — try pages 1 to 9.';
+    return matched;
   }
 
   async function drawPage(n) {
     if (!doc) return;
     var token = ++renderToken;
     var page = await doc.getPage(n);
-    var width = stage.clientWidth - 48;
     var base = page.getViewport({ scale: 1 });
-    var viewport = page.getViewport({ scale: Math.max(width, 240) / base.width });
+
+    // Fit the page inside the stage on BOTH axes, so a whole spread is visible
+    // without scrolling rather than being sized to the column width alone.
+    var pad = window.matchMedia('(min-width: 640px)').matches ? 48 : 32;
+    var availW = Math.max(stage.clientWidth - pad, 200);
+    var availH = Math.max(stage.clientHeight - pad, 200);
+    var scale = Math.min(availW / base.width, availH / base.height);
+    var viewport = page.getViewport({ scale: scale });
 
     var canvas = document.createElement('canvas');
     var ratio = window.devicePixelRatio || 1;
     canvas.width = Math.floor(viewport.width * ratio);
     canvas.height = Math.floor(viewport.height * ratio);
-    canvas.style.width = '100%';
-    canvas.style.height = 'auto';
+    canvas.style.width = Math.floor(viewport.width) + 'px';
+    canvas.style.height = Math.floor(viewport.height) + 'px';
     canvas.className = 'rounded-lg shadow-sm ring-1 ring-slate-900/5';
 
     await page.render({
