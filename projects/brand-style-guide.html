@@ -160,34 +160,119 @@
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The guide</p>
       <h2 class="mt-4 font-display text-3xl tracking-tight sm:text-4xl">Flip through it</h2>
       <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-600">
-        The whole thing was built to be read like a magazine, so it is here as one. Pick a page from the drawer.
+        The whole thing was built to be read like a magazine, so it is here as one. Pick a page from the drawer and
+        the thinking behind that spread opens up beside it.
       </p>
     </div>
 
-    <div class="reveal mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr),200px]">
+    <div class="reveal mt-8 grid gap-5 lg:grid-cols-[minmax(0,1fr),340px]">
 
-      <!-- stage -->
-      <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white">
-        <div id="pdfStage" class="flex min-h-[340px] items-center justify-center p-4 sm:min-h-[520px] sm:p-6">
-          <p id="pdfLoading" class="font-mono text-xs text-slate-400">Loading the guide…</p>
+      <!-- stage + page drawer -->
+      <div>
+        <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <div id="pdfStage" class="flex min-h-[340px] items-center justify-center p-4 sm:min-h-[520px] sm:p-6">
+            <p id="pdfLoading" class="font-mono text-xs text-slate-400">Loading the guide&hellip;</p>
+          </div>
+          <div class="flex items-center justify-between gap-3 border-t border-slate-100 px-4 py-3">
+            <button id="pdfPrev" type="button" aria-label="Previous page"
+                    class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 transition-all hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <p id="pdfCounter" class="font-mono text-xs text-slate-500" aria-live="polite">&mdash;</p>
+            <button id="pdfNext" type="button" aria-label="Next page"
+                    class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 transition-all hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
         </div>
 
-        <div class="flex items-center justify-between gap-3 border-t border-slate-100 px-4 py-3">
-          <button id="pdfPrev" type="button" aria-label="Previous page"
-                  class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 transition-all hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <p id="pdfCounter" class="font-mono text-xs text-slate-500" aria-live="polite">—</p>
-          <button id="pdfNext" type="button" aria-label="Next page"
-                  class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-600 transition-all hover:border-slate-300 hover:text-slate-900 disabled:pointer-events-none disabled:opacity-30">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-        </div>
+        <div id="pdfThumbs" role="tablist" aria-label="Pages" class="rail mt-3 flex gap-3 overflow-x-auto pb-2"></div>
       </div>
 
-      <!-- page drawer -->
-      <div id="pdfThumbs" role="tablist" aria-label="Pages"
-           class="rail flex gap-3 overflow-x-auto pb-2 lg:max-h-[560px] lg:flex-col lg:overflow-y-auto lg:overflow-x-hidden lg:pb-0 lg:pr-1">
+      <!-- design process, keyed to the page on screen -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+        <p class="px-1 font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Design process</p>
+        <p id="noteHint" class="mt-3 px-1 text-[13px] leading-relaxed text-slate-500">
+          Pick a page to see the decision behind it.
+        </p>
+        <ol id="pdfNotes" class="mt-3 space-y-2">
+        <li class="note rounded-xl border border-slate-200 transition-colors" data-pages="1">
+          <button type="button" class="note-head flex w-full items-baseline gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-50">
+            <span class="note-num shrink-0 font-mono text-[11px] text-slate-400">01</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-400">Theme</span>
+              <span class="note-decision mt-1 block text-sm font-medium leading-snug text-slate-900">Magazine</span>
+            </span>
+          </button>
+          <div class="note-body grid grid-rows-[0fr] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)]">
+            <div class="min-h-0 overflow-hidden px-4 pb-4">
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">Instead of the usual brand style guide, I decided to make mine more interesting by following the concept of a magazine to flip through.</p>
+            </div>
+          </div>
+        </li>
+        <li class="note rounded-xl border border-slate-200 transition-colors" data-pages="2,3">
+          <button type="button" class="note-head flex w-full items-baseline gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-50">
+            <span class="note-num shrink-0 font-mono text-[11px] text-slate-400">02</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-400">Logo</span>
+              <span class="note-decision mt-1 block text-sm font-medium leading-snug text-slate-900">Hybrid wordmark + interlocking monogram</span>
+            </span>
+          </button>
+          <div class="note-body grid grid-rows-[0fr] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)]">
+            <div class="min-h-0 overflow-hidden px-4 pb-4">
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">My logo plays on the two i's in my name. I deliberately emphasized this and aligned it with the saying: &ldquo;An eye for design&rdquo;. Hence, the eye test.</p>
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">My name itself&mdash;Niik&mdash;offered an aesthetic and unique structure that could form the foundation of my logo. I decided to highlight the two &ldquo;I&rsquo;s&rdquo; in my name to symbolize &ldquo;eyes&rdquo; for creativity. This led me to a design where the letters &ldquo;N&rdquo; and &ldquo;K&rdquo; merged together, with the two dots above and below the name forming a symmetrical, eye-catching motif. The use of the color Flame Pea for the dots ties directly to the theme of creativity.</p>
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">I created scalable versions of my logo, ensuring that it could adapt to different sizes and contexts. The final version of the logo retains its iconicity even when scaled down, making it versatile.</p>
+            </div>
+          </div>
+        </li>
+        <li class="note rounded-xl border border-slate-200 transition-colors" data-pages="4,5">
+          <button type="button" class="note-head flex w-full items-baseline gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-50">
+            <span class="note-num shrink-0 font-mono text-[11px] text-slate-400">03</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-400">Colour</span>
+              <span class="note-decision mt-1 block text-sm font-medium leading-snug text-slate-900">Meaningful colour traits</span>
+            </span>
+          </button>
+          <div class="note-body grid grid-rows-[0fr] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)]">
+            <div class="min-h-0 overflow-hidden px-4 pb-4">
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">Each colour represents a specific trait I embody. Flame Pea represents my creativeness, Observatory represents my desire to grow, Outer Space represents my quiet focus, Spring Wood represents my love for clean designs.</p>
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600"><span class="block">&bull; <strong>Flame Pea</strong> (Orange-Red): This color symbolizes creativity and passion for design, making it the dominant accent color in my brand. It&rsquo;s a vibrant hue that draws attention without being overpowering.</span><span class="mt-2 block">&bull; <strong>Observatory</strong> (Green): This color conveys growth, an essential value in both my personal and professional life. It serves as a complementary tone to Flame Pea.</span><span class="mt-2 block">&bull; <strong>Outer Space</strong> (Grey-Black): Representing composure, and maturity, this color grounds the brand in elegance and discipline.</span><span class="mt-2 block">&bull; <strong>Spring Wood</strong> (Muted Yellow-White): A soft, neutral tone that contrasts beautifully with the brighter hues, Spring Wood adds a clean and fresh feeling to the overall palette.</span></p>
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">The combination of Flame Pea with Observatory and Outer Space creates a complementary and harmonious feel, while Spring Wood serves as a neutral backdrop, allowing the stronger colors to stand out.</p>
+            </div>
+          </div>
+        </li>
+        <li class="note rounded-xl border border-slate-200 transition-colors" data-pages="6,7">
+          <button type="button" class="note-head flex w-full items-baseline gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-50">
+            <span class="note-num shrink-0 font-mono text-[11px] text-slate-400">04</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-400">Typography</span>
+              <span class="note-decision mt-1 block text-sm font-medium leading-snug text-slate-900">Neue Haas Grotesk Display + Qanelas</span>
+            </span>
+          </button>
+          <div class="note-body grid grid-rows-[0fr] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)]">
+            <div class="min-h-0 overflow-hidden px-4 pb-4">
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">Neue Haas for editorial precision; Qanelas for bold display weight. Pairing balances information density (resume) with impact (magazine cover) inside one type system.</p>
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">For typography, I sought fonts that embodied a clean and minimalistic style while also standing out. I chose Neue Haas Grotesk Display Pro for its sleek, modern appearance, with its clean lines perfectly matching my desire for simplicity, and its professional look aligns with my design ethos. To balance the cleanliness of the primary font, I chose Qanelas&mdash;a bold, modern typeface that brings weight to headers and key text elements. The font&rsquo;s elegant yet robust structure complements the streamlined nature of the rest of the design.</p>
+            </div>
+          </div>
+        </li>
+        <li class="note rounded-xl border border-slate-200 transition-colors" data-pages="8,9">
+          <button type="button" class="note-head flex w-full items-baseline gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-50">
+            <span class="note-num shrink-0 font-mono text-[11px] text-slate-400">05</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-400">Name card</span>
+              <span class="note-decision mt-1 block text-sm font-medium leading-snug text-slate-900">Reframed as a corporate access card with QR</span>
+            </span>
+          </button>
+          <div class="note-body grid grid-rows-[0fr] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)]">
+            <div class="min-h-0 overflow-hidden px-4 pb-4">
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">Traditional name cards feel obsolete. Recasting it as a lanyard ID solved a real interaction problem (memorability + digital handoff) and turned a static deliverable into a wearable artifact.</p>
+            <p class="mt-3 text-[13px] leading-relaxed text-slate-600">While the concept of traditional name cards felt outdated to me, I still wanted to retain a form of physical representation that aligns with my brand. Inspired by modern access cards, I incorporated a QR code into the design. This allowed me to provide additional information through a digital format, linking to my portfolio or contact details.</p>
+            </div>
+          </div>
+        </li>
+        </ol>
       </div>
 
     </div>
@@ -321,12 +406,14 @@
   // Hosted from the portfolio repo, which serves it with Access-Control-Allow-Origin: *
   var PDF_URL = 'https://niikseah.github.io/portfolio/public/documents/brand-style-guide.pdf';
 
-  var stage    = document.getElementById('pdfStage');
-  var thumbs   = document.getElementById('pdfThumbs');
-  var loading  = document.getElementById('pdfLoading');
-  var counter  = document.getElementById('pdfCounter');
-  var prevBtn  = document.getElementById('pdfPrev');
-  var nextBtn  = document.getElementById('pdfNext');
+  var stage   = document.getElementById('pdfStage');
+  var thumbs  = document.getElementById('pdfThumbs');
+  var loading = document.getElementById('pdfLoading');
+  var counter = document.getElementById('pdfCounter');
+  var prevBtn = document.getElementById('pdfPrev');
+  var nextBtn = document.getElementById('pdfNext');
+  var hint    = document.getElementById('noteHint');
+  var notes   = Array.prototype.slice.call(document.querySelectorAll('#pdfNotes .note'));
   if (!stage || !window.pdfjsLib) return;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -334,8 +421,29 @@
 
   var doc = null, total = 0, current = 1, renderToken = 0;
 
-  function fail(msg) {
-    stage.innerHTML = '<p class="max-w-sm text-center font-mono text-xs leading-relaxed text-slate-400">' + msg + '</p>';
+  function pagesOf(note) {
+    return (note.dataset.pages || '').split(',').map(Number).filter(Boolean);
+  }
+
+  /* Open the note covering the page on screen, collapse the rest. */
+  function syncNotes(n) {
+    var matched = false;
+    notes.forEach(function (note) {
+      var on = pagesOf(note).indexOf(n) !== -1;
+      if (on) matched = true;
+      note.classList.toggle('border-accent-400', on);
+      note.classList.toggle('bg-accent-50/40', on);
+      note.classList.toggle('border-slate-200', !on);
+      note.querySelector('.note-num').classList.toggle('text-accent-600', on);
+      note.querySelector('.note-decision').classList.toggle('text-accent-700', on);
+      var body = note.querySelector('.note-body');
+      body.classList.toggle('grid-rows-[1fr]', on);
+      body.classList.toggle('grid-rows-[0fr]', !on);
+      note.querySelector('.note-head').setAttribute('aria-expanded', String(on));
+    });
+    hint.textContent = matched
+      ? 'Showing the decision behind this spread.'
+      : 'No note on this page — try pages 1 to 9.';
   }
 
   async function drawPage(n) {
@@ -374,6 +482,8 @@
       btn.classList.toggle('border-accent-500', on);
       btn.classList.toggle('border-slate-200', !on);
     });
+
+    syncNotes(n);
   }
 
   async function buildThumbs() {
@@ -392,7 +502,7 @@
       btn.setAttribute('aria-selected', String(i === 1));
       btn.className = 'group shrink-0 rounded-xl border bg-white p-1.5 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ' +
                       (i === 1 ? 'border-accent-500' : 'border-slate-200');
-      canvas.className = 'block w-[110px] rounded-lg lg:w-full';
+      canvas.className = 'block w-[104px] rounded-lg';
       var label = document.createElement('span');
       label.className = 'mt-1.5 block text-center font-mono text-[10px] text-slate-400';
       label.textContent = 'PAGE ' + i;
@@ -402,6 +512,14 @@
       thumbs.appendChild(btn);
     }
   }
+
+  /* Notes work the other way too: clicking one jumps to its page. */
+  notes.forEach(function (note) {
+    note.querySelector('.note-head').addEventListener('click', function () {
+      var pages = pagesOf(note);
+      if (pages.length) drawPage(pages[0]);
+    });
+  });
 
   prevBtn.addEventListener('click', function () { if (current > 1) drawPage(current - 1); });
   nextBtn.addEventListener('click', function () { if (current < total) drawPage(current + 1); });
@@ -419,7 +537,8 @@
     await drawPage(1);
     await buildThumbs();
   }).catch(function (err) {
-    fail('The guide could not be loaded right now.<br>' + (err && err.message ? err.message : ''));
+    stage.innerHTML = '<p class="max-w-sm text-center font-mono text-xs leading-relaxed text-slate-400">' +
+      'The guide could not be loaded right now.<br>' + (err && err.message ? err.message : '') + '</p>';
   });
 })();
 </script>
