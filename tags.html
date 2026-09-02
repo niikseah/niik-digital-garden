@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Projects — Niik Seah</title>
-<meta name="description" content="Every project by Niik Seah — product and research work, software, UI/UX case studies, graphic design, and film." />
+<title>Browse by tag — Niik Seah</title>
+<meta name="description" content="Every project by Niik Seah, filtered by skill, method or tool." />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -86,50 +86,76 @@
 
 <main id="main">
 
-<section class="pt-32 pb-12 sm:pt-40 sm:pb-16">
+<section class="pt-32 pb-10 sm:pt-40">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <nav aria-label="Breadcrumb" class="reveal flex items-center gap-2 font-mono text-xs text-slate-400">
       <a href="index.html" class="transition-colors hover:text-slate-700">Home</a>
       <span>/</span>
-      <span class="text-slate-600">Projects</span>
+      <a href="projects.html" class="transition-colors hover:text-slate-700">Projects</a>
+      <span>/</span>
+      <span class="text-slate-600">Tags</span>
     </nav>
 
     <div class="reveal mt-8 max-w-2xl">
-      <h1 class="font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">my hard work…</h1>
-    </div>
-
-    <div class="reveal mt-6">
-      <a href="tags.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600">
-        Browse by tag
-        <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <h1 class="font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">Browse by tag</h1>
+      <p id="tagSummary" class="mt-5 text-lg leading-relaxed text-slate-600">Pick a tag to see everything built with it.</p>
     </div>
 
     <div class="reveal mt-8 flex flex-wrap gap-2">
-        <a href="#pet-projects" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900">Pet Projects</a>
-        <a href="#product-and-research" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900">Product &amp; Research</a>
-        <a href="#software-development" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900">Software Development</a>
-        <a href="#ui-ux" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900">UI/UX</a>
-        <a href="#graphic-design" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900">Graphic Design</a>
-        <a href="#videography" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900">Videography</a>
+        <a href="#affinity-mapping" data-tag="affinity-mapping" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Affinity mapping <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#brand-identity" data-tag="brand-identity" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Brand identity <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#communication-design" data-tag="communication-design" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Communication design <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#contextual-inquiry" data-tag="contextual-inquiry" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Contextual inquiry <span class="font-mono text-[11px] text-slate-400">2</span></a>
+        <a href="#dashboards" data-tag="dashboards" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Dashboards <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#design-system" data-tag="design-system" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design system <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#desk-research" data-tag="desk-research" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Desk research <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#empathy-mapping" data-tag="empathy-mapping" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Empathy mapping <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#figma" data-tag="figma" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Figma <span class="font-mono text-[11px] text-slate-400">3</span></a>
+        <a href="#google-calendar-api" data-tag="google-calendar-api" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Google Calendar API <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#google-tasks-api" data-tag="google-tasks-api" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Google Tasks API <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#heuristic-evaluation" data-tag="heuristic-evaluation" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Heuristic evaluation <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#hi-fi-prototyping" data-tag="hi-fi-prototyping" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Hi-fi prototyping <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#illustrator" data-tag="illustrator" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Illustrator <span class="font-mono text-[11px] text-slate-400">2</span></a>
+        <a href="#indesign" data-tag="indesign" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">InDesign <span class="font-mono text-[11px] text-slate-400">2</span></a>
+        <a href="#infographic" data-tag="infographic" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Infographic <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#llm" data-tag="llm" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">LLM <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#llm-summarisation" data-tag="llm-summarisation" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">LLM summarisation <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#miro" data-tag="miro" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Miro <span class="font-mono text-[11px] text-slate-400">2</span></a>
+        <a href="#mobile-ixd" data-tag="mobile-ixd" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Mobile IxD <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#personas" data-tag="personas" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Personas <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#photoshop" data-tag="photoshop" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Photoshop <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#premiere-pro" data-tag="premiere-pro" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Premiere Pro <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#print" data-tag="print" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Print <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#print-design" data-tag="print-design" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Print design <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#prototyping" data-tag="prototyping" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Prototyping <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#python" data-tag="python" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Python <span class="font-mono text-[11px] text-slate-400">2</span></a>
+        <a href="#raspberry-pi" data-tag="raspberry-pi" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Raspberry Pi <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#raspberry-pi-zero-wh" data-tag="raspberry-pi-zero-wh" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Raspberry Pi Zero WH <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#software-development" data-tag="software-development" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Software Development <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#stakeholder-interviews" data-tag="stakeholder-interviews" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Stakeholder interviews <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#stakeholder-research" data-tag="stakeholder-research" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Stakeholder research <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#storyboarding" data-tag="storyboarding" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Storyboarding <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#swot-analysis" data-tag="swot-analysis" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">SWOT analysis <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#telegram-bot-api" data-tag="telegram-bot-api" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Telegram Bot API <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#telegram-mini-app" data-tag="telegram-mini-app" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Telegram Mini App <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#usability-heuristics" data-tag="usability-heuristics" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Usability heuristics <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#usability-testing" data-tag="usability-testing" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Usability testing <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#user-research" data-tag="user-research" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User research <span class="font-mono text-[11px] text-slate-400">2</span></a>
+        <a href="#videography" data-tag="videography" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Videography <span class="font-mono text-[11px] text-slate-400">1</span></a>
+        <a href="#work-models" data-tag="work-models" class="tag-pill rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Work models <span class="font-mono text-[11px] text-slate-400">1</span></a>
+    </div>
+
+    <div class="reveal mt-5">
+      <a id="tagReset" href="#" class="hidden text-sm font-medium text-slate-500 underline-offset-4 transition-colors hover:text-accent-600 hover:underline">Clear filter — show every project</a>
     </div>
   </div>
 </section>
 
 <section class="pb-24 sm:pb-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div id="tagGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-    <div id="pet-projects" class="mt-20 scroll-mt-28 first:mt-0">
-      <div class="reveal flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Pet Projects</h2>
-        </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
-      </div>
-
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="google-calendar-api google-tasks-api python raspberry-pi raspberry-pi-zero-wh telegram-bot-api" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/PiBoy.jpg" alt="A Raspberry Pi Zero WH board next to a 16GB SanDisk Extreme SD card"
                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -156,20 +182,7 @@
         </div>
       </article>
 
-      </div>
-    </div>
-    <div id="product-and-research" class="border-t border-slate-200 pt-20 mt-20 scroll-mt-28 first:mt-0">
-      <div class="reveal flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Product &amp; Research</h2>
-          <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">Internships and applied work — supply chain, public sector, and the non-profit systems in between.</p>
-        </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
-      </div>
-
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="dashboards design-system figma" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-rose-100 to-pink-200">
           <div class="flex h-full items-center justify-center text-rose-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.5 2.8c0 5.8-8.5 11.3-8.5 11.3z"/></svg>
@@ -197,19 +210,7 @@
         </div>
       </article>
 
-      </div>
-    </div>
-    <div id="software-development" class="border-t border-slate-200 pt-20 mt-20 scroll-mt-28 first:mt-0">
-      <div class="reveal flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Software Development</h2>
-        </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
-      </div>
-
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="llm llm-summarisation python software-development telegram-mini-app" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-200">
           <div class="flex h-full items-center justify-center text-emerald-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
@@ -237,20 +238,7 @@
         </div>
       </article>
 
-      </div>
-    </div>
-    <div id="ui-ux" class="border-t border-slate-200 pt-20 mt-20 scroll-mt-28 first:mt-0">
-      <div class="reveal flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 class="font-display text-3xl tracking-tight sm:text-4xl">UI/UX</h2>
-          <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">End-to-end design projects, most taken from user research through to a tested prototype.</p>
-        </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">5 projects</p>
-      </div>
-
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="empathy-mapping figma mobile-ixd prototyping usability-testing user-research" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-lime-100 to-green-200">
           <div class="flex h-full items-center justify-center text-lime-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M5 9h14M9 5v2M9 12v2.5"/></svg>
@@ -278,7 +266,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="affinity-mapping contextual-inquiry miro storyboarding" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal-100 to-cyan-200">
           <div class="flex h-full items-center justify-center text-teal-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0z"/><path d="M12 3v3M8.5 4.5V6M15.5 4.5V6"/><path d="M5 21h14"/></svg>
@@ -306,7 +294,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="heuristic-evaluation miro personas usability-heuristics user-research" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-fuchsia-100 to-purple-200">
           <div class="flex h-full items-center justify-center text-fuchsia-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>
@@ -334,7 +322,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="contextual-inquiry figma hi-fi-prototyping work-models" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200">
           <div class="flex h-full items-center justify-center text-indigo-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 8h8M8 11.5h5"/></svg>
@@ -362,7 +350,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="communication-design desk-research print print-design stakeholder-interviews stakeholder-research swot-analysis" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-yellow-100 to-amber-200">
           <div class="flex h-full items-center justify-center text-yellow-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v3.5H3z"/><path d="M4.5 12.5V21h15v-8.5M12 9v12"/><path d="M12 9H7.8a2.4 2.4 0 1 1 0-4.8C10.6 4.2 12 9 12 9zm0 0h4.2a2.4 2.4 0 1 0 0-4.8C13.4 4.2 12 9 12 9z"/></svg>
@@ -390,19 +378,7 @@
         </div>
       </article>
 
-      </div>
-    </div>
-    <div id="graphic-design" class="border-t border-slate-200 pt-20 mt-20 scroll-mt-28 first:mt-0">
-      <div class="reveal flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Graphic Design</h2>
-        </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">2 projects</p>
-      </div>
-
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="brand-identity illustrator indesign photoshop" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/brand-style-guide.jpg" alt="The Brand Style Guide cover — the niik. wordmark above the title"
                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -429,7 +405,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="illustrator indesign infographic" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-stone-100 to-zinc-300">
           <div class="flex h-full items-center justify-center text-stone-500/70 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
@@ -455,19 +431,7 @@
         </div>
       </article>
 
-      </div>
-    </div>
-    <div id="videography" class="border-t border-slate-200 pt-20 mt-20 scroll-mt-28 first:mt-0">
-      <div class="reveal flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Videography</h2>
-        </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
-      </div>
-
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article data-tags="premiere-pro videography" class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
           <img src="images/magic-of-resilience.jpg" alt="A still from Magic of Resilience — Alexander Yuen of Meta Illusions at his desk"
                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -493,9 +457,8 @@
         </div>
       </article>
 
-      </div>
     </div>
-
+    <p id="tagEmpty" class="mt-10 hidden text-center text-sm text-slate-500">Nothing tagged that — yet.</p>
   </div>
 </section>
 
@@ -548,6 +511,51 @@
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var cards   = Array.prototype.slice.call(document.querySelectorAll('#tagGrid [data-tags]'));
+  var pills   = Array.prototype.slice.call(document.querySelectorAll('.tag-pill'));
+  var summary = document.getElementById('tagSummary');
+  var reset   = document.getElementById('tagReset');
+  var empty   = document.getElementById('tagEmpty');
+
+  function label(slug) {
+    var p = pills.filter(function (x) { return x.dataset.tag === slug; })[0];
+    return p ? p.textContent.replace(/\s*\d+\s*$/, '').trim() : slug;
+  }
+
+  function apply() {
+    var want = decodeURIComponent((location.hash || '').replace('#', ''));
+    var shown = 0;
+    cards.forEach(function (c) {
+      var on = !want || c.dataset.tags.split(' ').indexOf(want) !== -1;
+      c.hidden = !on;
+      if (on) { shown += 1; if (want) c.classList.add('is-visible'); }
+    });
+    pills.forEach(function (p) {
+      var on = p.dataset.tag === want;
+      p.classList.toggle('border-accent-500', on);
+      p.classList.toggle('bg-accent-50', on);
+      p.classList.toggle('text-accent-700', on);
+      p.setAttribute('aria-current', on ? 'true' : 'false');
+    });
+    summary.textContent = want
+      ? shown + (shown === 1 ? ' project' : ' projects') + ' tagged “' + label(want) + '”.'
+      : 'Pick a tag to see everything built with it.';
+    reset.classList.toggle('hidden', !want);
+    empty.classList.toggle('hidden', shown !== 0);
+  }
+
+  reset.addEventListener('click', function (e) {
+    e.preventDefault();
+    history.replaceState(null, '', location.pathname);
+    apply();
+  });
+  window.addEventListener('hashchange', apply);
+  apply();
 })();
 </script>
 </body>
