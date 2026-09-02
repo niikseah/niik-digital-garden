@@ -134,6 +134,16 @@
       </ul>
     </div>
 
+
+    <div class="reveal mt-8">
+      <div id="modeSwitch" role="tablist" aria-label="Reading mode"
+           class="inline-flex rounded-xl border border-slate-200 bg-white p-1">
+        <button type="button" role="tab" data-mode="tldr" aria-selected="true"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">TL;DR</button>
+        <button type="button" role="tab" data-mode="full" aria-selected="false"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">Full story</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -163,12 +173,12 @@
       <p class="mt-4 font-display text-2xl leading-snug">Existing solutions treat the symptom. None of them touch the root cause: unsustainable consumer habits at the point of purchase. Without intervention there, the problem keeps escalating no matter how good the redistribution layer gets.</p>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Target audience</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Youths aged 18 to 24 — identified as a key demographic generating food waste. They need an intuitive, engaging solution that helps them plan smarter and builds habits that outlast the novelty of a new app.</p>
     </div>
 
-    <div class="mt-16">
+    <div class="mt-16" data-view="full">
       <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design process</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
@@ -194,7 +204,7 @@
       </ol>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Key features</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Meal Planner</strong> — plan meals, generate accurate shopping lists, avoid impulse buying</span></li>
@@ -206,14 +216,14 @@
       </ul>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">What testing changed</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two users read the “Cancel” button in the text-input field as “clear”, so it was redesigned as “Back”. A participant asked for the “Pantry” button to sit in the centre of the nav bar; it moved, because it matches user convention, while “Profile” stayed on the right as the least-accessed tab.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">A/B testing settled two open questions: participants overwhelmingly preferred a grid view for expired groceries, because they identify food by its packaging, and preferred the whole week visible in the Meal Planner, because that matches weekly grocery habits. For the “XX days left” expiry notice, the smaller bottom-left placement won — noticeable but unobtrusive.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Watching two users try to find recipes from expiring ingredients on the Pantry page led to a new Ingredients page, where recipes, nutritional value, storage, and quantity all live together.</p>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design decisions</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Receipt scanning was suggested and rejected: receipts carry no expiry dates and abbreviate item names past recognition. Manual expiry entry stayed, which has the side effect of making the shopper think about shelf life at the moment they're handling the food.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The Diet Tracker moved to the Profile page. Pantry Pal is a pantry manager first; diet tracking is secondary and optional, activated after account creation rather than pushed on everyone.</p>
@@ -318,6 +328,41 @@
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var sw = document.getElementById('modeSwitch');
+  if (!sw) return;
+  var btns = Array.prototype.slice.call(sw.querySelectorAll('button'));
+  var extras = Array.prototype.slice.call(document.querySelectorAll('[data-view="full"]'));
+
+  function paint(btn, on) {
+    btn.setAttribute('aria-selected', String(on));
+    btn.classList.toggle('bg-slate-900', on);
+    btn.classList.toggle('text-white', on);
+    btn.classList.toggle('text-slate-600', !on);
+    btn.classList.toggle('hover:text-slate-900', !on);
+  }
+
+  function setMode(mode) {
+    btns.forEach(function (b) { paint(b, b.dataset.mode === mode); });
+    extras.forEach(function (el) {
+      el.hidden = mode !== 'full';
+      // These blocks were hidden when the reveal observer first ran, so they
+      // never got their fade-in. Show them outright the first time they appear.
+      if (mode === 'full' && el.classList.contains('reveal')) el.classList.add('is-visible');
+      if (mode === 'full') {
+        el.querySelectorAll('.reveal').forEach(function (r) { r.classList.add('is-visible'); });
+      }
+    });
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { setMode(b.dataset.mode); });
+  });
+  setMode('tldr');
 })();
 </script>
 </body>

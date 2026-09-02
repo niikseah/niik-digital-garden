@@ -139,6 +139,16 @@
         <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
     </div>
+
+    <div class="reveal mt-8">
+      <div id="modeSwitch" role="tablist" aria-label="Reading mode"
+           class="inline-flex rounded-xl border border-slate-200 bg-white p-1">
+        <button type="button" role="tab" data-mode="tldr" aria-selected="true"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">TL;DR</button>
+        <button type="button" role="tab" data-mode="full" aria-selected="false"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">Full story</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -168,13 +178,13 @@
       <p class="mt-4 font-display text-2xl leading-snug">Trip planning breaks in the chat. Without structure, collaboration is fragmented and time-consuming — and every existing fix asks the group to leave the conversation and adopt a standalone planning app that nobody opens twice.</p>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Project scope</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Meet users where they already coordinate: inside Telegram, not another standalone app. The product direction prioritises low-friction adoption by embedding planning tools into existing behaviour, rather than disrupting the flow of conversation.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The result is a command-led bot with LLM summarisation: unstructured messages become travel-planning artefacts — a comprehensive summary embedded with links, plus AI-generated short descriptions of places, accommodations, and activities.</p>
     </div>
 
-    <div class="mt-16">
+    <div class="mt-16" data-view="full">
       <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">How it works</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
@@ -200,7 +210,7 @@
       </ol>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Commands</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><code>/start</code> — add the bot at any point in the chat</span></li>
@@ -210,7 +220,7 @@
       </ul>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Reiteration</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Users keep sending links after a summary exists. On the next <code>/plan</code>, the bot confirms the trip details: if nothing has changed it generates an updated summary directly, and if something has, it restarts the Q&amp;A before building a new one.</p>
     </div>
@@ -233,7 +243,7 @@
       </div>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Moving forward</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span>Accessibility</span></li>
@@ -308,6 +318,41 @@
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var sw = document.getElementById('modeSwitch');
+  if (!sw) return;
+  var btns = Array.prototype.slice.call(sw.querySelectorAll('button'));
+  var extras = Array.prototype.slice.call(document.querySelectorAll('[data-view="full"]'));
+
+  function paint(btn, on) {
+    btn.setAttribute('aria-selected', String(on));
+    btn.classList.toggle('bg-slate-900', on);
+    btn.classList.toggle('text-white', on);
+    btn.classList.toggle('text-slate-600', !on);
+    btn.classList.toggle('hover:text-slate-900', !on);
+  }
+
+  function setMode(mode) {
+    btns.forEach(function (b) { paint(b, b.dataset.mode === mode); });
+    extras.forEach(function (el) {
+      el.hidden = mode !== 'full';
+      // These blocks were hidden when the reveal observer first ran, so they
+      // never got their fade-in. Show them outright the first time they appear.
+      if (mode === 'full' && el.classList.contains('reveal')) el.classList.add('is-visible');
+      if (mode === 'full') {
+        el.querySelectorAll('.reveal').forEach(function (r) { r.classList.add('is-visible'); });
+      }
+    });
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { setMode(b.dataset.mode); });
+  });
+  setMode('tldr');
 })();
 </script>
 </body>

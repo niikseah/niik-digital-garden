@@ -129,6 +129,16 @@
         <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
     </div>
+
+    <div class="reveal mt-8">
+      <div id="modeSwitch" role="tablist" aria-label="Reading mode"
+           class="inline-flex rounded-xl border border-slate-200 bg-white p-1">
+        <button type="button" role="tab" data-mode="tldr" aria-selected="true"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">TL;DR</button>
+        <button type="button" role="tab" data-mode="full" aria-selected="false"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">Full story</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -157,7 +167,7 @@
       </ul>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Kita is a Singaporean non-profit dedicated to helping youths claim their agency and build belonging, expression, and skills. Despite the impact of its work, it faces a strategic problem that threatens its long-term sustainability: a significant deficit in formal communication and advocacy infrastructure.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">We targeted potential advocates and donors. Empowered by the financial capital and influential networks they hold, these individuals can amplify Kita's reach — a core tenet of stakeholder theory, which holds that an organisation's long-term viability depends on managing relationships with every group that supplies critical resources, not only the beneficiaries of its services (Freeman, 1984).</p>
@@ -167,12 +177,12 @@
       <p class="font-display text-2xl leading-snug">Kita's fundamental issue was not a lack of information, but a lack of means for starting conversations and sharing them.</p>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Traditional brochures are one-way, terminal points of information. They run on an outdated diffusion model of communication, insufficient for motivating the organic, peer-to-peer advocacy Kita needs. Shifting toward participatory communication was what could turn passive sympathisers into active ambassadors (Servaes, 1996).</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">So the objective became: create a resource that acts not as a final statement but as a conversation starter — engaging, aesthetically compelling, easily shareable, and motivating enough that advocates champion Kita inside their own professional and social circles.</p>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Research approach</p>
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">Desk research and a board member</h2>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Extensive qualitative desk research across three themes — Kita's organisational context, Singapore's at-risk youth, and Singaporean advocate and donor profiles — plus one physical interview.</p>
@@ -180,7 +190,7 @@
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The interview was with Kwek Jim See, one of Kita's board members, to get first-hand insight from an existing advocate — the demographics, behaviour and preferences of advocates, and how information currently flows to potential ones.</p>
     </div>
 
-    <div class="mt-16">
+    <div class="mt-16" data-view="full">
       <p class="reveal text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Findings</p>
       <h2 class="reveal mt-4 font-display text-3xl leading-snug tracking-tight">Five findings, and what each meant for the design</h2>
       <div class="reveal mt-6 grid gap-4 sm:grid-cols-2">
@@ -207,7 +217,7 @@
       </div>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The intervention</p>
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">A blind box that unfolds into a brochure</h2>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The toolkit is a brochure shaped as a blind box on the theme of home, plus an identity artefact — a character keychain with a matching card. Unfolded, the box becomes the brochure.</p>
@@ -215,7 +225,7 @@
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The blind box format carries Kita's visual identity into a medium that stands out among advocacy materials, reinforcing recognition and recall. The unboxing extends engagement past passive reading into something with emotional resonance — which is what makes the information stick.</p>
     </div>
 
-    <figure class="reveal mt-12">
+    <figure class="reveal mt-12" data-view="full">
       <!-- ✏️ Export this figure from Notion and drop it in:
            <img src="../images/kita-blind-box-brochure.jpg" alt="The blind box, unfolded into a brochure" class="w-full rounded-2xl border border-slate-200" /> -->
       <div class="grid aspect-[16/9] place-items-center rounded-2xl border border-dashed border-slate-300 bg-slate-100/60">
@@ -227,7 +237,7 @@
       <figcaption class="mt-3 text-center text-sm text-slate-500">The blind box, unfolded into a brochure</figcaption>
     </figure>
 
-    <figure class="reveal mt-12">
+    <figure class="reveal mt-12" data-view="full">
       <!-- ✏️ Export this figure from Notion and drop it in:
            <img src="../images/kita-blind-box-keychains.jpg" alt="Character keychains — Bubu, Roro, Kiki, Pebbie" class="w-full rounded-2xl border border-slate-200" /> -->
       <div class="grid aspect-[16/9] place-items-center rounded-2xl border border-dashed border-slate-300 bg-slate-100/60">
@@ -239,7 +249,7 @@
       <figcaption class="mt-3 text-center text-sm text-slate-500">Character keychains — Bubu, Roro, Kiki, Pebbie</figcaption>
     </figure>
 
-    <div class="mt-16">
+    <div class="mt-16" data-view="full">
       <p class="reveal text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design process</p>
       <h2 class="reveal mt-4 font-display text-3xl leading-snug tracking-tight">Five constraints that shaped it</h2>
       <ol class="mt-8 space-y-10">
@@ -271,12 +281,12 @@
       </ol>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">The balance it had to strike</h2>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Innovation against practical organisational needs, and youthfulness against professionalism — enough of the latter not to undermine the seriousness of the cause. The blind box is unconventional but culturally relevant, and its trendiness is doing work: it's built to be shared. What would otherwise be a generic brochure becomes a memorable first touchpoint.</p>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Evaluation</p>
       <h2 class="mt-4 font-display text-3xl leading-snug tracking-tight">How we'd measure it</h2>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two outcomes: improve current advocates' knowledge of Kita and their confidence in communicating its mission, and drive measurable engagement — traffic to Kita's site and donation platforms.</p>
@@ -284,13 +294,13 @@
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600"><strong>Qualitatively</strong>, field observation at Kita outreach events to see how advocates actually use the toolkit, and focus groups after a period of distribution to learn which elements help and which create friction. Tying both together, a longitudinal check at six months to a year to test whether any effect is sustained past the initial distribution.</p>
     </div>
 
-    <div class="reveal mt-14">
+    <div class="reveal mt-14" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Conclusion</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The project shows how co-creation informed a communication toolkit built for Kita's emerging support ecosystem. Engaging directly with a representative of Kita's advocates clarified the motivations and interaction preferences that make advocacy work, and working closely with Kita's team kept organisational needs and design outcomes aligned.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Prototyping surfaced a real tension between meaningful storytelling and practical usability, which led to clearer instructions and more durable structural choices. Next would be testing with a broader advocate base and building in more participatory elements — user-driven customisation especially — to support sustained engagement and Kita's longer-term outreach goals.</p>
     </div>
 
-    <div class="reveal mt-16 border-t border-slate-200 pt-8">
+    <div class="reveal mt-16 border-t border-slate-200 pt-8" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Works cited</p>
       <ul class="mt-4 space-y-2">
         <li class="text-sm leading-relaxed text-slate-500">Dantec, C. A. L., &amp; DiSalvo, C. (2013). Infrastructuring and the formation of publics in participatory design. <em>Social Studies of Science, 43</em>(2), 241–264.</li>
@@ -362,6 +372,41 @@
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var sw = document.getElementById('modeSwitch');
+  if (!sw) return;
+  var btns = Array.prototype.slice.call(sw.querySelectorAll('button'));
+  var extras = Array.prototype.slice.call(document.querySelectorAll('[data-view="full"]'));
+
+  function paint(btn, on) {
+    btn.setAttribute('aria-selected', String(on));
+    btn.classList.toggle('bg-slate-900', on);
+    btn.classList.toggle('text-white', on);
+    btn.classList.toggle('text-slate-600', !on);
+    btn.classList.toggle('hover:text-slate-900', !on);
+  }
+
+  function setMode(mode) {
+    btns.forEach(function (b) { paint(b, b.dataset.mode === mode); });
+    extras.forEach(function (el) {
+      el.hidden = mode !== 'full';
+      // These blocks were hidden when the reveal observer first ran, so they
+      // never got their fade-in. Show them outright the first time they appear.
+      if (mode === 'full' && el.classList.contains('reveal')) el.classList.add('is-visible');
+      if (mode === 'full') {
+        el.querySelectorAll('.reveal').forEach(function (r) { r.classList.add('is-visible'); });
+      }
+    });
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { setMode(b.dataset.mode); });
+  });
+  setMode('tldr');
 })();
 </script>
 </body>

@@ -144,6 +144,16 @@
         <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
     </div>
+
+    <div class="reveal mt-8">
+      <div id="modeSwitch" role="tablist" aria-label="Reading mode"
+           class="inline-flex rounded-xl border border-slate-200 bg-white p-1">
+        <button type="button" role="tab" data-mode="tldr" aria-selected="true"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">TL;DR</button>
+        <button type="button" role="tab" data-mode="full" aria-selected="false"
+                class="rounded-lg px-4 py-2 text-sm font-medium transition-colors">Full story</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -173,13 +183,13 @@
       <p class="mt-4 font-display text-2xl leading-snug">Kita's fundamental issue was never a lack of information — it was the lack of a means for starting conversations and sharing. Traditional brochures are one-way, terminal points of information, operating on a diffusion model too outdated to motivate the organic, peer-to-peer advocacy Kita needs.</p>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Who we designed for</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The toolkit targets potential advocates and donors. Empowered by the financial capital and influential networks they hold, these individuals can amplify Kita's reach — a core tenet of stakeholder theory, which holds that an organisation's long-term viability depends on managing relationships with every group supplying critical resources, not only its primary beneficiaries (Freeman, 1984).</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The objective, then, was a resource that acts not as a final statement but as a conversation starter: engaging, aesthetically compelling, easily shareable, and capable of moving a sympathiser to champion Kita in their own professional and social circles (Servaes, 1996).</p>
     </div>
 
-    <div class="mt-16">
+    <div class="mt-16" data-view="full">
       <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Research approach</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
@@ -205,7 +215,7 @@
       </ol>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">What the research found</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Limited awareness.</strong> As a recently established non-profit with minimal press and social presence, Kita is largely unknown outside its existing networks — so the toolkit had to be an entry point eye-catching enough to start a conversation and informative enough to sustain it.</span></li>
@@ -216,14 +226,14 @@
       </ul>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The intervention</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The toolkit is a brochure in the form of a blind box, themed around home, paired with an identity artefact: a character keychain and a matching card. Unfolded, the blind box becomes a brochure that can be read straight through.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The keychains are modelled on Kita's four characters — Bubu, Roro, Kiki, and Pebbie — each with a card explaining its origins and what it represents. The idea came from Kita's executive director, Victor Zhu, who wears Kita's character pins to conferences to start conversations. Keychains are conspicuous, attractive, and flexible in how they're displayed.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The blind box format carries Kita's visual identity into a medium unusual enough to stand out among advocacy materials, and the unboxing turns passive information consumption into an experience with emotional resonance — which is what makes it stick.</p>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design decisions</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Scalability.</strong> A cost-effective medium producible in bulk, with a straightforward, easy-to-assemble design that streamlines assembly and inventory for an organisation working under tight resource constraints. An interactive 3D brochure demonstrates the fold.</span></li>
@@ -234,7 +244,7 @@
       </ul>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">How we'd evaluate it</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two outcomes matter: that current advocates know Kita better and feel confident communicating its mission, and that engagement measurably rises — traffic to Kita's site and donation platforms.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The plan is mixed-method. Quantitatively: pre- and post-toolkit surveys with current advocates measuring knowledge and confidence, a survey of new advocates, and engagement metrics across social, web, and donation channels tracked before and after distribution. Qualitatively: field observation at Kita outreach events, watching how advocates actually use the toolkit in practice.</p>
@@ -323,6 +333,41 @@
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var sw = document.getElementById('modeSwitch');
+  if (!sw) return;
+  var btns = Array.prototype.slice.call(sw.querySelectorAll('button'));
+  var extras = Array.prototype.slice.call(document.querySelectorAll('[data-view="full"]'));
+
+  function paint(btn, on) {
+    btn.setAttribute('aria-selected', String(on));
+    btn.classList.toggle('bg-slate-900', on);
+    btn.classList.toggle('text-white', on);
+    btn.classList.toggle('text-slate-600', !on);
+    btn.classList.toggle('hover:text-slate-900', !on);
+  }
+
+  function setMode(mode) {
+    btns.forEach(function (b) { paint(b, b.dataset.mode === mode); });
+    extras.forEach(function (el) {
+      el.hidden = mode !== 'full';
+      // These blocks were hidden when the reveal observer first ran, so they
+      // never got their fade-in. Show them outright the first time they appear.
+      if (mode === 'full' && el.classList.contains('reveal')) el.classList.add('is-visible');
+      if (mode === 'full') {
+        el.querySelectorAll('.reveal').forEach(function (r) { r.classList.add('is-visible'); });
+      }
+    });
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { setMode(b.dataset.mode); });
+  });
+  setMode('tldr');
 })();
 </script>
 </body>
