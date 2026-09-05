@@ -173,6 +173,59 @@
     .tl-body:not([hidden]) { animation: none; }
   }
 
+  /* ── Centred timeline ────────────────────────────────────────────────
+     From lg up the rule runs down the middle and entries alternate sides,
+     each one hanging off the line like a leaf. Below lg it stays a single
+     left-hand rail, since half-width columns are unreadable on a phone. */
+  @media (min-width: 1024px) {
+    .tl-center { position: relative; }
+    .tl-center::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      margin-left: -0.5px;
+      top: .55rem;
+      bottom: 0;
+      width: 1px;
+      background: #e2e8f0;
+    }
+    .tl-center > .tl-item {
+      display: block;
+      width: calc(50% - 2.75rem);
+      border-left: 0;
+      padding-left: 0;
+      padding-bottom: 1.75rem;
+    }
+    /* odd entries hang left of the line and read toward it */
+    .tl-center > .tl-item:nth-child(odd) {
+      margin-right: auto;
+      text-align: right;
+    }
+    .tl-center > .tl-item:nth-child(even) { margin-left: auto; }
+
+    /* the dot sits on the line itself */
+    .tl-center > .tl-item > .tl-dot { top: .55rem; }
+    .tl-center > .tl-item:nth-child(odd) > .tl-dot {
+      left: auto;
+      right: calc(-2.75rem - 6.5px);
+    }
+    .tl-center > .tl-item:nth-child(even) > .tl-dot {
+      left: calc(-2.75rem - 6.5px);
+    }
+
+    /* dates sit above the role once the columns collapse */
+    .tl-center .tl-date { text-align: inherit; margin-bottom: .4rem; }
+    .tl-center .tl-date p { display: inline; }
+    .tl-center .tl-date p + p::before { content: " · "; }
+
+    /* mirror the header row so the chevron faces the line */
+    .tl-center > .tl-item:nth-child(odd) .tl-head { flex-direction: row-reverse; }
+    .tl-center > .tl-item:nth-child(odd) .tl-org { justify-content: flex-end; }
+
+    /* detail always reads left-to-right, whichever side it is on */
+    .tl-center .tl-body { text-align: left; }
+  }
+
   .folder-tabs { scrollbar-width: none; }
   .folder-tabs::-webkit-scrollbar { display: none; }
   @media (max-width: 430px) {
@@ -751,11 +804,11 @@
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Where I've worked</h2>
     </div>
 
-    <ol class="mt-14 max-w-5xl space-y-0">
+    <ol class="tl-center mt-14 mx-auto max-w-6xl space-y-0">
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Jan — Apr 2026</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -763,7 +816,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-1">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">Business Product Management Intern</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/shopee.png" alt="" class="h-5 w-auto shrink-0" />Shopee</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/shopee.png" alt="" class="h-5 w-auto shrink-0" />Shopee</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -780,8 +833,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Dec 2025</p>
           <p class="mt-1 text-xs text-slate-400">Ho Chi Minh, Vietnam</p>
         </div>
@@ -789,7 +842,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-2">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">Strategy Analyst Intern</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/capital-jdi.png" alt="" class="h-5 w-auto shrink-0" />Capital JDI</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/capital-jdi.png" alt="" class="h-5 w-auto shrink-0" />Capital JDI</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -806,8 +859,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">May — Aug 2025</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -815,7 +868,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-3">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">Product Design Intern</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/govtech.png" alt="" class="h-5 w-auto shrink-0" />GovTech</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/govtech.png" alt="" class="h-5 w-auto shrink-0" />GovTech</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -832,8 +885,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Aug — Dec 2024</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -841,7 +894,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-4">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">UI/UX Design Intern</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/dbs.png" alt="" class="h-5 w-auto shrink-0" />DBS Bank</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/dbs.png" alt="" class="h-5 w-auto shrink-0" />DBS Bank</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -858,8 +911,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">May — Jul 2024</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -867,7 +920,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-5">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">UX Design Intern</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/micron.svg" alt="" class="h-5 w-auto shrink-0" />Micron Technology</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/micron.svg" alt="" class="h-5 w-auto shrink-0" />Micron Technology</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -889,11 +942,11 @@
       <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Co-curricular activities</h3>
     </div>
 
-    <ol class="mt-8 max-w-5xl space-y-0">
+    <ol class="tl-center mt-8 mx-auto max-w-6xl space-y-0">
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Aug 2025 – May 2026</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -901,7 +954,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-cca-1">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">Software Developer</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-fintech.png" alt="" class="h-5 w-auto shrink-0" />NUS Fintech Society</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-fintech.png" alt="" class="h-5 w-auto shrink-0" />NUS Fintech Society</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -918,8 +971,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Jul 2025 – May 2026</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -927,7 +980,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-cca-2">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">Head of Design</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Developer Group</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Developer Group</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -944,8 +997,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Sep 2024 – May 2025</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -953,7 +1006,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-cca-3">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">UI/UX Designer</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Google Developer Student Club</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Google Developer Student Club</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
@@ -970,8 +1023,8 @@
       </li>
 
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="sm:text-right">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">&mdash;</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -979,7 +1032,7 @@
           <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-cca-4">
             <span class="min-w-0 flex-1">
               <span class="tl-role block font-display text-2xl leading-snug transition-colors">Publicity Head</span>
-              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-netball.png" alt="" class="h-6 w-auto shrink-0" />NUS Netball Recreational Club</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-netball.png" alt="" class="h-6 w-auto shrink-0" />NUS Netball Recreational Club</span>
             </span>
             <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
           </button>
