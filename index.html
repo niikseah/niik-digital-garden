@@ -103,6 +103,57 @@
     * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
     .reveal { opacity: 1; transform: none; }
   }
+  /* ── Folder dividers (About) ─────────────────────────────────────────
+     Tabs sit on top of the panel like the markings on a physical file:
+     the inactive ones are recessed and tinted, the active one rises,
+     turns the panel's colour, and covers the panel border beneath it. */
+  .folder-tab {
+    position: relative;
+    top: 5px;
+    z-index: 1;
+    border: 1px solid #e2e8f0;
+    border-bottom-color: transparent;
+    border-radius: 10px 10px 0 0;
+    background: #eef2f6;
+    color: #64748b;
+    padding: .5rem 1.05rem .7rem;
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: top .2s cubic-bezier(.16,1,.3,1), background-color .2s, color .2s;
+  }
+  .folder-tab:hover { background: #e5eaf1; color: #334155; }
+  .folder-tab[aria-selected="true"] {
+    top: 0;
+    z-index: 3;
+    background: #fff;
+    color: #0f172a;
+    font-weight: 500;
+    padding-bottom: .85rem;
+  }
+  /* hides the panel's top border under the active tab, so the two merge */
+  .folder-tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: #fff;
+  }
+  .folder-body {
+    position: relative;
+    z-index: 2;
+    margin-top: -1px;
+    border: 1px solid #e2e8f0;
+    border-radius: 0 14px 14px 14px;
+    background: #fff;
+  }
+  .folder-tabs { scrollbar-width: none; }
+  .folder-tabs::-webkit-scrollbar { display: none; }
+  @media (max-width: 430px) {
+    .folder-tab { padding: .45rem .7rem .6rem; font-size: 12px; }
+    .folder-tab[aria-selected="true"] { padding-bottom: .75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .folder-tab { transition: none; } }
 </style>
 </head>
 
@@ -203,75 +254,60 @@
 
 <!-- ==================== ABOUT ==================== -->
 <section id="about" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">01 — About</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">An interdisciplinary background capable of creative and computational thinking.</h2>
     </div>
 
     <!-- ── Profile ──────────────────────────────────────────────────── -->
-    <div class="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-2 lg:gap-20">
+    <div class="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[minmax(0,0.75fr),minmax(0,1.25fr)] lg:gap-20">
 
-      <div class="reveal">
+      <div class="reveal lg:sticky lg:top-28 lg:self-start">
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">2023 &ndash; Now</p>
-        <h3 class="mt-6 font-display text-[clamp(1.9rem,3.4vw,3.25rem)] leading-[1.1] tracking-tight">
+        <h3 class="mt-6 font-display text-[clamp(1.9rem,3.2vw,3.5rem)] leading-[1.1] tracking-tight">
           Hey, I&rsquo;m Niik.<br />Nice to meet you.
         </h3>
-
-        <div class="mt-10">
-          <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Education</p>
-          <dl class="mt-4 divide-y divide-slate-200 border-t border-slate-200">
-            <div class="flex items-baseline justify-between gap-6 py-3">
-              <dt class="text-[15px] text-slate-900">Communications &amp; New Media</dt>
-              <dd class="shrink-0 text-sm text-slate-400">Major</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-6 py-3">
-              <dt class="text-[15px] text-slate-900">Computer Science</dt>
-              <dd class="shrink-0 text-sm text-slate-400">Second major</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-6 py-3">
-              <dt class="text-[15px] text-slate-900">Interactive Media Design</dt>
-              <dd class="shrink-0 text-sm text-slate-400">Minor</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-6 py-3">
-              <dt class="text-[15px] text-slate-900">National University of Singapore</dt>
-              <dd class="shrink-0 text-sm text-slate-400">NUS</dd>
-            </div>
-          </dl>
-        </div>
+        <p class="mt-6 max-w-sm text-[15px] leading-relaxed text-slate-500">
+          Flip through the dividers &mdash; who I am, what I work with, what I&rsquo;m certified in, and what I studied.
+        </p>
       </div>
 
+      <!-- Folder -->
       <div class="reveal">
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Profile</p>
-        <div class="mt-6 space-y-5 text-[17px] leading-relaxed text-slate-600">
-          <p>Hi there, I&rsquo;m Niik! I&rsquo;ve worked across product management, design, and software development, but
-            product is where my heart is. I love working right where users, business needs, and engineering meet to make
-            sure we&rsquo;re building what actually matters.</p>
-          <p>That range is deliberate. Studying communications alongside computer science means I can sit in a research
-            synthesis, a Figma file, and a codebase in the same week &mdash; and translate between the three when a team
-            needs it.</p>
-          <p>Most of my work starts with getting close to real users, through contextual inquiries, interviews, and
-            testing, then ends with something simple enough that the complexity stops being their problem. The projects
-            here are mostly that loop, run end to end.</p>
+        <div id="folderTabs" role="tablist" aria-label="About sections" class="folder-tabs flex items-end gap-1 overflow-x-auto pl-1">
+          <button type="button" role="tab" class="folder-tab shrink-0" id="tab-profile"
+                  data-folder="profile" aria-controls="panel-profile" aria-selected="true" tabindex="0">Profile</button>
+          <button type="button" role="tab" class="folder-tab shrink-0" id="tab-skills"
+                  data-folder="skills" aria-controls="panel-skills" aria-selected="false" tabindex="-1">Skills</button>
+          <button type="button" role="tab" class="folder-tab shrink-0" id="tab-licenses"
+                  data-folder="licenses" aria-controls="panel-licenses" aria-selected="false" tabindex="-1">Licenses</button>
+          <button type="button" role="tab" class="folder-tab shrink-0" id="tab-education"
+                  data-folder="education" aria-controls="panel-education" aria-selected="false" tabindex="-1">Education</button>
         </div>
 
-        <hr class="mt-10 w-10 border-slate-300" />
-
-        <div class="mt-10 space-y-5 text-[17px] leading-relaxed text-slate-600">
-          <p>So far that has meant internships across product management, strategy, and design, and university projects
-            taken from first research through to a tested prototype.</p>
-          <p>I&rsquo;m currently open to Product Management and Product Design roles, and always happy to meet people
-            building thoughtful things.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mt-16 max-w-3xl border-t border-slate-200 pt-14 lg:mt-20">
-      <p class="reveal font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Skills &amp; tools</p>
-      <!-- Copy + skills -->
-      <div class="reveal">
-        <div class="mt-10">
+        <div class="folder-body p-6 sm:p-8 lg:p-10">
+          <div id="panel-profile" role="tabpanel" aria-labelledby="tab-profile" data-folder-panel="profile">
+            <div class="space-y-5 text-[17px] leading-relaxed text-slate-600">
+              <p>Hi there, I&rsquo;m Niik! I&rsquo;ve worked across product management, design, and software development, but
+                product is where my heart is. I love working right where users, business needs, and engineering meet to make
+                sure we&rsquo;re building what actually matters.</p>
+              <p>That range is deliberate. Studying communications alongside computer science means I can sit in a research
+                synthesis, a Figma file, and a codebase in the same week &mdash; and translate between the three when a team
+                needs it.</p>
+              <p>Most of my work starts with getting close to real users, through contextual inquiries, interviews, and
+                testing, then ends with something simple enough that the complexity stops being their problem. The projects
+                here are mostly that loop, run end to end.</p>
+            </div>
+            <hr class="mt-10 w-10 border-slate-300" />
+            <div class="mt-10 space-y-5 text-[17px] leading-relaxed text-slate-600">
+              <p>So far that has meant internships across product management, strategy, and design, and university projects
+                taken from first research through to a tested prototype.</p>
+              <p>I&rsquo;m currently open to Product Management and Product Design roles, and always happy to meet people
+                building thoughtful things.</p>
+            </div>
+          </div>
+          <div id="panel-skills" role="tabpanel" aria-labelledby="tab-skills" data-folder-panel="skills" hidden>
           <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Programming</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
             <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#E34F26" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>HTML</li>
@@ -362,13 +398,8 @@
             <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">UI/UX</li>
             <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Tennis</li>
           </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Licenses & certifications -->
-    <div class="reveal mt-16">
-      <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Licenses &amp; certifications</h3>
+          </div>
+          <div id="panel-licenses" role="tabpanel" aria-labelledby="tab-licenses" data-folder-panel="licenses" hidden>
       <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
         <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
@@ -421,6 +452,30 @@
         </li>
 
       </ul>
+          </div>
+          <div id="panel-education" role="tabpanel" aria-labelledby="tab-education" data-folder-panel="education" hidden>
+            <dl class="divide-y divide-slate-200 border-t border-slate-200">
+              <div class="flex items-baseline justify-between gap-6 py-3.5">
+                <dt class="text-[15px] text-slate-900">Communications &amp; New Media</dt>
+                <dd class="shrink-0 text-sm text-slate-400">Major</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-6 py-3.5">
+                <dt class="text-[15px] text-slate-900">Computer Science</dt>
+                <dd class="shrink-0 text-sm text-slate-400">Second major</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-6 py-3.5">
+                <dt class="text-[15px] text-slate-900">Interactive Media Design</dt>
+                <dd class="shrink-0 text-sm text-slate-400">Minor</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-6 py-3.5">
+                <dt class="text-[15px] text-slate-900">National University of Singapore</dt>
+                <dd class="shrink-0 text-sm text-slate-400">NUS</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -993,6 +1048,37 @@
 
     sections.forEach(function (s) { spy.observe(s); });
   }
+
+  /* ---------------- Folder dividers (About) ---------------- */
+  (function () {
+    var list = document.getElementById('folderTabs');
+    if (!list) return;
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('[data-folder-panel]'));
+
+    function show(name) {
+      tabs.forEach(function (t) {
+        var on = t.dataset.folder === name;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach(function (p) { p.hidden = p.dataset.folderPanel !== name; });
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { show(t.dataset.folder); });
+    });
+
+    list.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      e.preventDefault();
+      var next = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      tabs[next].focus();
+      show(tabs[next].dataset.folder);
+    });
+  })();
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
