@@ -147,6 +147,14 @@
     border-radius: 0 14px 14px 14px;
     background: #fff;
   }
+  /* Work rail: how many cards sit in view at each width. Set here rather than
+     with Tailwind arbitrary values - the CDN build resolved those variants at
+     the wrong breakpoints, so a 4-up rule was applying from ~1200px down. */
+  .rail > article { width: 80%; }
+  @media (min-width: 640px)  { .rail > article { width: calc((100% - 24px) / 2); } }
+  @media (min-width: 1024px) { .rail > article { width: calc((100% - 48px) / 3); } }
+  @media (min-width: 1536px) { .rail > article { width: calc((100% - 72px) / 4); } }
+
   .folder-tabs { scrollbar-width: none; }
   .folder-tabs::-webkit-scrollbar { display: none; }
   @media (max-width: 430px) {
@@ -163,7 +171,7 @@
 
 <!-- ==================== HEADER ==================== -->
 <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <nav id="nav-shell" class="mt-4 flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5">
       <!-- Logo -->
       <a href="#hero" class="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
@@ -482,7 +490,7 @@
 
 <!-- ==================== PROJECTS ==================== -->
 <section id="work" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">02 — Work</p>
@@ -507,7 +515,7 @@
       <div id="work-rail" tabindex="0" role="region" aria-label="Selected work, horizontally scrollable"
            class="rail -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-5 px-5 pb-4 sm:-mx-8 sm:scroll-pl-8 sm:px-8">
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+      <article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-200">
           <div class="flex h-full items-center justify-center text-emerald-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 9h16l-1.4 10.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="m8 9 2-5M16 9l-2-5"/></svg>
@@ -539,7 +547,7 @@
         </div>
       </article>
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+      <article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200">
           <div class="flex h-full items-center justify-center text-indigo-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 3 15 21l-2.6-8.4L4 10z"/><path d="M22 3 12.4 12.6"/></svg>
@@ -570,7 +578,7 @@
         </div>
       </article>
 
-<article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+<article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
           <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-rose-100 to-pink-200">
             <div class="flex h-full items-center justify-center text-rose-700/60 transition-transform duration-500 group-hover:scale-105">
               <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.5 2.8c0 5.8-8.5 11.3-8.5 11.3z"/></svg>
@@ -602,7 +610,7 @@
           </div>
         </article>
 
-<article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+<article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
           <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200">
             <div class="flex h-full items-center justify-center text-indigo-700/60 transition-transform duration-500 group-hover:scale-105">
               <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 8h8M8 11.5h5"/></svg>
@@ -634,7 +642,7 @@
           </div>
         </article>
 
-      <article class="group relative flex w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+      <article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-fuchsia-100 to-pink-200">
           <div class="flex h-full items-center justify-center text-fuchsia-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6.5 8v8M17.5 8v8M3.5 10.5v3M20.5 10.5v3M6.5 12h11"/></svg>
@@ -727,13 +735,13 @@
 
 <!-- ==================== EXPERIENCE ==================== -->
 <section id="experience" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">03 — Experience</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Where I've worked</h2>
     </div>
 
-    <ol class="mt-14 space-y-0">
+    <ol class="mt-14 max-w-5xl space-y-0">
 
       <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
         <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
@@ -901,7 +909,7 @@
 
 <!-- ==================== CONTACT ==================== -->
 <section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal max-w-xl">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">04 — Contact</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Let's build something considered</h2>
@@ -942,7 +950,7 @@
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="border-t border-slate-200 py-10">
-  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
+  <div class="mx-auto flex w-full max-w-[1800px] flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8 lg:px-12">
     <p class="text-sm text-slate-500">© <span id="year">2026</span> Niik Seah</p>
     <div class="flex items-center gap-1">
       <a href="#hero" aria-label="Back to top" class="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-slate-900">
