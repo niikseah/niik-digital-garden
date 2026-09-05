@@ -155,6 +155,24 @@
   @media (min-width: 1024px) { .rail > article { width: calc((100% - 48px) / 3); } }
   @media (min-width: 1536px) { .rail > article { width: calc((100% - 72px) / 4); } }
 
+  /* ── Timeline entries ────────────────────────────────────────────────
+     Details stay collapsed so overlapping roles sit close enough together
+     to be compared at a glance; clicking a role opens it. Uses the [hidden]
+     attribute rather than a 0fr/1fr grid, which collapsed to 0px here. */
+  /* the base rotate(0deg) matters: transitioning from `none` never took */
+  .tl-chev { display: block; transform: rotate(0deg); }
+  .tl-item[data-open="true"] .tl-chev { transform: rotate(90deg); }
+  .tl-head { cursor: pointer; }
+  .tl-head:hover .tl-role { color: #4338ca; }
+  .tl-body:not([hidden]) { animation: tl-open .32s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes tl-open {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tl-body:not([hidden]) { animation: none; }
+  }
+
   .folder-tabs { scrollbar-width: none; }
   .folder-tabs::-webkit-scrollbar { display: none; }
   @media (max-width: 430px) {
@@ -462,24 +480,16 @@
       </ul>
           </div>
           <div id="panel-education" role="tabpanel" aria-labelledby="tab-education" data-folder-panel="education" hidden>
-            <dl class="divide-y divide-slate-200 border-t border-slate-200">
-              <div class="flex items-baseline justify-between gap-6 py-3.5">
-                <dt class="text-[15px] text-slate-900">Communications &amp; New Media</dt>
-                <dd class="shrink-0 text-sm text-slate-400">Major</dd>
-              </div>
-              <div class="flex items-baseline justify-between gap-6 py-3.5">
-                <dt class="text-[15px] text-slate-900">Computer Science</dt>
-                <dd class="shrink-0 text-sm text-slate-400">Second major</dd>
-              </div>
-              <div class="flex items-baseline justify-between gap-6 py-3.5">
-                <dt class="text-[15px] text-slate-900">Interactive Media Design</dt>
-                <dd class="shrink-0 text-sm text-slate-400">Minor</dd>
-              </div>
-              <div class="flex items-baseline justify-between gap-6 py-3.5">
-                <dt class="text-[15px] text-slate-900">National University of Singapore</dt>
-                <dd class="shrink-0 text-sm text-slate-400">NUS</dd>
-              </div>
-            </dl>
+            <div class="flex flex-wrap items-baseline justify-between gap-3">
+              <h4 class="flex items-center gap-3 font-display text-2xl leading-snug"><img src="images/logos/nus.svg" alt="" class="h-8 w-auto shrink-0" />National University of Singapore</h4>
+              <span class="font-mono text-xs text-slate-400">Aug 2022 &mdash; May 2026</span>
+            </div>
+            <p class="mt-2 text-sm font-medium text-accent-600">Bachelor of Social Sciences (Hons)</p>
+            <ul class="mt-5 space-y-2 text-[15px] leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Major in Communications and New Media</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Second Major in Computer Science</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Minor in Interactive Media Design</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -743,167 +753,239 @@
 
     <ol class="mt-14 max-w-5xl space-y-0">
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
           <p class="font-mono text-xs text-slate-400">Jan — Apr 2026</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
-          <h3 class="font-display text-2xl leading-snug">Business Product Management Intern</h3>
-          <p class="mt-1 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/shopee.png" alt="" class="h-5 w-auto shrink-0" />Shopee</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-1">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Business Product Management Intern</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/shopee.png" alt="" class="h-5 w-auto shrink-0" />Shopee</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-1" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Spearheaded a strategic initiative through rigorous competitor benchmarking and user journey mapping to expand Buyer Self-Collection coverage from 30% to 40%.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Aligned cross-functional stakeholders by producing documentation that translated complex product logic into clear terms for non-technical teams, ensuring seamless adoption of new supply-chain solutions.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Served as the quality checkpoint for product reliability, managing User Acceptance Testing end-to-end — tracking, flagging, and following up on bugs to ensure accuracy prior to deployment.</li>
           </ul>
+            </div>
+          </div>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
           <p class="font-mono text-xs text-slate-400">Dec 2025</p>
           <p class="mt-1 text-xs text-slate-400">Ho Chi Minh, Vietnam</p>
         </div>
         <div>
-          <h3 class="font-display text-2xl leading-snug">Strategy Analyst Intern</h3>
-          <p class="mt-1 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/capital-jdi.png" alt="" class="h-5 w-auto shrink-0" />Capital JDI</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-2">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Strategy Analyst Intern</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/capital-jdi.png" alt="" class="h-5 w-auto shrink-0" />Capital JDI</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-2" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Analyzed Capital JDI's 6-stage startup application process; identified bottlenecks and manual tasks consuming 70–80% of team effort.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Researched and compared 15+ SaaS tools; recommended a Zapier + Airtable + Calendly stack for cost-effective, scalable automation.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Delivered an executive presentation and phased 8-week implementation roadmap.</li>
           </ul>
+            </div>
+          </div>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="sm:text-right">
+          <p class="font-mono text-xs text-slate-400">Aug 2025 – May 2026</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-3">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Software Developer</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-fintech.png" alt="" class="h-5 w-auto shrink-0" />NUS Fintech Society<span class="shrink-0 rounded border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">CCA</span></span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-3" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Built a pipeline to automatically scrape, parse, and extract travel details from TikTok, Instagram, and YouTube links.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Engineered a validation tool to identify and categorize travel-related links, ensuring the system only processes relevant data for a cleaner user experience.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed an interactive map using Leaflet.js to dynamically display travel locations, automatically placing pins and popups from JSON data to show users important information.</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="sm:text-right">
+          <p class="font-mono text-xs text-slate-400">Jul 2025 – May 2026</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-4">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Head of Design</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Developer Group<span class="shrink-0 rounded border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">CCA</span></span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-4" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Led a team of 5 designers, guiding them through design workflows and skill-building to craft design deliverables, including wireframes, interactive prototypes, and high-fidelity mockups.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Architected scalable Figma design systems, significantly reducing design turnaround time and maintaining visual consistency across the project.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Collaborated with Tech and Product leads to bridge the gap between design and development, maintaining alignment on product vision and objectives.</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
           <p class="font-mono text-xs text-slate-400">May — Aug 2025</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
-          <h3 class="font-display text-2xl leading-snug">Product Design Intern</h3>
-          <p class="mt-1 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/govtech.png" alt="" class="h-5 w-auto shrink-0" />GovTech</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-5">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Product Design Intern</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/govtech.png" alt="" class="h-5 w-auto shrink-0" />GovTech</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-5" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
           </ul>
+            </div>
+          </div>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 border-l border-slate-200 pb-12 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="sm:text-right">
+          <p class="font-mono text-xs text-slate-400">Sep 2024 – May 2025</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-6">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UI/UX Designer</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Google Developer Student Club<span class="shrink-0 rounded border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">CCA</span></span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-6" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed Volunteer and Donor Management Systems for Caregiving Welfare Association, a non-profit, replacing manual, error-prone spreadsheet workflows with automated data entry and centralised tracking of volunteers and donors.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Crafted user-centred admin portals and analytics dashboards for volunteer engagement tracking, donation reporting, and automated donor communications, including receipts and thank-you workflows.</li>
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Established a design system and brand guidelines aligned with CWA's mission, delivering accessible, mobile-responsive interfaces with consistent visual identity.</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
           <p class="font-mono text-xs text-slate-400">Aug — Dec 2024</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
-          <h3 class="font-display text-2xl leading-snug">UI/UX Design Intern</h3>
-          <p class="mt-1 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/dbs.png" alt="" class="h-5 w-auto shrink-0" />DBS Bank</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-7">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UI/UX Design Intern</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/dbs.png" alt="" class="h-5 w-auto shrink-0" />DBS Bank</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-7" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
           </ul>
+            </div>
+          </div>
         </div>
       </li>
 
-      <li class="reveal group relative grid gap-2 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12">
-        <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <span class="absolute -left-px top-1.5 h-full w-px bg-gradient-to-b from-slate-200 to-transparent"></span>
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="sm:text-right">
           <p class="font-mono text-xs text-slate-400">May — Jul 2024</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
         <div>
-          <h3 class="font-display text-2xl leading-snug">UX Design Intern</h3>
-          <p class="mt-1 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/micron.svg" alt="" class="h-5 w-auto shrink-0" />Micron Technology</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-8">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UX Design Intern</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/micron.svg" alt="" class="h-5 w-auto shrink-0" />Micron Technology</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-8" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
             <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
           </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="sm:text-right">
+          <p class="font-mono text-xs text-slate-400">&mdash;</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-body-9">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Publicity Head</span>
+              <span class="mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-netball.png" alt="" class="h-6 w-auto shrink-0" />NUS Netball Recreational Club<span class="shrink-0 rounded border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">CCA</span></span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-body-9" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Directed social media strategy and crafted engaging content that enhanced the visibility of the club.</li>
+            </ul>
+            </div>
+          </div>
         </div>
       </li>
 
     </ol>
-
-    <!-- Leadership + Education -->
-    <div class="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
-
-      <div class="reveal">
-        <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Co-curricular activities</h3>
-        <ul class="mt-6 space-y-6">
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h4 class="font-display text-xl">Head of Design</h4>
-              <span class="font-mono text-xs text-slate-400">Jul 2025 – May 2026 · Singapore</span>
-            </div>
-            <p class="mt-0.5 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Developer Group</p>
-            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Led a team of 5 designers, guiding them through design workflows and skill-building to craft design deliverables, including wireframes, interactive prototypes, and high-fidelity mockups.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Architected scalable Figma design systems, significantly reducing design turnaround time and maintaining visual consistency across the project.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Collaborated with Tech and Product leads to bridge the gap between design and development, maintaining alignment on product vision and objectives.</li>
-            </ul>
-          </li>
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h4 class="font-display text-xl">Software Developer</h4>
-              <span class="font-mono text-xs text-slate-400">Aug 2025 – May 2026 · Singapore</span>
-            </div>
-            <p class="mt-0.5 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-fintech.png" alt="" class="h-5 w-auto shrink-0" />NUS Fintech Society</p>
-            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Built a pipeline to automatically scrape, parse, and extract travel details from TikTok, Instagram, and YouTube links.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Engineered a validation tool to identify and categorize travel-related links, ensuring the system only processes relevant data for a cleaner user experience.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed an interactive map using Leaflet.js to dynamically display travel locations, automatically placing pins and popups from JSON data to show users important information.</li>
-            </ul>
-          </li>
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h4 class="font-display text-xl">UI/UX Designer</h4>
-              <span class="font-mono text-xs text-slate-400">Sep 2024 – May 2025 · Singapore</span>
-            </div>
-            <p class="mt-0.5 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/google-developer.png" alt="" class="h-5 w-auto shrink-0" />NUS Google Developer Student Club</p>
-            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed Volunteer and Donor Management Systems for Caregiving Welfare Association, a non-profit, replacing manual, error-prone spreadsheet workflows with automated data entry and centralised tracking of volunteers and donors.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Crafted user-centred admin portals and analytics dashboards for volunteer engagement tracking, donation reporting, and automated donor communications, including receipts and thank-you workflows.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Established a design system and brand guidelines aligned with CWA's mission, delivering accessible, mobile-responsive interfaces with consistent visual identity.</li>
-            </ul>
-          </li>
-          <li class="rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h4 class="font-display text-xl">Publicity Head</h4>
-              <span class="font-mono text-xs text-slate-400">Singapore</span>
-            </div>
-            <p class="mt-0.5 flex items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/nus-netball.png" alt="" class="h-6 w-auto shrink-0" />NUS Netball Recreational Club</p>
-            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Directed social media strategy and crafted engaging content that enhanced the visibility of the club.</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div class="reveal">
-        <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Education</h3>
-        <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <h4 class="flex items-center gap-3 font-display text-2xl leading-snug"><img src="images/logos/nus.svg" alt="" class="h-8 w-auto shrink-0" />National University of Singapore</h4>
-            <span class="font-mono text-xs text-slate-400">Aug 2022 — May 2026</span>
-          </div>
-          <p class="mt-1 text-sm font-medium text-accent-600">Bachelor of Social Sciences (Hons)</p>
-          <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Major in Communications and New Media</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Second Major in Computer Science</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Minor in Interactive Media Design</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -1056,6 +1138,23 @@
 
     sections.forEach(function (s) { spy.observe(s); });
   }
+
+  /* ---------------- Timeline entries ---------------- */
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.tl-item'));
+    if (!items.length) return;
+    items.forEach(function (item) {
+      var btn = item.querySelector('.tl-head');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var open = item.dataset.open === 'true';
+        var body = item.querySelector('.tl-body');
+        item.dataset.open = String(!open);
+        btn.setAttribute('aria-expanded', String(!open));
+        if (body) body.hidden = open;
+      });
+    });
+  })();
 
   /* ---------------- Folder dividers (About) ---------------- */
   (function () {
