@@ -419,13 +419,16 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>
-<script src="https://unpkg.com/pdfjs-dist@3.11.174/legacy/build/pdf.min.js"></script>
 <script>
 (function () {
   'use strict';
 
-  // Hosted from the portfolio repo, which serves it with Access-Control-Allow-Origin: *
-  var PDF_URL = 'https://niikseah.github.io/portfolio/public/documents/brand-style-guide.pdf';
+  /* The guide is served as pre-rendered page images from this repo.
+     It used to be a 22 MB PDF fetched from the portfolio repo and rasterised
+     in the browser with pdf.js, which was too heavy to render at all. */
+  var TOTAL = 26;
+  var BASE  = '../images/brand-style-guide/';
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
 
   var stage   = document.getElementById('pdfStage');
   var thumbs  = document.getElementById('pdfThumbs');
@@ -434,12 +437,9 @@
   var prevBtn = document.getElementById('pdfPrev');
   var nextBtn = document.getElementById('pdfNext');
   var notes   = Array.prototype.slice.call(document.querySelectorAll('#pdfNotes .note'));
-  if (!stage || !window.pdfjsLib) return;
+  if (!stage) return;
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    'https://unpkg.com/pdfjs-dist@3.11.174/legacy/build/pdf.worker.min.js';
-
-  var doc = null, total = 0, current = 1, renderToken = 0;
+  var current = 1;
 
   function pagesOf(note) {
     return (note.dataset.pages || '').split(',').map(Number).filter(Boolean);
@@ -447,10 +447,8 @@
 
   /* Open the note covering the page on screen, collapse the rest. */
   function syncNotes(n) {
-    var matched = false;
     notes.forEach(function (note) {
       var on = pagesOf(note).indexOf(n) !== -1;
-      if (on) matched = true;
       note.classList.toggle('border-accent-400', on);
       note.classList.toggle('bg-accent-50/40', on);
       note.classList.toggle('border-slate-200', !on);
@@ -461,109 +459,78 @@
       body.classList.toggle('grid-rows-[0fr]', !on);
       note.querySelector('.note-head').setAttribute('aria-expanded', String(on));
     });
-    return matched;
   }
 
-  async function drawPage(n) {
-    if (!doc) return;
-    var token = ++renderToken;
-    var page = await doc.getPage(n);
-    var base = page.getViewport({ scale: 1 });
+  var img = document.createElement('img');
+  img.className = 'max-h-full max-w-full rounded-lg object-contain shadow-sm ring-1 ring-slate-900/5';
+  img.decoding = 'async';
 
-    // Fit the page inside the stage on BOTH axes, so a whole spread is visible
-    // without scrolling rather than being sized to the column width alone.
-    var pad = window.matchMedia('(min-width: 640px)').matches ? 48 : 32;
-    var availW = Math.max(stage.clientWidth - pad, 200);
-    var availH = Math.max(stage.clientHeight - pad, 200);
-    var scale = Math.min(availW / base.width, availH / base.height);
-    var viewport = page.getViewport({ scale: scale });
-
-    var canvas = document.createElement('canvas');
-    var ratio = window.devicePixelRatio || 1;
-    canvas.width = Math.floor(viewport.width * ratio);
-    canvas.height = Math.floor(viewport.height * ratio);
-    canvas.style.width = Math.floor(viewport.width) + 'px';
-    canvas.style.height = Math.floor(viewport.height) + 'px';
-    canvas.className = 'rounded-lg shadow-sm ring-1 ring-slate-900/5';
-
-    await page.render({
-      canvasContext: canvas.getContext('2d'),
-      viewport: viewport,
-      transform: ratio !== 1 ? [ratio, 0, 0, ratio, 0, 0] : null
-    }).promise;
-
-    if (token !== renderToken) return;   // a newer page was requested mid-render
-    stage.innerHTML = '';
-    stage.appendChild(canvas);
+  function showPage(n) {
+    if (n < 1 || n > TOTAL) return;
     current = n;
-    counter.textContent = 'Page ' + n + ' of ' + total;
+    img.src = BASE + 'page-' + pad(n) + '.webp';
+    img.alt = 'Brand style guide, page ' + n + ' of ' + TOTAL;
+    if (loading && loading.parentNode) { loading.remove(); }
+    if (!img.parentNode) { stage.appendChild(img); }
+
+    counter.textContent = 'Page ' + n + ' of ' + TOTAL;
     prevBtn.disabled = n <= 1;
-    nextBtn.disabled = n >= total;
+    nextBtn.disabled = n >= TOTAL;
 
     Array.prototype.forEach.call(thumbs.children, function (btn, i) {
       var on = i + 1 === n;
       btn.setAttribute('aria-selected', String(on));
       btn.classList.toggle('border-accent-500', on);
       btn.classList.toggle('border-slate-200', !on);
+      if (on) {
+        /* keep the active thumb in view without scrolling the page itself */
+        var target = btn.offsetLeft - (thumbs.clientWidth - btn.clientWidth) / 2;
+        thumbs.scrollLeft = Math.max(0, target);
+      }
     });
 
     syncNotes(n);
   }
 
-  async function buildThumbs() {
-    for (var i = 1; i <= total; i += 1) {
-      var page = await doc.getPage(i);
-      var base = page.getViewport({ scale: 1 });
-      var viewport = page.getViewport({ scale: 150 / base.width });
-      var canvas = document.createElement('canvas');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
-
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', String(i === 1));
-      btn.className = 'group shrink-0 rounded-xl border bg-white p-1.5 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ' +
-                      (i === 1 ? 'border-accent-500' : 'border-slate-200');
-      canvas.className = 'block w-[104px] rounded-lg';
-      var label = document.createElement('span');
-      label.className = 'mt-1.5 block text-center font-mono text-[10px] text-slate-400';
-      label.textContent = 'PAGE ' + i;
-      btn.appendChild(canvas);
-      btn.appendChild(label);
-      (function (n) { btn.addEventListener('click', function () { drawPage(n); }); })(i);
-      thumbs.appendChild(btn);
+  function buildThumbs() {
+    var frag = document.createDocumentFragment();
+    for (var i = 1; i <= TOTAL; i += 1) {
+      (function (n) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-label', 'Page ' + n);
+        btn.className = 'shrink-0 overflow-hidden rounded-lg border-2 border-slate-200 bg-white ' +
+                        'transition-colors hover:border-accent-400';
+        var t = document.createElement('img');
+        t.src = BASE + 'thumb-' + pad(n) + '.webp';
+        t.decoding = 'async';
+        t.alt = '';
+        /* The whole rail is ~110 KB, so it loads eagerly. Lazy images here would
+           have zero width until they loaded, which collapsed the rail. */
+        t.style.aspectRatio = '1500 / 2000';
+        t.className = 'block h-24 w-auto';
+        btn.appendChild(t);
+        btn.addEventListener('click', function () { showPage(n); });
+        frag.appendChild(btn);
+      })(i);
     }
+    thumbs.appendChild(frag);
   }
 
   /* Notes work the other way too: clicking one jumps to its page. */
   notes.forEach(function (note) {
     note.querySelector('.note-head').addEventListener('click', function () {
       var pages = pagesOf(note);
-      if (pages.length) drawPage(pages[0]);
+      if (pages.length) showPage(pages[0]);
     });
   });
 
-  prevBtn.addEventListener('click', function () { if (current > 1) drawPage(current - 1); });
-  nextBtn.addEventListener('click', function () { if (current < total) drawPage(current + 1); });
+  prevBtn.addEventListener('click', function () { showPage(current - 1); });
+  nextBtn.addEventListener('click', function () { showPage(current + 1); });
 
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { drawPage(current); }, 200);
-  });
-
-  pdfjsLib.getDocument(PDF_URL).promise.then(async function (pdf) {
-    doc = pdf;
-    total = pdf.numPages;
-    if (loading) loading.remove();
-    await drawPage(1);
-    await buildThumbs();
-  }).catch(function (err) {
-    stage.innerHTML = '<p class="max-w-sm text-center font-mono text-xs leading-relaxed text-slate-400">' +
-      'The guide could not be loaded right now.<br>' + (err && err.message ? err.message : '') + '</p>';
-  });
+  buildThumbs();
+  showPage(1);
 })();
 </script>
 </body>
