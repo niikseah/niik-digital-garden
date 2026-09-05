@@ -155,8 +155,8 @@
 <main id="main">
 
 <!-- ==================== HERO ==================== -->
-<section id="hero" class="border-b border-slate-200 pt-32 pb-12 sm:pt-40 sm:pb-16">
-  <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
+<section id="hero" class="flex min-h-[100svh] flex-col border-b border-slate-200 pt-32 pb-10 sm:pt-40 sm:pb-12">
+  <div class="mx-auto flex w-full max-w-[1800px] flex-1 flex-col px-5 sm:px-8 lg:px-12">
 
     <div class="reveal">
       <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-700">
@@ -174,7 +174,8 @@
       ambiguous problems in <span class="whitespace-nowrap">cross-functional</span> teams.
     </h1>
 
-    <div class="reveal mt-16 flex flex-col gap-8 border-t border-slate-200 pt-7 sm:mt-24 sm:flex-row sm:items-end sm:justify-between">
+    <!-- pr on lg keeps the socials clear of the fixed "Download résumé" button -->
+      <div class="reveal mt-16 flex flex-col gap-8 border-t border-slate-200 pt-7 pb-16 sm:mt-auto sm:flex-row sm:items-end sm:justify-between sm:pb-0 lg:pr-52">
       <div>
         <a href="#work" class="group inline-flex items-center gap-2 text-base font-medium text-slate-900 transition-colors hover:text-accent-600">
           Selected Work
@@ -208,7 +209,66 @@
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">An interdisciplinary background capable of creative and computational thinking.</h2>
     </div>
 
-    <div class="mt-14 max-w-3xl">
+    <!-- ── Profile ──────────────────────────────────────────────────── -->
+    <div class="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-2 lg:gap-20">
+
+      <div class="reveal">
+        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">2023 &ndash; Now</p>
+        <h3 class="mt-6 font-display text-[clamp(1.9rem,3.4vw,3.25rem)] leading-[1.1] tracking-tight">
+          Hey, I&rsquo;m Niik.<br />Nice to meet you.
+        </h3>
+
+        <div class="mt-10">
+          <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Education</p>
+          <dl class="mt-4 divide-y divide-slate-200 border-t border-slate-200">
+            <div class="flex items-baseline justify-between gap-6 py-3">
+              <dt class="text-[15px] text-slate-900">Communications &amp; New Media</dt>
+              <dd class="shrink-0 text-sm text-slate-400">Major</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6 py-3">
+              <dt class="text-[15px] text-slate-900">Computer Science</dt>
+              <dd class="shrink-0 text-sm text-slate-400">Second major</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6 py-3">
+              <dt class="text-[15px] text-slate-900">Interactive Media Design</dt>
+              <dd class="shrink-0 text-sm text-slate-400">Minor</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6 py-3">
+              <dt class="text-[15px] text-slate-900">National University of Singapore</dt>
+              <dd class="shrink-0 text-sm text-slate-400">NUS</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Profile</p>
+        <div class="mt-6 space-y-5 text-[17px] leading-relaxed text-slate-600">
+          <p>Hi there, I&rsquo;m Niik! I&rsquo;ve worked across product management, design, and software development, but
+            product is where my heart is. I love working right where users, business needs, and engineering meet to make
+            sure we&rsquo;re building what actually matters.</p>
+          <p>That range is deliberate. Studying communications alongside computer science means I can sit in a research
+            synthesis, a Figma file, and a codebase in the same week &mdash; and translate between the three when a team
+            needs it.</p>
+          <p>Most of my work starts with getting close to real users, through contextual inquiries, interviews, and
+            testing, then ends with something simple enough that the complexity stops being their problem. The projects
+            here are mostly that loop, run end to end.</p>
+        </div>
+
+        <hr class="mt-10 w-10 border-slate-300" />
+
+        <div class="mt-10 space-y-5 text-[17px] leading-relaxed text-slate-600">
+          <p>So far that has meant internships across product management, strategy, and design, and university projects
+            taken from first research through to a tested prototype.</p>
+          <p>I&rsquo;m currently open to Product Management and Product Design roles, and always happy to meet people
+            building thoughtful things.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-16 max-w-3xl border-t border-slate-200 pt-14 lg:mt-20">
+      <p class="reveal font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">Skills &amp; tools</p>
       <!-- Copy + skills -->
       <div class="reveal">
         <div class="mt-10">
