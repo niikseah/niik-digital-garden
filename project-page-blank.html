@@ -101,6 +101,83 @@
     * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
     .reveal { opacity: 1; transform: none; }
   }
+  /* ══ Digital garden · Y2K constellation ═══════════════════════════════
+     A four-point sparkle is the site's repeating mark: it replaces bullets,
+     timeline nodes and section markers. Iridescence is reserved for hover
+     and active states so the page stays quiet when nothing is happening. */
+  :root {
+    --gs-star: polygon(50% 0%, 60.5% 39.5%, 100% 50%, 60.5% 60.5%,
+                       50% 100%, 39.5% 60.5%, 0% 50%, 39.5% 39.5%);
+    --gs-iris: linear-gradient(115deg, #6366f1 0%, #8b5cf6 30%, #38bdf8 64%, #34d399 100%);
+  }
+
+  .gs-star, .gs-bullet {
+    display: inline-block;
+    flex: none;
+    background: currentColor;
+    -webkit-clip-path: var(--gs-star);
+    clip-path: var(--gs-star);
+  }
+
+  /* list bullets */
+  .gs-bullet {
+    width: 9px; height: 9px;
+    color: #cbd5e1;
+    transition: color .3s ease, transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-bullet--accent { width: 11px; height: 11px; color: #a5b4fc; }
+  li:hover > .gs-bullet { color: #6366f1; transform: rotate(90deg) scale(1.18); }
+
+  /* section markers carry a small drifting sparkle */
+  .gs-eyebrow { display: inline-flex; align-items: center; gap: .55rem; }
+  .gs-eyebrow::before {
+    content: ""; flex: none; width: 10px; height: 10px;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    animation: gs-drift 9s ease-in-out infinite;
+  }
+  @keyframes gs-drift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  /* cards: a sparkle settles in the corner on hover */
+  .gs-card { position: relative; }
+  .gs-card::after {
+    content: ""; position: absolute; top: .85rem; right: .85rem;
+    width: 13px; height: 13px; pointer-events: none;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.35) rotate(-60deg);
+    transition: opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-card:hover::after,
+  .gs-card:focus-within::after { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  /* chips: a sparkle pops at the corner */
+  .gs-chip { position: relative; }
+  .gs-chip::after {
+    content: ""; position: absolute; top: -4px; right: -4px;
+    width: 8px; height: 8px; pointer-events: none;
+    background: var(--gs-iris);
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.3);
+    transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-chip:hover::after, .gs-chip:focus-visible::after { opacity: 1; transform: scale(1); }
+
+  /* the bed the garden sits on: soft light, no hard edges */
+  .gs-bed {
+    background-image:
+      radial-gradient(ellipse 60% 45% at 8% 0%,   rgba(99,102,241,.07), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 92% 6%,  rgba(56,189,248,.06), transparent 60%),
+      radial-gradient(ellipse 70% 40% at 50% 100%, rgba(52,211,153,.05), transparent 60%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gs-eyebrow::before { animation: none; }
+    .gs-bullet, .gs-card::after, .gs-chip::after { transition: none; }
+  }
 </style>
 </head>
 
@@ -141,7 +218,7 @@
     </nav>
 
     <div class="reveal mt-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Category · Org</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Category · Org</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Project Title</h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">One sentence on what this was and who it was for. One sentence on the outcome — a number, a shipped thing, or a decision it changed.</p>
     </div>
@@ -167,9 +244,9 @@
 
     <div class="reveal mt-6">
       <ul class="flex flex-wrap gap-1.5">
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Tag one</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Tag two</li>
-          <li class="rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Tag three</li>
+          <li class="gs-chip rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Tag one</li>
+          <li class="gs-chip rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Tag two</li>
+          <li class="gs-chip rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500">Tag three</li>
       </ul>
     </div>
 
@@ -203,23 +280,23 @@
   <div class="mx-auto max-w-3xl px-5 sm:px-8">
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
       <p class="mt-4 text-lg leading-relaxed text-slate-600">✏️ Two or three sentences of setup. What existed before you got there, and why anyone cared. Write it so a reader who has never heard of this org still follows.</p>
     </div>
 
     <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
       <p class="mt-4 font-display text-2xl leading-snug">✏️ One or two sentences naming the actual difficulty — the thing that made this non-trivial. Not “we needed a better X”, but what specifically got in the way.</p>
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Who it's for</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Who it's for</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">✏️ A paragraph on the target users and why them.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">✏️ A second paragraph if there's a secondary group. Delete this whole block if it doesn't apply.</p>
     </div>
 
     <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Design process</p></div>
+      <div class="reveal"><p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Design process</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">01</span>
@@ -245,21 +322,21 @@
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Key features</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Key features</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>✏️ Feature</strong> — what it does and the problem it kills</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>✏️ Feature</strong> — what it does and the problem it kills</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>✏️ Feature</strong> — what it does and the problem it kills</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>✏️ Feature</strong> — what it does and the problem it kills</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>✏️ Feature</strong> — what it does and the problem it kills</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>✏️ Feature</strong> — what it does and the problem it kills</span></li>
       </ul>
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ What testing changed</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ What testing changed</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">✏️ The most persuasive section on any case study page: a specific thing a user did that made you change the design. Delete if you didn't test.</p>
     </div>
 
     <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ By the numbers</p></div>
+      <div class="reveal"><p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ By the numbers</p></div>
       <div class="reveal mt-6 grid gap-4 sm:grid-cols-3">
         <div class="rounded-2xl border border-slate-200 bg-white p-6">
           <p class="font-display text-4xl leading-none tracking-tight">✏️ 00%</p>
@@ -277,7 +354,7 @@
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Skills practised</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Skills practised</p>
       <ul class="mt-5 flex flex-wrap gap-2">
         <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">✏️ Skill</li>
         <li class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600">✏️ Skill</li>
@@ -287,7 +364,7 @@
     </div>
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Reflection</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">✏️ Reflection</p>
       <p class="mt-4 text-lg leading-relaxed text-slate-600">✏️ Two or three sentences: what you'd do differently, what surprised you, or what you took to the next project. Honest beats impressive.</p>
     </div>
 
@@ -298,11 +375,11 @@
 <section class="border-t border-slate-200 py-16">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
     <div class="reveal flex flex-col gap-4 sm:flex-row">
-      <a href="previous-project-slug.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5">
+      <a href="previous-project-slug.html" class="gs-card group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5">
         <p class="font-mono text-xs text-slate-400">← Previous project</p>
         <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">✏️ Previous Project Title</p>
       </a>
-      <a href="next-project-slug.html" class="group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 sm:text-right">
+      <a href="next-project-slug.html" class="gs-card group flex-1 rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 sm:text-right">
         <p class="font-mono text-xs text-slate-400">Next project →</p>
         <p class="mt-2 font-display text-xl leading-snug transition-colors group-hover:text-accent-600">✏️ Next Project Title</p>
       </a>

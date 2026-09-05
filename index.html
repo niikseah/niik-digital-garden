@@ -233,6 +233,119 @@
     .folder-tab[aria-selected="true"] { padding-bottom: .75rem; }
   }
   @media (prefers-reduced-motion: reduce) { .folder-tab { transition: none; } }
+
+  /* timeline nodes are stars sitting on the line */
+  .tl-dot {
+    border-radius: 0 !important;
+    border: 0 !important;
+    background: #cbd5e1;
+    -webkit-clip-path: var(--gs-star);
+    clip-path: var(--gs-star);
+    width: 13px; height: 13px;
+    transition: background .3s ease, transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .tl-item:hover > .tl-dot,
+  .tl-item[data-open="true"] > .tl-dot {
+    background: var(--gs-iris);
+    transform: rotate(90deg) scale(1.1);
+  }
+
+  /* a faint constellation sits in the hero's open space */
+  .gs-constellation { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .gs-constellation span {
+    position: absolute;
+    left: var(--x); top: var(--y);
+    width: var(--s); height: var(--s);
+    background: var(--gs-iris);
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: .22;
+    animation: gs-twinkle 7s ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes gs-twinkle {
+    0%, 100% { opacity: .14; transform: scale(.85) rotate(0deg); }
+    50%      { opacity: .46; transform: scale(1.12) rotate(45deg); }
+  }
+  /* the hero is narrower on a phone, so the stars sit closer to the text */
+  @media (max-width: 767px) { .gs-constellation { opacity: .5; } }
+  @media (prefers-reduced-motion: reduce) { .gs-constellation span { animation: none; } }
+  /* ══ Digital garden · Y2K constellation ═══════════════════════════════
+     A four-point sparkle is the site's repeating mark: it replaces bullets,
+     timeline nodes and section markers. Iridescence is reserved for hover
+     and active states so the page stays quiet when nothing is happening. */
+  :root {
+    --gs-star: polygon(50% 0%, 60.5% 39.5%, 100% 50%, 60.5% 60.5%,
+                       50% 100%, 39.5% 60.5%, 0% 50%, 39.5% 39.5%);
+    --gs-iris: linear-gradient(115deg, #6366f1 0%, #8b5cf6 30%, #38bdf8 64%, #34d399 100%);
+  }
+
+  .gs-star, .gs-bullet {
+    display: inline-block;
+    flex: none;
+    background: currentColor;
+    -webkit-clip-path: var(--gs-star);
+    clip-path: var(--gs-star);
+  }
+
+  /* list bullets */
+  .gs-bullet {
+    width: 9px; height: 9px;
+    color: #cbd5e1;
+    transition: color .3s ease, transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-bullet--accent { width: 11px; height: 11px; color: #a5b4fc; }
+  li:hover > .gs-bullet { color: #6366f1; transform: rotate(90deg) scale(1.18); }
+
+  /* section markers carry a small drifting sparkle */
+  .gs-eyebrow { display: inline-flex; align-items: center; gap: .55rem; }
+  .gs-eyebrow::before {
+    content: ""; flex: none; width: 10px; height: 10px;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    animation: gs-drift 9s ease-in-out infinite;
+  }
+  @keyframes gs-drift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  /* cards: a sparkle settles in the corner on hover */
+  .gs-card { position: relative; }
+  .gs-card::after {
+    content: ""; position: absolute; top: .85rem; right: .85rem;
+    width: 13px; height: 13px; pointer-events: none;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.35) rotate(-60deg);
+    transition: opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-card:hover::after,
+  .gs-card:focus-within::after { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  /* chips: a sparkle pops at the corner */
+  .gs-chip { position: relative; }
+  .gs-chip::after {
+    content: ""; position: absolute; top: -4px; right: -4px;
+    width: 8px; height: 8px; pointer-events: none;
+    background: var(--gs-iris);
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.3);
+    transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-chip:hover::after, .gs-chip:focus-visible::after { opacity: 1; transform: scale(1); }
+
+  /* the bed the garden sits on: soft light, no hard edges */
+  .gs-bed {
+    background-image:
+      radial-gradient(ellipse 60% 45% at 8% 0%,   rgba(99,102,241,.07), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 92% 6%,  rgba(56,189,248,.06), transparent 60%),
+      radial-gradient(ellipse 70% 40% at 50% 100%, rgba(52,211,153,.05), transparent 60%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gs-eyebrow::before { animation: none; }
+    .gs-bullet, .gs-card::after, .gs-chip::after { transition: none; }
+  }
 </style>
 </head>
 
@@ -285,8 +398,19 @@
 <main id="main">
 
 <!-- ==================== HERO ==================== -->
-<section id="hero" class="flex min-h-[100svh] flex-col border-b border-slate-200 pt-32 pb-10 sm:pt-40 sm:pb-12">
-  <div class="mx-auto flex w-full max-w-[1800px] flex-1 flex-col px-5 sm:px-8 lg:px-12">
+<section id="hero" class="gs-bed relative flex min-h-[100svh] flex-col overflow-hidden border-b border-slate-200 pt-32 pb-10 sm:pt-40 sm:pb-12">
+  <div class="gs-constellation" aria-hidden="true">
+    <span style="--x:6%;  --y:30%; --s:14px; --d:0s"></span>
+    <span style="--x:17%; --y:64%; --s:9px;  --d:1.4s"></span>
+    <span style="--x:31%; --y:78%; --s:18px; --d:3.1s"></span>
+    <span style="--x:47%; --y:57%; --s:10px; --d:2.2s"></span>
+    <span style="--x:62%; --y:72%; --s:22px; --d:.7s"></span>
+    <span style="--x:74%; --y:44%; --s:12px; --d:4.2s"></span>
+    <span style="--x:83%; --y:66%; --s:16px; --d:2.8s"></span>
+    <span style="--x:92%; --y:34%; --s:9px;  --d:5.1s"></span>
+    <span style="--x:55%; --y:88%; --s:11px; --d:3.7s"></span>
+  </div>
+  <div class="relative z-10 mx-auto flex w-full max-w-[1800px] flex-1 flex-col px-5 sm:px-8 lg:px-12">
 
     <div class="reveal">
       <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-700">
@@ -332,10 +456,10 @@
 </section>
 
 <!-- ==================== ABOUT ==================== -->
-<section id="about" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
+<section id="about" class="gs-bed scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
   <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">01 — About</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">01 — About</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">An interdisciplinary background capable of creative and computational thinking.</h2>
     </div>
 
@@ -389,99 +513,99 @@
           <div id="panel-skills" role="tabpanel" aria-labelledby="tab-skills" data-folder-panel="skills" hidden>
           <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Programming</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#E34F26" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>HTML</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#1572B6" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg>CSS</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#F7DF1E" aria-hidden="true"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>JavaScript</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#3776AB" aria-hidden="true"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>Python</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="M11.915 0 11.7.215C9.515 2.4 7.47 6.39 6.046 10.483c-1.064 1.024-3.633 2.81-3.711 3.551-.093.87 1.746 2.611 1.55 3.235-.198.625-1.304 1.408-1.014 1.939.1.188.823.011 1.277-.491a13.389 13.389 0 0 0-.017 2.14c.076.906.27 1.668.643 2.232.372.563.956.911 1.667.911.397 0 .727-.114 1.024-.264.298-.149.571-.33.91-.5.68-.34 1.634-.666 3.53-.604 1.903.062 2.872.39 3.559.704.687.314 1.15.664 1.925.664.767 0 1.395-.336 1.807-.9.412-.563.631-1.33.72-2.24.06-.623.055-1.32 0-2.066.454.45 1.117.604 1.213.424.29-.53-.816-1.314-1.013-1.937-.198-.624 1.642-2.366 1.549-3.236-.08-.748-2.707-2.568-3.748-3.586C16.428 6.374 14.308 2.394 12.13.215zm.175 6.038a2.95 2.95 0 0 1 2.943 2.942 2.95 2.95 0 0 1-2.943 2.943A2.95 2.95 0 0 1 9.148 8.98a2.95 2.95 0 0 1 2.942-2.942zM8.685 7.983a3.515 3.515 0 0 0-.145.997c0 1.951 1.6 3.55 3.55 3.55 1.95 0 3.55-1.598 3.55-3.55 0-.329-.046-.648-.132-.951.334.095.64.208.915.336a42.699 42.699 0 0 1 2.042 5.829c.678 2.545 1.01 4.92.846 6.607-.082.844-.29 1.51-.606 1.94-.315.431-.713.651-1.315.651-.593 0-.932-.27-1.673-.61-.741-.338-1.825-.694-3.792-.758-1.974-.064-3.073.293-3.821.669-.375.188-.659.373-.911.5s-.466.2-.752.2c-.53 0-.876-.209-1.16-.64-.285-.43-.474-1.101-.545-1.948-.141-1.693.176-4.069.823-6.614a43.155 43.155 0 0 1 1.934-5.783c.348-.167.749-.31 1.192-.425zm-3.382 4.362a.216.216 0 0 1 .13.031c-.166.56-.323 1.116-.463 1.665a33.849 33.849 0 0 0-.547 2.555 3.9 3.9 0 0 0-.2-.39c-.58-1.012-.914-1.642-1.16-2.08.315-.24 1.679-1.755 2.24-1.781zm13.394.01c.562.027 1.926 1.543 2.24 1.783-.246.438-.58 1.068-1.16 2.08a4.428 4.428 0 0 0-.163.309 32.354 32.354 0 0 0-.562-2.49 40.579 40.579 0 0 0-.482-1.652.216.216 0 0 1 .127-.03z"/></svg>Java</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#A8B9CC" aria-hidden="true"><path d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg>C</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="m12.9288 4.2939 3.7997 2.1929c.1366.077.1415.2905 0 .3675l-4.515 2.6076a.4192.4192 0 0 1-.4246 0L7.274 6.8543c-.139-.0745-.1415-.293 0-.3675l3.7972-2.193V0L1.3758 5.5977V16.793l3.7177-2.1456v-4.3858c-.0025-.1565.1813-.2682.318-.1838l4.5148 2.6076a.4252.4252 0 0 1 .2136.3676v5.2127c.0025.1565-.1813.2682-.3179.1838l-3.7996-2.1929-3.7178 2.1457L12 24l9.6954-5.5977-3.7178-2.1457-3.7996 2.1929c-.1341.082-.3229-.0248-.3179-.1838V13.053c0-.1565.087-.2956.2136-.3676l4.5149-2.6076c.134-.082.3228.0224.3179.1838v4.3858l3.7177 2.1456V5.5977L12.9288 0Z"/></svg>Unity3D</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#199900" aria-hidden="true"><path d="M17.69 0c-.355.574-8.432 4.74-10.856 8.649-2.424 3.91-3.116 6.988-2.237 9.882.879 2.893 2.559 2.763 3.516 3.717.958.954 2.257 2.113 4.332 1.645 2.717-.613 5.335-2.426 6.638-7.508 1.302-5.082.448-9.533-.103-11.99A35.395 35.395 0 0 0 17.69 0zm-.138.858l-9.22 21.585-.574-.577Z"/></svg>Leaflet.js</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Web scraping &amp; parsing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">REST APIs</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#E34F26" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>HTML</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#1572B6" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg>CSS</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#F7DF1E" aria-hidden="true"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>JavaScript</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#3776AB" aria-hidden="true"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>Python</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="M11.915 0 11.7.215C9.515 2.4 7.47 6.39 6.046 10.483c-1.064 1.024-3.633 2.81-3.711 3.551-.093.87 1.746 2.611 1.55 3.235-.198.625-1.304 1.408-1.014 1.939.1.188.823.011 1.277-.491a13.389 13.389 0 0 0-.017 2.14c.076.906.27 1.668.643 2.232.372.563.956.911 1.667.911.397 0 .727-.114 1.024-.264.298-.149.571-.33.91-.5.68-.34 1.634-.666 3.53-.604 1.903.062 2.872.39 3.559.704.687.314 1.15.664 1.925.664.767 0 1.395-.336 1.807-.9.412-.563.631-1.33.72-2.24.06-.623.055-1.32 0-2.066.454.45 1.117.604 1.213.424.29-.53-.816-1.314-1.013-1.937-.198-.624 1.642-2.366 1.549-3.236-.08-.748-2.707-2.568-3.748-3.586C16.428 6.374 14.308 2.394 12.13.215zm.175 6.038a2.95 2.95 0 0 1 2.943 2.942 2.95 2.95 0 0 1-2.943 2.943A2.95 2.95 0 0 1 9.148 8.98a2.95 2.95 0 0 1 2.942-2.942zM8.685 7.983a3.515 3.515 0 0 0-.145.997c0 1.951 1.6 3.55 3.55 3.55 1.95 0 3.55-1.598 3.55-3.55 0-.329-.046-.648-.132-.951.334.095.64.208.915.336a42.699 42.699 0 0 1 2.042 5.829c.678 2.545 1.01 4.92.846 6.607-.082.844-.29 1.51-.606 1.94-.315.431-.713.651-1.315.651-.593 0-.932-.27-1.673-.61-.741-.338-1.825-.694-3.792-.758-1.974-.064-3.073.293-3.821.669-.375.188-.659.373-.911.5s-.466.2-.752.2c-.53 0-.876-.209-1.16-.64-.285-.43-.474-1.101-.545-1.948-.141-1.693.176-4.069.823-6.614a43.155 43.155 0 0 1 1.934-5.783c.348-.167.749-.31 1.192-.425zm-3.382 4.362a.216.216 0 0 1 .13.031c-.166.56-.323 1.116-.463 1.665a33.849 33.849 0 0 0-.547 2.555 3.9 3.9 0 0 0-.2-.39c-.58-1.012-.914-1.642-1.16-2.08.315-.24 1.679-1.755 2.24-1.781zm13.394.01c.562.027 1.926 1.543 2.24 1.783-.246.438-.58 1.068-1.16 2.08a4.428 4.428 0 0 0-.163.309 32.354 32.354 0 0 0-.562-2.49 40.579 40.579 0 0 0-.482-1.652.216.216 0 0 1 .127-.03z"/></svg>Java</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#A8B9CC" aria-hidden="true"><path d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg>C</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="m12.9288 4.2939 3.7997 2.1929c.1366.077.1415.2905 0 .3675l-4.515 2.6076a.4192.4192 0 0 1-.4246 0L7.274 6.8543c-.139-.0745-.1415-.293 0-.3675l3.7972-2.193V0L1.3758 5.5977V16.793l3.7177-2.1456v-4.3858c-.0025-.1565.1813-.2682.318-.1838l4.5148 2.6076a.4252.4252 0 0 1 .2136.3676v5.2127c.0025.1565-.1813.2682-.3179.1838l-3.7996-2.1929-3.7178 2.1457L12 24l9.6954-5.5977-3.7178-2.1457-3.7996 2.1929c-.1341.082-.3229-.0248-.3179-.1838V13.053c0-.1565.087-.2956.2136-.3676l4.5149-2.6076c.134-.082.3228.0224.3179.1838v4.3858l3.7177 2.1456V5.5977L12.9288 0Z"/></svg>Unity3D</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#199900" aria-hidden="true"><path d="M17.69 0c-.355.574-8.432 4.74-10.856 8.649-2.424 3.91-3.116 6.988-2.237 9.882.879 2.893 2.559 2.763 3.516 3.717.958.954 2.257 2.113 4.332 1.645 2.717-.613 5.335-2.426 6.638-7.508 1.302-5.082.448-9.533-.103-11.99A35.395 35.395 0 0 0 17.69 0zm-.138.858l-9.22 21.585-.574-.577Z"/></svg>Leaflet.js</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Web scraping &amp; parsing</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">REST APIs</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Design</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#F24E1E" aria-hidden="true"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>Figma</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#FF9A00" aria-hidden="true"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg>Adobe Illustrator</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#31A8FF" aria-hidden="true"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg>Adobe Photoshop</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#FF3366" aria-hidden="true"><path d="M4.25.3C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm11.31 5.13h2.03c.05-.01.09.03.1.07v9.54c0 .18.01.38.02.6.02.21.03.41.04.58 0 .07-.03.13-.1.16-.52.22-1.07.38-1.63.48-.5.09-1.02.14-1.54.14-.74.01-1.48-.14-2.15-.45-.63-.29-1.15-.77-1.51-1.36-.37-.61-.55-1.37-.55-2.28-.01-.74.18-1.47.55-2.11.38-.65.93-1.19 1.59-1.55.7-.39 1.54-.58 2.53-.58.05 0 .12 0 .21.01s.19.01.31.02V5.54c0-.07.03-.11.1-.11zm-8.93.86h1.95c.06-.01.12.03.13.1.01.01.01.02.01.03v10.26c0 .11-.05.16-.14.16H6.62c-.09 0-.13-.05-.13-.16V6.42c0-.09.05-.13.14-.13zm8.23 4.24c-.39 0-.78.08-1.13.26-.34.17-.63.42-.85.74-.22.32-.33.75-.33 1.27-.01.35.05.7.17 1.03.1.27.25.51.45.71.19.18.42.32.68.4.27.09.55.13.83.13.15 0 .29-.01.42-.02.13.01.25-.01.36-.05v-4.4c-.09-.02-.18-.04-.27-.05-.11-.01-.22-.02-.33-.02z"/></svg>Adobe InDesign</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Balsamiq</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#9999FF" aria-hidden="true"><path d="M10.15 8.42a2.93 2.93 0 00-1.18-.2 13.9 13.9 0 00-1.09.02v3.36l.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03a1.45 1.45 0 00-.93-1.46zM19.75.3H4.25A4.25 4.25 0 000 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.09 11.65c-.4.56-.96.98-1.61 1.22-.68.25-1.43.34-2.25.34l-.5-.01-.43-.01v3.21a.12.12 0 01-.11.14H5.82c-.08 0-.12-.04-.12-.13V6.42c0-.07.03-.11.1-.11l.56-.01.76-.02.87-.02.91-.01c.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.15.42.23.85.23 1.3 0 .86-.2 1.57-.6 2.13zm6.82-3.15v1.95c0 .08-.05.11-.16.11a4.35 4.35 0 00-1.92.37c-.19.09-.37.21-.51.37v5.1c0 .1-.04.14-.13.14h-1.97a.14.14 0 01-.16-.12v-5.58l-.01-.75-.02-.78c0-.23-.02-.45-.04-.68a.1.1 0 01.07-.11h1.78c.1 0 .18.07.2.16a3.03 3.03 0 01.13.92c.3-.35.67-.64 1.08-.86a3.1 3.1 0 011.52-.39c.07-.01.13.04.14.11v.04z"/></svg>Adobe Premiere Pro</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#050038" aria-hidden="true"><path d="M17.392 0H13.9L17 4.808 10.444 0H6.949l3.102 6.3L3.494 0H0l3.05 8.131L0 24h3.494L10.05 6.985 6.949 24h3.494L17 5.494 13.899 24h3.493L24 3.672 17.392 0z"/></svg>Miro</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design systems</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Brand identity</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#F24E1E" aria-hidden="true"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>Figma</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#FF9A00" aria-hidden="true"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg>Adobe Illustrator</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#31A8FF" aria-hidden="true"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg>Adobe Photoshop</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#FF3366" aria-hidden="true"><path d="M4.25.3C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm11.31 5.13h2.03c.05-.01.09.03.1.07v9.54c0 .18.01.38.02.6.02.21.03.41.04.58 0 .07-.03.13-.1.16-.52.22-1.07.38-1.63.48-.5.09-1.02.14-1.54.14-.74.01-1.48-.14-2.15-.45-.63-.29-1.15-.77-1.51-1.36-.37-.61-.55-1.37-.55-2.28-.01-.74.18-1.47.55-2.11.38-.65.93-1.19 1.59-1.55.7-.39 1.54-.58 2.53-.58.05 0 .12 0 .21.01s.19.01.31.02V5.54c0-.07.03-.11.1-.11zm-8.93.86h1.95c.06-.01.12.03.13.1.01.01.01.02.01.03v10.26c0 .11-.05.16-.14.16H6.62c-.09 0-.13-.05-.13-.16V6.42c0-.09.05-.13.14-.13zm8.23 4.24c-.39 0-.78.08-1.13.26-.34.17-.63.42-.85.74-.22.32-.33.75-.33 1.27-.01.35.05.7.17 1.03.1.27.25.51.45.71.19.18.42.32.68.4.27.09.55.13.83.13.15 0 .29-.01.42-.02.13.01.25-.01.36-.05v-4.4c-.09-.02-.18-.04-.27-.05-.11-.01-.22-.02-.33-.02z"/></svg>Adobe InDesign</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Balsamiq</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#9999FF" aria-hidden="true"><path d="M10.15 8.42a2.93 2.93 0 00-1.18-.2 13.9 13.9 0 00-1.09.02v3.36l.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03a1.45 1.45 0 00-.93-1.46zM19.75.3H4.25A4.25 4.25 0 000 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.09 11.65c-.4.56-.96.98-1.61 1.22-.68.25-1.43.34-2.25.34l-.5-.01-.43-.01v3.21a.12.12 0 01-.11.14H5.82c-.08 0-.12-.04-.12-.13V6.42c0-.07.03-.11.1-.11l.56-.01.76-.02.87-.02.91-.01c.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.15.42.23.85.23 1.3 0 .86-.2 1.57-.6 2.13zm6.82-3.15v1.95c0 .08-.05.11-.16.11a4.35 4.35 0 00-1.92.37c-.19.09-.37.21-.51.37v5.1c0 .1-.04.14-.13.14h-1.97a.14.14 0 01-.16-.12v-5.58l-.01-.75-.02-.78c0-.23-.02-.45-.04-.68a.1.1 0 01.07-.11h1.78c.1 0 .18.07.2.16a3.03 3.03 0 01.13.92c.3-.35.67-.64 1.08-.86a3.1 3.1 0 011.52-.39c.07-.01.13.04.14.11v.04z"/></svg>Adobe Premiere Pro</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#050038" aria-hidden="true"><path d="M17.392 0H13.9L17 4.808 10.444 0H6.949l3.102 6.3L3.494 0H0l3.05 8.131L0 24h3.494L10.05 6.985 6.949 24h3.494L17 5.494 13.899 24h3.493L24 3.672 17.392 0z"/></svg>Miro</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design systems</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Brand identity</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">User Experience</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Wireframing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Prototyping</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Testing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Journey mapping</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Heuristic evaluation</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Accessible &amp; responsive design</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Wireframing</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Prototyping</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Testing</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Journey mapping</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Heuristic evaluation</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Accessible &amp; responsive design</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">User Research</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Affinity Diagram</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Contextual Inquiry</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Interview</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Persona</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Storyboard</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Survey</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Usability Testing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Empathy mapping</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Research synthesis</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Affinity Diagram</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Contextual Inquiry</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Interview</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Persona</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Storyboard</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Survey</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Usability Testing</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Empathy mapping</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Research synthesis</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Product Strategy</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Competitive Analysis</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">A/B Testing</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Business Requirement Documents</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Process mapping</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Roadmapping</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Competitive Analysis</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">A/B Testing</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Business Requirement Documents</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Process mapping</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Roadmapping</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Product Management</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Agile / Scrum Methodology</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Acceptance Testing (UAT)</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Data Analytics (SQL / Python)</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Requirements gathering</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">MVP scoping</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Stakeholder management</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product documentation</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Agile / Scrum Methodology</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Acceptance Testing (UAT)</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Data Analytics (SQL / Python)</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Requirements gathering</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">MVP scoping</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Stakeholder management</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product documentation</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Data Analysis</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">SQL</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">SQL</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Leadership &amp; collaboration</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Team leadership</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Cross-functional collaboration</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Workshop facilitation</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Executive presenting</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design mentoring</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Team leadership</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Cross-functional collaboration</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Workshop facilitation</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Executive presenting</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design mentoring</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Interests</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">UI/UX</li>
-            <li class="cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Tennis</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">UI/UX</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Tennis</li>
           </ul>
           </div>
           <div id="panel-licenses" role="tabpanel" aria-labelledby="tab-licenses" data-folder-panel="licenses" hidden>
       <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
-        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+        <li class="gs-card flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
           <h4 class="font-display text-lg leading-snug">Product Management: An Introduction</h4>
           <p class="mt-1 text-sm font-medium text-accent-600">IBM</p>
           <p class="mt-2 font-mono text-xs text-slate-400">Issued Aug 2026 · ID IIGZN6N1W453</p>
@@ -491,7 +615,7 @@
           </a>
         </li>
 
-        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+        <li class="gs-card flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
           <h4 class="font-display text-lg leading-snug">Databases and SQL for Data Science with Python</h4>
           <p class="mt-1 text-sm font-medium text-accent-600">IBM</p>
           <p class="mt-2 font-mono text-xs text-slate-400">Issued Jun 2026 · ID VJNH0QOHL1VA</p>
@@ -501,7 +625,7 @@
           </a>
         </li>
 
-        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+        <li class="gs-card flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
           <h4 class="font-display text-lg leading-snug">Google UX Design Certificate</h4>
           <p class="mt-1 text-sm font-medium text-accent-600">Google</p>
           <p class="mt-2 font-mono text-xs text-slate-400">Issued Jun 2024 · ID 5U9GYQU7PKUQ</p>
@@ -511,7 +635,7 @@
           </a>
         </li>
 
-        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+        <li class="gs-card flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
           <h4 class="font-display text-lg leading-snug">Introduction to Front-End Development</h4>
           <p class="mt-1 text-sm font-medium text-accent-600">Meta</p>
           <p class="mt-2 font-mono text-xs text-slate-400">Issued Sep 2024 · ID P39XBDN6WJ08</p>
@@ -521,7 +645,7 @@
           </a>
         </li>
 
-        <li class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+        <li class="gs-card flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
           <h4 class="font-display text-lg leading-snug">RVRC Two Year Programme</h4>
           <p class="mt-1 text-sm font-medium text-accent-600">Ridge View Residential College</p>
           <p class="mt-2 font-mono text-xs text-slate-400">Issued Oct 2024</p>
@@ -539,9 +663,9 @@
             </div>
             <p class="mt-2 text-sm font-medium text-accent-600">Bachelor of Social Sciences (Hons)</p>
             <ul class="mt-5 space-y-2 text-[15px] leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Major in Communications and New Media</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Second Major in Computer Science</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Minor in Interactive Media Design</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Major in Communications and New Media</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Second Major in Computer Science</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Minor in Interactive Media Design</li>
             </ul>
           </div>
         </div>
@@ -556,7 +680,7 @@
   <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">02 — Work</p>
+        <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">02 — Work</p>
         <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Things I've shipped</h2>
       </div>
 
@@ -578,7 +702,7 @@
       <div id="work-rail" tabindex="0" role="region" aria-label="Selected work, horizontally scrollable"
            class="rail -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-5 px-5 pb-4 sm:-mx-8 sm:scroll-pl-8 sm:px-8">
 
-      <article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-200">
           <div class="flex h-full items-center justify-center text-emerald-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 9h16l-1.4 10.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="m8 9 2-5M16 9l-2-5"/></svg>
@@ -593,9 +717,9 @@
             A mobile app that attacks food waste at the point of purchase — meal planning, expiry tracking, and a shared family pantry — designed for 18–24 year olds who already know food waste matters but find waste-reducing habits tedious.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#figma" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Figma</a></li>
-            <li><a href="tags.html#mobile-ixd" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Mobile IxD</a></li>
-            <li><a href="tags.html#usability-testing" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Usability testing</a></li>
+            <li><a href="tags.html#figma" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Figma</a></li>
+            <li><a href="tags.html#mobile-ixd" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Mobile IxD</a></li>
+            <li><a href="tags.html#usability-testing" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Usability testing</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -610,7 +734,7 @@
         </div>
       </article>
 
-      <article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200">
           <div class="flex h-full items-center justify-center text-indigo-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 3 15 21l-2.6-8.4L4 10z"/><path d="M22 3 12.4 12.6"/></svg>
@@ -625,9 +749,9 @@
             A Telegram-native bot that turns the scattered links in a group chat into one structured, AI-generated trip summary and an interactive pinned map — planning where the planning already happens.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#python" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
-            <li><a href="tags.html#llm" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">LLM</a></li>
-            <li><a href="tags.html#telegram-mini-app" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Telegram Mini App</a></li>
+            <li><a href="tags.html#python" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
+            <li><a href="tags.html#llm" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">LLM</a></li>
+            <li><a href="tags.html#telegram-mini-app" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Telegram Mini App</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -641,7 +765,7 @@
         </div>
       </article>
 
-<article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+<article class="gs-card group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
           <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-rose-100 to-pink-200">
             <div class="flex h-full items-center justify-center text-rose-700/60 transition-transform duration-500 group-hover:scale-105">
               <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.5 2.8c0 5.8-8.5 11.3-8.5 11.3z"/></svg>
@@ -656,9 +780,9 @@
               Replaced error-prone spreadsheets at Caregiving Welfare Association with admin portals and dashboards for volunteer tracking, donation reporting, and automated receipts — plus a design system to hold it together.
             </p>
             <ul class="mt-5 flex flex-wrap gap-1.5">
-              <li><a href="tags.html#figma" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Figma</a></li>
-              <li><a href="tags.html#design-system" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Design system</a></li>
-              <li><a href="tags.html#dashboards" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Dashboards</a></li>
+              <li><a href="tags.html#figma" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Figma</a></li>
+              <li><a href="tags.html#design-system" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Design system</a></li>
+              <li><a href="tags.html#dashboards" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Dashboards</a></li>
             </ul>
             <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
               <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -673,7 +797,7 @@
           </div>
         </article>
 
-<article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+<article class="gs-card group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
           <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-200">
             <div class="flex h-full items-center justify-center text-indigo-700/60 transition-transform duration-500 group-hover:scale-105">
               <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 8h8M8 11.5h5"/></svg>
@@ -688,9 +812,9 @@
               A browser extension that makes dense text readable for people it currently shuts out — multilingual readers, and anyone whose attention the modern web has fragmented.
             </p>
             <ul class="mt-5 flex flex-wrap gap-1.5">
-              <li><a href="tags.html#contextual-inquiry" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Contextual inquiry</a></li>
-              <li><a href="tags.html#work-models" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Work models</a></li>
-              <li><a href="tags.html#hi-fi-prototyping" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Hi-fi prototyping</a></li>
+              <li><a href="tags.html#contextual-inquiry" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Contextual inquiry</a></li>
+              <li><a href="tags.html#work-models" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Work models</a></li>
+              <li><a href="tags.html#hi-fi-prototyping" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Hi-fi prototyping</a></li>
             </ul>
             <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
               <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -705,7 +829,7 @@
           </div>
         </article>
 
-      <article class="group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card group relative flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-fuchsia-100 to-pink-200">
           <div class="flex h-full items-center justify-center text-fuchsia-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6.5 8v8M17.5 8v8M3.5 10.5v3M20.5 10.5v3M6.5 12h11"/></svg>
@@ -720,9 +844,9 @@
             A desktop video-conferencing platform built specifically for fitness — one class, two difficulty tracks — so friends at different fitness levels can finally work out together instead of one of them compromising.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#miro" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Miro</a></li>
-            <li><a href="tags.html#personas" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Personas</a></li>
-            <li><a href="tags.html#heuristic-evaluation" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Heuristic evaluation</a></li>
+            <li><a href="tags.html#miro" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Miro</a></li>
+            <li><a href="tags.html#personas" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Personas</a></li>
+            <li><a href="tags.html#heuristic-evaluation" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Heuristic evaluation</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -749,7 +873,7 @@
     </div>
 
     <!-- ── Pi Boy ───────────────────────────────────────────────────────── -->
-    <article class="reveal group relative mt-14 grid overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 lg:grid-cols-[1.15fr,1fr]">
+    <article class="gs-card reveal group relative mt-14 grid overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5 lg:grid-cols-[1.15fr,1fr]">
 
       <div class="order-2 flex flex-col p-7 sm:p-9 lg:order-1">
         <span class="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700">
@@ -771,11 +895,11 @@
         </p>
 
         <ul class="mt-6 flex flex-wrap gap-1.5">
-          <li><a href="tags.html#raspberry-pi-zero-wh" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Raspberry Pi Zero WH</a></li>
-          <li><a href="tags.html#python" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
-          <li><a href="tags.html#google-calendar-api" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Google Calendar API</a></li>
-          <li><a href="tags.html#google-tasks-api" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Google Tasks API</a></li>
-          <li><a href="tags.html#telegram-bot-api" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Telegram Bot API</a></li>
+          <li><a href="tags.html#raspberry-pi-zero-wh" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Raspberry Pi Zero WH</a></li>
+          <li><a href="tags.html#python" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
+          <li><a href="tags.html#google-calendar-api" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Google Calendar API</a></li>
+          <li><a href="tags.html#google-tasks-api" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Google Tasks API</a></li>
+          <li><a href="tags.html#telegram-bot-api" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Telegram Bot API</a></li>
         </ul>
 
         <div class="mt-7 flex items-center gap-4 border-t border-slate-100 pt-5">
@@ -800,7 +924,7 @@
 <section id="experience" class="scroll-mt-24 border-t border-slate-200 py-24 sm:py-32">
   <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">03 — Experience</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">03 — Experience</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Where I've worked</h2>
     </div>
 
@@ -823,9 +947,9 @@
           <div id="tl-work-1" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Spearheaded a strategic initiative through rigorous competitor benchmarking and user journey mapping to expand Buyer Self-Collection coverage from 30% to 40%.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Aligned cross-functional stakeholders by producing documentation that translated complex product logic into clear terms for non-technical teams, ensuring seamless adoption of new supply-chain solutions.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Served as the quality checkpoint for product reliability, managing User Acceptance Testing end-to-end — tracking, flagging, and following up on bugs to ensure accuracy prior to deployment.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Spearheaded a strategic initiative through rigorous competitor benchmarking and user journey mapping to expand Buyer Self-Collection coverage from 30% to 40%.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Aligned cross-functional stakeholders by producing documentation that translated complex product logic into clear terms for non-technical teams, ensuring seamless adoption of new supply-chain solutions.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Served as the quality checkpoint for product reliability, managing User Acceptance Testing end-to-end — tracking, flagging, and following up on bugs to ensure accuracy prior to deployment.</li>
           </ul>
             </div>
           </div>
@@ -849,9 +973,9 @@
           <div id="tl-work-2" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Analyzed Capital JDI's 6-stage startup application process; identified bottlenecks and manual tasks consuming 70–80% of team effort.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Researched and compared 15+ SaaS tools; recommended a Zapier + Airtable + Calendly stack for cost-effective, scalable automation.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Delivered an executive presentation and phased 8-week implementation roadmap.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Analyzed Capital JDI's 6-stage startup application process; identified bottlenecks and manual tasks consuming 70–80% of team effort.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Researched and compared 15+ SaaS tools; recommended a Zapier + Airtable + Calendly stack for cost-effective, scalable automation.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Delivered an executive presentation and phased 8-week implementation roadmap.</li>
           </ul>
             </div>
           </div>
@@ -875,9 +999,9 @@
           <div id="tl-work-3" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
           </ul>
             </div>
           </div>
@@ -901,9 +1025,9 @@
           <div id="tl-work-4" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
           </ul>
             </div>
           </div>
@@ -927,9 +1051,9 @@
           <div id="tl-work-5" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
-            <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
           </ul>
             </div>
           </div>
@@ -961,9 +1085,9 @@
           <div id="tl-cca-1" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Built a pipeline to automatically scrape, parse, and extract travel details from TikTok, Instagram, and YouTube links.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Engineered a validation tool to identify and categorize travel-related links, ensuring the system only processes relevant data for a cleaner user experience.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Developed an interactive map using Leaflet.js to dynamically display travel locations, automatically placing pins and popups from JSON data to show users important information.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Built a pipeline to automatically scrape, parse, and extract travel details from TikTok, Instagram, and YouTube links.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Engineered a validation tool to identify and categorize travel-related links, ensuring the system only processes relevant data for a cleaner user experience.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Developed an interactive map using Leaflet.js to dynamically display travel locations, automatically placing pins and popups from JSON data to show users important information.</li>
             </ul>
             </div>
           </div>
@@ -987,9 +1111,9 @@
           <div id="tl-cca-2" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Led a team of 5 designers, guiding them through design workflows and skill-building to craft design deliverables, including wireframes, interactive prototypes, and high-fidelity mockups.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Architected scalable Figma design systems, significantly reducing design turnaround time and maintaining visual consistency across the project.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Collaborated with Tech and Product leads to bridge the gap between design and development, maintaining alignment on product vision and objectives.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Led a team of 5 designers, guiding them through design workflows and skill-building to craft design deliverables, including wireframes, interactive prototypes, and high-fidelity mockups.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Architected scalable Figma design systems, significantly reducing design turnaround time and maintaining visual consistency across the project.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Collaborated with Tech and Product leads to bridge the gap between design and development, maintaining alignment on product vision and objectives.</li>
             </ul>
             </div>
           </div>
@@ -1013,9 +1137,9 @@
           <div id="tl-cca-3" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Designed Volunteer and Donor Management Systems for Caregiving Welfare Association, a non-profit, replacing manual, error-prone spreadsheet workflows with automated data entry and centralised tracking of volunteers and donors.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Crafted user-centred admin portals and analytics dashboards for volunteer engagement tracking, donation reporting, and automated donor communications, including receipts and thank-you workflows.</li>
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Established a design system and brand guidelines aligned with CWA's mission, delivering accessible, mobile-responsive interfaces with consistent visual identity.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Designed Volunteer and Donor Management Systems for Caregiving Welfare Association, a non-profit, replacing manual, error-prone spreadsheet workflows with automated data entry and centralised tracking of volunteers and donors.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Crafted user-centred admin portals and analytics dashboards for volunteer engagement tracking, donation reporting, and automated donor communications, including receipts and thank-you workflows.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Established a design system and brand guidelines aligned with CWA's mission, delivering accessible, mobile-responsive interfaces with consistent visual identity.</li>
             </ul>
             </div>
           </div>
@@ -1039,7 +1163,7 @@
           <div id="tl-cca-4" class="tl-body" hidden>
             <div>
               <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-              <li class="flex gap-3"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-300"></span>Directed social media strategy and crafted engaging content that enhanced the visibility of the club.</li>
+              <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Directed social media strategy and crafted engaging content that enhanced the visibility of the club.</li>
             </ul>
             </div>
           </div>
@@ -1054,7 +1178,7 @@
 <section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-white py-24 sm:py-32">
   <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal max-w-xl">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">04 — Contact</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">04 — Contact</p>
       <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">Let's build something considered</h2>
 
       <div class="mt-10 space-y-1">

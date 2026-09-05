@@ -65,6 +65,83 @@
     * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
     .reveal { opacity: 1; transform: none; }
   }
+  /* ══ Digital garden · Y2K constellation ═══════════════════════════════
+     A four-point sparkle is the site's repeating mark: it replaces bullets,
+     timeline nodes and section markers. Iridescence is reserved for hover
+     and active states so the page stays quiet when nothing is happening. */
+  :root {
+    --gs-star: polygon(50% 0%, 60.5% 39.5%, 100% 50%, 60.5% 60.5%,
+                       50% 100%, 39.5% 60.5%, 0% 50%, 39.5% 39.5%);
+    --gs-iris: linear-gradient(115deg, #6366f1 0%, #8b5cf6 30%, #38bdf8 64%, #34d399 100%);
+  }
+
+  .gs-star, .gs-bullet {
+    display: inline-block;
+    flex: none;
+    background: currentColor;
+    -webkit-clip-path: var(--gs-star);
+    clip-path: var(--gs-star);
+  }
+
+  /* list bullets */
+  .gs-bullet {
+    width: 9px; height: 9px;
+    color: #cbd5e1;
+    transition: color .3s ease, transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-bullet--accent { width: 11px; height: 11px; color: #a5b4fc; }
+  li:hover > .gs-bullet { color: #6366f1; transform: rotate(90deg) scale(1.18); }
+
+  /* section markers carry a small drifting sparkle */
+  .gs-eyebrow { display: inline-flex; align-items: center; gap: .55rem; }
+  .gs-eyebrow::before {
+    content: ""; flex: none; width: 10px; height: 10px;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    animation: gs-drift 9s ease-in-out infinite;
+  }
+  @keyframes gs-drift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  /* cards: a sparkle settles in the corner on hover */
+  .gs-card { position: relative; }
+  .gs-card::after {
+    content: ""; position: absolute; top: .85rem; right: .85rem;
+    width: 13px; height: 13px; pointer-events: none;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.35) rotate(-60deg);
+    transition: opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-card:hover::after,
+  .gs-card:focus-within::after { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  /* chips: a sparkle pops at the corner */
+  .gs-chip { position: relative; }
+  .gs-chip::after {
+    content: ""; position: absolute; top: -4px; right: -4px;
+    width: 8px; height: 8px; pointer-events: none;
+    background: var(--gs-iris);
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.3);
+    transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-chip:hover::after, .gs-chip:focus-visible::after { opacity: 1; transform: scale(1); }
+
+  /* the bed the garden sits on: soft light, no hard edges */
+  .gs-bed {
+    background-image:
+      radial-gradient(ellipse 60% 45% at 8% 0%,   rgba(99,102,241,.07), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 92% 6%,  rgba(56,189,248,.06), transparent 60%),
+      radial-gradient(ellipse 70% 40% at 50% 100%, rgba(52,211,153,.05), transparent 60%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gs-eyebrow::before { animation: none; }
+    .gs-bullet, .gs-card::after, .gs-chip::after { transition: none; }
+  }
 </style>
 </head>
 
@@ -105,7 +182,7 @@
     </nav>
 
     <div class="reveal mt-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Communication design · Kita</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Communication design · Kita</p>
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">From Blind Box to Brochure</h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">An advocacy toolkit for Kita, a Singaporean youth non-profit: a blind box that unfolds into a brochure, packaged with character keychains — built to turn passive sympathisers into active ambassadors.</p>
     </div>
@@ -131,10 +208,10 @@
 
     <div class="reveal mt-6">
       <ul class="flex flex-wrap gap-1.5">
-          <li><a href="../tags.html#desk-research" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Desk research</a></li>
-          <li><a href="../tags.html#swot-analysis" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">SWOT analysis</a></li>
-          <li><a href="../tags.html#stakeholder-interviews" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Stakeholder interviews</a></li>
-          <li><a href="../tags.html#print-design" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Print design</a></li>
+          <li><a href="../tags.html#desk-research" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Desk research</a></li>
+          <li><a href="../tags.html#swot-analysis" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">SWOT analysis</a></li>
+          <li><a href="../tags.html#stakeholder-interviews" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Stakeholder interviews</a></li>
+          <li><a href="../tags.html#print-design" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Print design</a></li>
       </ul>
     </div>
 
@@ -178,23 +255,23 @@
   <div class="mx-auto max-w-3xl px-5 sm:px-8">
 
     <div class="reveal mt-16">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
       <p class="mt-4 text-lg leading-relaxed text-slate-600">Kita is a Singaporean non-profit dedicated to helping youths claim their agency and build belonging, expression, and skills. Despite the impact of the work, Kita faces a strategic threat to its long-term sustainability: a significant deficit in formal communication and advocacy infrastructure.</p>
     </div>
 
     <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
       <p class="mt-4 font-display text-2xl leading-snug">Kita's fundamental issue was never a lack of information — it was the lack of a means for starting conversations and sharing. Traditional brochures are one-way, terminal points of information, operating on a diffusion model too outdated to motivate the organic, peer-to-peer advocacy Kita needs.</p>
     </div>
 
     <div class="reveal mt-16" data-view="full">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Who we designed for</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Who we designed for</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The toolkit targets potential advocates and donors. Empowered by the financial capital and influential networks they hold, these individuals can amplify Kita's reach — a core tenet of stakeholder theory, which holds that an organisation's long-term viability depends on managing relationships with every group supplying critical resources, not only its primary beneficiaries (Freeman, 1984).</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The objective, then, was a resource that acts not as a final statement but as a conversation starter: engaging, aesthetically compelling, easily shareable, and capable of moving a sympathiser to champion Kita in their own professional and social circles (Servaes, 1996).</p>
     </div>
 
     <div class="mt-16" data-view="full">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Research approach</p></div>
+      <div class="reveal"><p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Research approach</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">01</span>
@@ -220,42 +297,42 @@
     </div>
 
     <div class="reveal mt-16" data-view="full">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">What the research found</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">What the research found</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Limited awareness.</strong> As a recently established non-profit with minimal press and social presence, Kita is largely unknown outside its existing networks — so the toolkit had to be an entry point eye-catching enough to start a conversation and informative enough to sustain it.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Advocate profiles differ.</strong> Younger donors prefer online micro-donations; older donors give larger, consistent amounts. Messaging had to flex across motivations and familiarity with the social service landscape.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Youth agency is the differentiator.</strong> Kita's participatory approach gives youths genuine involvement in shaping their own pathways — Jim See reached for “agency” and “co-creation” when sparking others' interest, so the collaborative ethos had to lead.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Language matters enormously.</strong> Framing narratives around strength and potential rather than deficits or “sob stories” lets advocates communicate authentically. Kita's team cautioned against “empower”, which implies the youths were powerless to begin with.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>No consolidated entry point existed.</strong> Both Kita's team and Jim See named the need for a single, grounded document holding key information and clear ways to contribute.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Limited awareness.</strong> As a recently established non-profit with minimal press and social presence, Kita is largely unknown outside its existing networks — so the toolkit had to be an entry point eye-catching enough to start a conversation and informative enough to sustain it.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Advocate profiles differ.</strong> Younger donors prefer online micro-donations; older donors give larger, consistent amounts. Messaging had to flex across motivations and familiarity with the social service landscape.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Youth agency is the differentiator.</strong> Kita's participatory approach gives youths genuine involvement in shaping their own pathways — Jim See reached for “agency” and “co-creation” when sparking others' interest, so the collaborative ethos had to lead.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Language matters enormously.</strong> Framing narratives around strength and potential rather than deficits or “sob stories” lets advocates communicate authentically. Kita's team cautioned against “empower”, which implies the youths were powerless to begin with.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>No consolidated entry point existed.</strong> Both Kita's team and Jim See named the need for a single, grounded document holding key information and clear ways to contribute.</span></li>
       </ul>
     </div>
 
     <div class="reveal mt-16" data-view="full">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The intervention</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The intervention</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The toolkit is a brochure in the form of a blind box, themed around home, paired with an identity artefact: a character keychain and a matching card. Unfolded, the blind box becomes a brochure that can be read straight through.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The keychains are modelled on Kita's four characters — Bubu, Roro, Kiki, and Pebbie — each with a card explaining its origins and what it represents. The idea came from Kita's executive director, Victor Zhu, who wears Kita's character pins to conferences to start conversations. Keychains are conspicuous, attractive, and flexible in how they're displayed.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The blind box format carries Kita's visual identity into a medium unusual enough to stand out among advocacy materials, and the unboxing turns passive information consumption into an experience with emotional resonance — which is what makes it stick.</p>
     </div>
 
     <div class="reveal mt-16" data-view="full">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design decisions</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Design decisions</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Scalability.</strong> A cost-effective medium producible in bulk, with a straightforward, easy-to-assemble design that streamlines assembly and inventory for an organisation working under tight resource constraints. An interactive 3D brochure demonstrates the fold.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Digestibility.</strong> The cuboid's 12 sides let information be segregated into clear categories by proximity, with a visual hierarchy steering readers toward the critical information and the calls to action. The copy balances depth against skimmability.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Portability.</strong> Advocates carry the toolkit and deploy it when an opportunity arises, so it had to be compact and lightweight enough that carrying it isn't a decision.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Durability.</strong> Thicker material protects the keychain in transit and extends the object's life — and a blind box still sitting in an advocate's space is a recurring touchpoint for further sharing.</span></li>
-        <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Configurability.</strong> Elements are deliberately left empty so Kita's youths can personalise and adapt the toolkit — “infrastructuring” (Dantec &amp; DiSalvo, 2013). Rather than prescribing a fixed solution, the design gives youths ownership of how Kita is represented, turning beneficiaries into co-creators of the advocacy narrative.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Scalability.</strong> A cost-effective medium producible in bulk, with a straightforward, easy-to-assemble design that streamlines assembly and inventory for an organisation working under tight resource constraints. An interactive 3D brochure demonstrates the fold.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Digestibility.</strong> The cuboid's 12 sides let information be segregated into clear categories by proximity, with a visual hierarchy steering readers toward the critical information and the calls to action. The copy balances depth against skimmability.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Portability.</strong> Advocates carry the toolkit and deploy it when an opportunity arises, so it had to be compact and lightweight enough that carrying it isn't a decision.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Durability.</strong> Thicker material protects the keychain in transit and extends the object's life — and a blind box still sitting in an advocate's space is a recurring touchpoint for further sharing.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Configurability.</strong> Elements are deliberately left empty so Kita's youths can personalise and adapt the toolkit — “infrastructuring” (Dantec &amp; DiSalvo, 2013). Rather than prescribing a fixed solution, the design gives youths ownership of how Kita is represented, turning beneficiaries into co-creators of the advocacy narrative.</span></li>
       </ul>
     </div>
 
     <div class="reveal mt-16" data-view="full">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">How we'd evaluate it</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">How we'd evaluate it</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two outcomes matter: that current advocates know Kita better and feel confident communicating its mission, and that engagement measurably rises — traffic to Kita's site and donation platforms.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The plan is mixed-method. Quantitatively: pre- and post-toolkit surveys with current advocates measuring knowledge and confidence, a survey of new advocates, and engagement metrics across social, web, and donation channels tracked before and after distribution. Qualitatively: field observation at Kita outreach events, watching how advocates actually use the toolkit in practice.</p>
     </div>
 
     <div class="mt-16">
-      <div class="reveal"><p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">By the numbers</p></div>
+      <div class="reveal"><p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">By the numbers</p></div>
       <div class="reveal mt-6 grid gap-4 sm:grid-cols-3">
         <div class="rounded-2xl border border-slate-200 bg-white p-6">
           <p class="font-display text-4xl leading-none tracking-tight">12</p>

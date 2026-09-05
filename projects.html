@@ -64,6 +64,83 @@
     * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
     .reveal { opacity: 1; transform: none; }
   }
+  /* ══ Digital garden · Y2K constellation ═══════════════════════════════
+     A four-point sparkle is the site's repeating mark: it replaces bullets,
+     timeline nodes and section markers. Iridescence is reserved for hover
+     and active states so the page stays quiet when nothing is happening. */
+  :root {
+    --gs-star: polygon(50% 0%, 60.5% 39.5%, 100% 50%, 60.5% 60.5%,
+                       50% 100%, 39.5% 60.5%, 0% 50%, 39.5% 39.5%);
+    --gs-iris: linear-gradient(115deg, #6366f1 0%, #8b5cf6 30%, #38bdf8 64%, #34d399 100%);
+  }
+
+  .gs-star, .gs-bullet {
+    display: inline-block;
+    flex: none;
+    background: currentColor;
+    -webkit-clip-path: var(--gs-star);
+    clip-path: var(--gs-star);
+  }
+
+  /* list bullets */
+  .gs-bullet {
+    width: 9px; height: 9px;
+    color: #cbd5e1;
+    transition: color .3s ease, transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-bullet--accent { width: 11px; height: 11px; color: #a5b4fc; }
+  li:hover > .gs-bullet { color: #6366f1; transform: rotate(90deg) scale(1.18); }
+
+  /* section markers carry a small drifting sparkle */
+  .gs-eyebrow { display: inline-flex; align-items: center; gap: .55rem; }
+  .gs-eyebrow::before {
+    content: ""; flex: none; width: 10px; height: 10px;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    animation: gs-drift 9s ease-in-out infinite;
+  }
+  @keyframes gs-drift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  /* cards: a sparkle settles in the corner on hover */
+  .gs-card { position: relative; }
+  .gs-card::after {
+    content: ""; position: absolute; top: .85rem; right: .85rem;
+    width: 13px; height: 13px; pointer-events: none;
+    background: var(--gs-iris); background-size: 220% 220%;
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.35) rotate(-60deg);
+    transition: opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-card:hover::after,
+  .gs-card:focus-within::after { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  /* chips: a sparkle pops at the corner */
+  .gs-chip { position: relative; }
+  .gs-chip::after {
+    content: ""; position: absolute; top: -4px; right: -4px;
+    width: 8px; height: 8px; pointer-events: none;
+    background: var(--gs-iris);
+    -webkit-clip-path: var(--gs-star); clip-path: var(--gs-star);
+    opacity: 0; transform: scale(.3);
+    transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .gs-chip:hover::after, .gs-chip:focus-visible::after { opacity: 1; transform: scale(1); }
+
+  /* the bed the garden sits on: soft light, no hard edges */
+  .gs-bed {
+    background-image:
+      radial-gradient(ellipse 60% 45% at 8% 0%,   rgba(99,102,241,.07), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 92% 6%,  rgba(56,189,248,.06), transparent 60%),
+      radial-gradient(ellipse 70% 40% at 50% 100%, rgba(52,211,153,.05), transparent 60%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gs-eyebrow::before { animation: none; }
+    .gs-bullet, .gs-card::after, .gs-chip::after { transition: none; }
+  }
 </style>
 </head>
 
@@ -133,7 +210,7 @@
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/PiBoy.jpg" alt="A Raspberry Pi Zero WH board next to a 16GB SanDisk Extreme SD card"
                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -147,9 +224,9 @@
             A schedule on an e-ink display for my boyfriend and I to stay updated on each other's lives, named after the Raspberry Pi computer it runs on.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#raspberry-pi" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Raspberry Pi</a></li>
-            <li><a href="tags.html#python" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
-            <li><a href="tags.html#google-calendar-api" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Google Calendar API</a></li>
+            <li><a href="tags.html#raspberry-pi" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Raspberry Pi</a></li>
+            <li><a href="tags.html#python" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
+            <li><a href="tags.html#google-calendar-api" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Google Calendar API</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -173,7 +250,7 @@
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-rose-100 to-pink-200">
           <div class="flex h-full items-center justify-center text-rose-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.5 2.8c0 5.8-8.5 11.3-8.5 11.3z"/></svg>
@@ -188,9 +265,9 @@
             Replaced error-prone spreadsheets at Caregiving Welfare Association with admin portals and dashboards for volunteer tracking, donation reporting, and automated receipts — plus a design system to hold it together.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#figma" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Figma</a></li>
-            <li><a href="tags.html#design-system" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Design system</a></li>
-            <li><a href="tags.html#dashboards" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Dashboards</a></li>
+            <li><a href="tags.html#figma" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Figma</a></li>
+            <li><a href="tags.html#design-system" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Design system</a></li>
+            <li><a href="tags.html#dashboards" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Dashboards</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -213,7 +290,7 @@
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
           <img src="images/telegram-trip-planner.jpg" alt="The bot's trip summary message in a Telegram group chat"
                loading="lazy" decoding="async"
@@ -228,9 +305,9 @@
             A collaboration between NUS Fintech Society and HeyMax to reduce planning chaos in Telegram group chats by turning scattered travel links into a structured, AI-assisted trip summary and interactive map.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#python" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
-            <li><a href="tags.html#llm-summarisation" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">LLM summarisation</a></li>
-            <li><a href="tags.html#telegram-mini-app" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Telegram Mini App</a></li>
+            <li><a href="tags.html#python" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Python</a></li>
+            <li><a href="tags.html#llm-summarisation" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">LLM summarisation</a></li>
+            <li><a href="tags.html#telegram-mini-app" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Telegram Mini App</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -254,7 +331,7 @@
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/pantry-pal.jpg" alt="Pantry Pal title card beside three of the app's screens"
                loading="lazy" decoding="async"
@@ -269,9 +346,9 @@
             A mobile app that tackles food waste by simplifying pantry management and meal planning — designed for 18–24 year olds, and aimed at the point of purchase rather than the point of disposal.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#user-research" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">User research</a></li>
-            <li><a href="tags.html#empathy-mapping" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Empathy mapping</a></li>
-            <li><a href="tags.html#prototyping" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Prototyping</a></li>
+            <li><a href="tags.html#user-research" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">User research</a></li>
+            <li><a href="tags.html#empathy-mapping" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Empathy mapping</a></li>
+            <li><a href="tags.html#prototyping" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Prototyping</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -282,7 +359,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/nusmart-dining-revamp.jpg" alt="NUSmart Dining Revamp title card beside three lo-fi wireframes"
                loading="lazy" decoding="async"
@@ -297,9 +374,9 @@
             A redesign of NUS's canteen pre-ordering app, focused on the one pain point that made students stop trusting it: nobody could tell how long they'd actually be waiting.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#contextual-inquiry" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Contextual inquiry</a></li>
-            <li><a href="tags.html#affinity-mapping" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Affinity mapping</a></li>
-            <li><a href="tags.html#storyboarding" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Storyboarding</a></li>
+            <li><a href="tags.html#contextual-inquiry" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Contextual inquiry</a></li>
+            <li><a href="tags.html#affinity-mapping" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Affinity mapping</a></li>
+            <li><a href="tags.html#storyboarding" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Storyboarding</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -310,7 +387,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/flexijio.jpg" alt="FlexiJio title card beside the login and dashboard screens"
                loading="lazy" decoding="async"
@@ -325,9 +402,9 @@
             A desktop video-conferencing platform built specifically for fitness — so friends at different fitness levels can take the same class together, each doing a version of the exercise that suits them.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#user-research" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">User research</a></li>
-            <li><a href="tags.html#personas" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Personas</a></li>
-            <li><a href="tags.html#usability-heuristics" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Usability heuristics</a></li>
+            <li><a href="tags.html#user-research" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">User research</a></li>
+            <li><a href="tags.html#personas" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Personas</a></li>
+            <li><a href="tags.html#usability-heuristics" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Usability heuristics</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -338,7 +415,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/fusion-scanner.jpg" alt="Fusion Scanner title card beside the reader and summary panels"
                loading="lazy" decoding="async"
@@ -353,9 +430,9 @@
             A browser extension that makes dense text readable for people it currently shuts out — multilingual readers, and anyone whose attention the modern web has fragmented.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#contextual-inquiry" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Contextual inquiry</a></li>
-            <li><a href="tags.html#work-models" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Work models</a></li>
-            <li><a href="tags.html#hi-fi-prototyping" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Hi-fi prototyping</a></li>
+            <li><a href="tags.html#contextual-inquiry" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Contextual inquiry</a></li>
+            <li><a href="tags.html#work-models" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Work models</a></li>
+            <li><a href="tags.html#hi-fi-prototyping" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Hi-fi prototyping</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -366,7 +443,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-yellow-100 to-amber-200">
           <div class="flex h-full items-center justify-center text-yellow-700/60 transition-transform duration-500 group-hover:scale-105">
             <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v3.5H3z"/><path d="M4.5 12.5V21h15v-8.5M12 9v12"/><path d="M12 9H7.8a2.4 2.4 0 1 1 0-4.8C10.6 4.2 12 9 12 9zm0 0h4.2a2.4 2.4 0 1 0 0-4.8C13.4 4.2 12 9 12 9z"/></svg>
@@ -381,9 +458,9 @@
             An advocacy toolkit for Kita, a Singaporean youth non-profit: a blind box that unfolds into a brochure, packaged with character keychains — built to turn passive sympathisers into active ambassadors.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#desk-research" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Desk research</a></li>
-            <li><a href="tags.html#swot-analysis" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">SWOT analysis</a></li>
-            <li><a href="tags.html#stakeholder-interviews" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Stakeholder interviews</a></li>
+            <li><a href="tags.html#desk-research" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Desk research</a></li>
+            <li><a href="tags.html#swot-analysis" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">SWOT analysis</a></li>
+            <li><a href="tags.html#stakeholder-interviews" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Stakeholder interviews</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -406,7 +483,7 @@
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img src="images/brand-style-guide.jpg" alt="The Brand Style Guide cover — the niik. wordmark above the title"
                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -420,9 +497,9 @@
             A personal brand system built as a magazine — logo, palette, typography, and a name card reimagined as a wearable lanyard.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#brand-identity" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Brand identity</a></li>
-            <li><a href="tags.html#illustrator" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Illustrator</a></li>
-            <li><a href="tags.html#indesign" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">InDesign</a></li>
+            <li><a href="tags.html#brand-identity" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Brand identity</a></li>
+            <li><a href="tags.html#illustrator" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Illustrator</a></li>
+            <li><a href="tags.html#indesign" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">InDesign</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -433,7 +510,7 @@
         </div>
       </article>
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-white">
           <img src="images/misc-card.webp" alt="Four stages abstracting a photograph of an expressway seen through a windscreen"
                loading="lazy" decoding="async"
@@ -446,9 +523,9 @@
           </h3>
           <p class="mt-2.5 flex-1"></p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#infographic" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Infographic</a></li>
-            <li><a href="tags.html#illustrator" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Illustrator</a></li>
-            <li><a href="tags.html#indesign" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">InDesign</a></li>
+            <li><a href="tags.html#infographic" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Infographic</a></li>
+            <li><a href="tags.html#illustrator" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Illustrator</a></li>
+            <li><a href="tags.html#indesign" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">InDesign</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
@@ -471,7 +548,7 @@
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
 
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
+      <article class="gs-card reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5">
         <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
           <img src="images/magic-of-resilience.jpg" alt="A still from Magic of Resilience — Alexander Yuen of Meta Illusions at his desk"
                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -485,8 +562,8 @@
             A non-fiction short documentary on Meta Illusions, a local magic business.
           </p>
           <ul class="mt-5 flex flex-wrap gap-1.5">
-            <li><a href="tags.html#videography" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Videography</a></li>
-            <li><a href="tags.html#premiere-pro" class="relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Premiere Pro</a></li>
+            <li><a href="tags.html#videography" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Videography</a></li>
+            <li><a href="tags.html#premiere-pro" class="gs-chip relative z-[1] rounded border border-slate-200 px-2 py-0.5 font-mono text-[11px] text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700">Premiere Pro</a></li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
             <span class="group/l inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 transition-colors group-hover:text-accent-600">
