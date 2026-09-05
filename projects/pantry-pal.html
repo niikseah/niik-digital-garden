@@ -152,15 +152,12 @@
 </section>
 
 <!-- ==================== COVER ==================== -->
-<!-- ✏️ Swap this whole block for a real image:
-     <img src="../images/pantry-pal.jpg" alt="…" class="h-full w-full object-cover" />
-     Use a 21:9 crop (e.g. 1680×720) and keep it under ~400 KB. -->
 <div class="mx-auto max-w-6xl px-5 sm:px-8">
-  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-lime-100 to-green-200">
-    <div class="flex h-full items-center justify-center text-lime-700/60">
-      <svg class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M5 9h14M9 5v2M9 12v2.5"/></svg>
-    </div>
-  </div>
+  <figure class="reveal relative aspect-[16/9] overflow-hidden rounded-3xl border border-slate-200 bg-white">
+    <img src="../images/pantry-pal.jpg"
+         alt="Pantry Pal title card reading &ldquo;Smarter Grocery Shopping, Less Waste, Happier Planet&rdquo;, beside three screens: Family setup, the Pantry grid, and Adding Grocery"
+         class="h-full w-full object-cover" />
+  </figure>
 </div>
 
 <!-- ==================== BODY ==================== -->
@@ -194,6 +191,20 @@
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">02</span>
           <h3 class="font-display text-xl leading-snug">Empathy map and persona</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Interview findings were built into an empathy map and a persona to hold the interviewees' perspectives steady through the rest of the process.</p>
+          <div class="mt-5 space-y-4">
+            <figure>
+              <img src="../images/pantry-pal-empathy-map.webp" loading="lazy" decoding="async"
+                   alt="Empathy map split into Say, Think, Feel and Do quadrants, filled with colour-coded sticky notes from the two interviewees"
+                   class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Say / Think / Feel / Do — one colour per interviewee, so the overlaps between them stayed visible.</figcaption>
+            </figure>
+            <figure>
+              <img src="../images/pantry-pal-persona.webp" loading="lazy" decoding="async"
+                   alt="Persona card for John Tan, a 23-year-old university student, listing his interests, motivation and goal"
+                   class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">John Tan, 23 — the persona the user flows are written against.</figcaption>
+            </figure>
+          </div>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">03</span>
@@ -220,11 +231,54 @@
       </ul>
     </div>
 
+    <div class="reveal mt-8 grid gap-4 sm:grid-cols-3" data-view="full">
+      <figure>
+        <img src="../images/pantry-pal-pantry-grid.webp" loading="lazy" decoding="async"
+             alt="Pantry screen in grid view, groceries colour-coded by urgency, with the add menu open on Voice, Bar Code and Text"
+             class="w-full rounded-xl border border-slate-200 bg-white" />
+        <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Pantry, filtered by storage type. Adding offers voice, barcode or text.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/pantry-pal-add-grocery.webp" loading="lazy" decoding="async"
+             alt="Adding Grocery screen for a banana, with expiry date pickers, a recommended shelf life, a quantity stepper and a storage dropdown"
+             class="w-full rounded-xl border border-slate-200 bg-white" />
+        <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Manual expiry entry, softened by a recommended shelf life. Storage is set in the same moment.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/pantry-pal-input-methods.webp" loading="lazy" decoding="async"
+             alt="Adding Grocery search field with microphone and barcode icons, keyboard raised"
+             class="w-full rounded-xl border border-slate-200 bg-white" />
+        <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">All three input methods sit in one field rather than behind separate flows.</figcaption>
+      </figure>
+    </div>
+
     <div class="reveal mt-16" data-view="full">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-accent-600">What testing changed</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Two users read the “Cancel” button in the text-input field as “clear”, so it was redesigned as “Back”. A participant asked for the “Pantry” button to sit in the centre of the nav bar; it moved, because it matches user convention, while “Profile” stayed on the right as the least-accessed tab.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">A/B testing settled two open questions: participants overwhelmingly preferred a grid view for expired groceries, because they identify food by its packaging, and preferred the whole week visible in the Meal Planner, because that matches weekly grocery habits. For the “XX days left” expiry notice, the smaller bottom-left placement won — noticeable but unobtrusive.</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Watching two users try to find recipes from expiring ingredients on the Pantry page led to a new Ingredients page, where recipes, nutritional value, storage, and quantity all live together.</p>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <figure>
+          <img src="../images/pantry-pal-planner-day.webp" loading="lazy" decoding="async"
+               alt="Lo-fi Meal Planner showing a single day, Sunday 20 October"
+               class="w-full rounded-xl border border-slate-200 bg-white" />
+          <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">A — one day at a time.</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/pantry-pal-planner-week.webp" loading="lazy" decoding="async"
+               alt="Lo-fi Meal Planner showing the whole week, the 20th to the 26th, with calories remaining and breakfast, lunch and dinner slots"
+               class="w-full rounded-xl border border-slate-200 bg-white" />
+          <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">B — the whole week, and the one participants chose: it matches how groceries are actually bought.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="mt-8">
+        <img src="../images/pantry-pal-card-variants.webp" loading="lazy" decoding="async"
+             alt="Board of grocery card explorations in grid and list form, with the XX Days Left expiry badge tried in several positions"
+             class="w-full rounded-xl border border-slate-200 bg-white" />
+        <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">The grocery card explored as grid and as list, with the expiry badge tested in several positions. Grid won, and the smaller bottom-left badge with it.</figcaption>
+      </figure>
     </div>
 
     <div class="reveal mt-16" data-view="full">

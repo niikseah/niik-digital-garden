@@ -152,15 +152,12 @@
 </section>
 
 <!-- ==================== COVER ==================== -->
-<!-- ✏️ Swap this whole block for a real image:
-     <img src="../images/flexijio.jpg" alt="…" class="h-full w-full object-cover" />
-     Use a 21:9 crop (e.g. 1680×720) and keep it under ~400 KB. -->
 <div class="mx-auto max-w-6xl px-5 sm:px-8">
-  <div class="reveal relative aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br from-fuchsia-100 to-purple-200">
-    <div class="flex h-full items-center justify-center text-fuchsia-700/60">
-      <svg class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>
-    </div>
-  </div>
+  <figure class="reveal relative aspect-[16/9] overflow-hidden rounded-3xl border border-slate-200 bg-white">
+    <img src="../images/flexijio.jpg"
+         alt="FlexiJio title card — &ldquo;A busy lifestyle&rsquo;s best friend for fitness&rdquo; beside the login and dashboard screens"
+         class="h-full w-full object-cover" />
+  </figure>
 </div>
 
 <!-- ==================== BODY ==================== -->
@@ -204,6 +201,50 @@
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">04</span>
           <h3 class="font-display text-xl leading-snug">Concept to prototype</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Metaphors, storyboarding, wireframes, a lo-fi prototype, user testing, a documented redesign separating incorporated from unincorporated feedback, then a final prototype checked against usability heuristics.</p>
+          <div class="mt-5">
+            <figure>
+              <img src="../images/flexijio-storyboard.webp" loading="lazy" decoding="async" alt="Hand-drawn storyboard of the FlexiJio flow, annotated in pink and red, with numbered markers from one to nine" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">The storyboard, with nine numbered decisions marked on it.</figcaption>
+            </figure>
+          </div>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <figure>
+              <img src="../images/flexijio-rationale-a.webp" loading="lazy" decoding="async" alt="Rationale callouts numbered 1 to 5 covering personalisation, interface clarity and the leaderboard" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Markers 1&ndash;5 &mdash; personalisation, clarity, and the leaderboard as motivation.</figcaption>
+            </figure>
+            <figure>
+              <img src="../images/flexijio-rationale-b.webp" loading="lazy" decoding="async" alt="Rationale callouts numbered 6 to 9 covering progress tracking, community building, scheduling and a guide section" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Markers 6&ndash;9 &mdash; progress, community, scheduling, and self-service help.</figcaption>
+            </figure>
+          </div>
+          <div class="mt-4 space-y-4">
+            <figure>
+              <img src="../images/flexijio-class-wireframe.webp" loading="lazy" decoding="async" alt="Hand sketch of the live class page — instructor video, a grid of participants, chat panel, music indicator, countdown and a leave button" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">The live class page, sketched: instructor, participants, chat, music, countdown, leave.</figcaption>
+            </figure>
+            <figure>
+              <img src="../images/flexijio-class-rationale.webp" loading="lazy" decoding="async" alt="Table titled Replicate an in-person class environment, listing microphone and camera, countdown timer, reaction, chatbox, music and leave functions with reasons" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Each control on that page, and the reason it earns its place.</figcaption>
+            </figure>
+          </div>
+          <div class="mt-4 space-y-4">
+            <figure>
+              <img src="../images/flexijio-lofi-community.webp" loading="lazy" decoding="async" alt="Low-fi prototype board titled Community Based Features, showing the welcome screen, discussion feed and leaderboard" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Lo-fi &mdash; community features.</figcaption>
+            </figure>
+            <figure>
+              <img src="../images/flexijio-lofi-profile.webp" loading="lazy" decoding="async" alt="Low-fi prototype board titled Customising Profile, showing sign-up, build your profile, set your agenda and the profile screen" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Lo-fi &mdash; profile setup and agenda.</figcaption>
+            </figure>
+            <figure>
+              <img src="../images/flexijio-lofi-user-centric.webp" loading="lazy" decoding="async" alt="Low-fi prototype board titled User Centric Features, showing the welcome screen, search, calendar and a daily tracker" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Lo-fi &mdash; user-centric features.</figcaption>
+            </figure>
+            <figure>
+              <img src="../images/flexijio-lofi-class.webp" loading="lazy" decoding="async" alt="Low-fi prototype board titled Fitness Class, following a class from the room through to a Good Job Eliza completion screen" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Lo-fi &mdash; a class from start to finish. These four boards are the ones the reflection below is about.</figcaption>
+            </figure>
+          </div>
         </li>
       </ol>
     </div>
@@ -215,6 +256,33 @@
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Gamification</strong> — rewards, leaderboards, and progress tracking to make consistency fun</span></li>
         <li class="flex gap-3.5"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500/60"></span><span><strong>Personalised exercises</strong> — expert and simplified variants of the same lesson, so friends at different levels take the same class together</span></li>
       </ul>
+    </div>
+
+    <div class="relative left-1/2 mt-8 w-[min(1086px,92vw)] -translate-x-1/2 space-y-5" data-view="full">
+      <figure>
+              <img src="../images/flexijio-final-onboarding.webp" loading="lazy" decoding="async" alt="Final prototype boards for the log-in page, sign-up page, and the two profile-creation steps" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Log in, sign up, and the two profile-creation steps.</figcaption>
+            </figure>
+      <figure>
+              <img src="../images/flexijio-final-home.webp" loading="lazy" decoding="async" alt="Final prototype boards for the home page, My Room, and the health tracker with and without a synced device" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Home, My Room, and the health tracker &mdash; shown both with and without a synced device.</figcaption>
+            </figure>
+      <figure>
+              <img src="../images/flexijio-final-groups.webp" loading="lazy" decoding="async" alt="Final prototype boards for My Groups, scheduling a class, group chats and the leaderboard" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Groups, class scheduling, chats, and the leaderboard &mdash; the gamification layer.</figcaption>
+            </figure>
+      <figure>
+              <img src="../images/flexijio-final-forum.webp" loading="lazy" decoding="async" alt="Final prototype boards for the forum discussion feed, noticeboard and help section" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">The forum, noticeboard and help &mdash; the community layer that outlasts week two.</figcaption>
+            </figure>
+      <figure>
+              <img src="../images/flexijio-final-classes.webp" loading="lazy" decoding="async" alt="Final prototype boards for the class listing, entering a session, and the live call with music and microphone controls" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">Browsing classes, entering a session, and the live call.</figcaption>
+            </figure>
+      <figure>
+              <img src="../images/flexijio-final-call.webp" loading="lazy" decoding="async" alt="Final prototype boards for the live call with chat open, the session-ended congratulation screen, and the user profile" class="w-full rounded-xl border border-slate-200 bg-white" />
+              <figcaption class="mt-2.5 font-mono text-[11px] leading-relaxed text-slate-400">The call with chat open, the end-of-session reward, and the profile it accrues to.</figcaption>
+            </figure>
     </div>
 
     <div class="reveal mt-16" data-view="full">
