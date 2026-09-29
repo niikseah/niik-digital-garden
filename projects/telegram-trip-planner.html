@@ -285,27 +285,27 @@
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">01</span>
-          <h3 class="font-display text-xl leading-snug">Initiation of bot</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Initiation of bot</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">User enters <code>/start</code>, adding the Telegram Bot at any point in the chat.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">02</span>
-          <h3 class="font-display text-xl leading-snug">Trigger context Q&amp;A</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Trigger context Q&amp;A</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">User enters <code>/plan</code>, triggering Pre-processing Q&amp;A, asking short contextual questions. Answers are collected and stored as structured inputs.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">03</span>
-          <h3 class="font-display text-xl leading-snug">Confirmation</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Confirmation</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">After collating the links, the bot will confirm the list of links. Should the user want to remove any, they can enter <code>/removelink</code>. Should the user want to view the existing list of links, they can enter <code>/links</code>.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">04</span>
-          <h3 class="font-display text-xl leading-snug">Content Analysis</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Content Analysis</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The bot uses API calls on the shared links (up till <code>/plan</code>) and parses link content to detect destinations, points of interest, and themes. The bot then outputs machine-readable data.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">05</span>
-          <h3 class="font-display text-xl leading-snug">Summary message generation (LLM-powered)</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Summary message generation (LLM-powered)</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The structured inputs (Q&amp;A + analysed content) are fed to the LLM to generate a summary message.</p>
           <figure class="mt-5">
             <img src="../images/telegram-trip-planner-summary.webp" loading="lazy" decoding="async"
@@ -316,17 +316,17 @@
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">06</span>
-          <h3 class="font-display text-xl leading-snug">Visual Map</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Visual Map</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">A live and interactive map is generated, allowing users to view different pinned locations and clicking on pins to view more details.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">07</span>
-          <h3 class="font-display text-xl leading-snug">Output</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Output</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The bot returns the summary message and the link to the visual map (rendered in a webpage) into the group chat.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">08</span>
-          <h3 class="font-display text-xl leading-snug">Reiterations</h3>
+          <h3 class="text-[15px] font-semibold leading-relaxed text-slate-900">Reiterations</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Users can continue sending links. Upon entering <code>/plan</code>, the bot will confirm trip details. If unchanged, an updated summary is generated. Otherwise, it restarts the Q&amp;A before creating a new summary message.</p>
         </li>
       </ol>
