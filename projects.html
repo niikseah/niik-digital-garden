@@ -157,7 +157,7 @@
       </a>
 
       <div class="flex items-center gap-1.5">
-        <a href="index.html#work" class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:inline-block">Home</a>
+        <a href="index.html" aria-label="Home" class="grid h-9 w-9 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-slate-900 hover:shadow-md"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></a>
         <div class="flex items-center gap-0.5">
           <a href="https://linkedin.com/in/niikseah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
              class="grid h-9 w-9 place-items-center rounded-lg text-slate-500 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-[#0A66C2] hover:shadow-md">
@@ -189,14 +189,59 @@
     </nav>
 
     <div class="reveal mt-8 max-w-2xl">
-      <h1 class="font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">my hard work…</h1>
+      <h1 class="font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">Projects</h1>
     </div>
 
-    <div class="reveal mt-6">
-      <a href="tags.html" class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-accent-600">
-        Browse by tag
-        <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+    <div class="reveal mt-6 flex flex-wrap items-center gap-3">
+      <label for="tagJump" class="font-mono text-xs uppercase tracking-[0.2em] text-slate-400">Browse by tag</label>
+      <div class="relative">
+        <select id="tagJump"
+                class="appearance-none rounded-lg border border-slate-200 bg-white py-2 pl-3.5 pr-9 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20">
+          <option value="">All tags…</option>
+          <option value="affinity-mapping">Affinity mapping</option>
+          <option value="brand-identity">Brand identity</option>
+          <option value="communication-design">Communication design</option>
+          <option value="contextual-inquiry">Contextual inquiry</option>
+          <option value="dashboards">Dashboards</option>
+          <option value="design-system">Design system</option>
+          <option value="desk-research">Desk research</option>
+          <option value="empathy-mapping">Empathy mapping</option>
+          <option value="figma">Figma</option>
+          <option value="google-calendar-api">Google Calendar API</option>
+          <option value="google-tasks-api">Google Tasks API</option>
+          <option value="heuristic-evaluation">Heuristic evaluation</option>
+          <option value="hi-fi-prototyping">Hi-fi prototyping</option>
+          <option value="illustrator">Illustrator</option>
+          <option value="indesign">InDesign</option>
+          <option value="infographic">Infographic</option>
+          <option value="llm">LLM</option>
+          <option value="llm-summarisation">LLM summarisation</option>
+          <option value="miro">Miro</option>
+          <option value="mobile-ixd">Mobile IxD</option>
+          <option value="personas">Personas</option>
+          <option value="photoshop">Photoshop</option>
+          <option value="premiere-pro">Premiere Pro</option>
+          <option value="print">Print</option>
+          <option value="print-design">Print design</option>
+          <option value="prototyping">Prototyping</option>
+          <option value="python">Python</option>
+          <option value="raspberry-pi">Raspberry Pi</option>
+          <option value="raspberry-pi-zero-wh">Raspberry Pi Zero WH</option>
+          <option value="software-development">Software Development</option>
+          <option value="stakeholder-interviews">Stakeholder interviews</option>
+          <option value="stakeholder-research">Stakeholder research</option>
+          <option value="storyboarding">Storyboarding</option>
+          <option value="swot-analysis">SWOT analysis</option>
+          <option value="telegram-bot-api">Telegram Bot API</option>
+          <option value="telegram-mini-app">Telegram Mini App</option>
+          <option value="usability-heuristics">Usability heuristics</option>
+          <option value="usability-testing">Usability testing</option>
+          <option value="user-research">User research</option>
+          <option value="videography">Videography</option>
+          <option value="work-models">Work models</option>
+        </select>
+        <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
     </div>
 
     <div class="reveal mt-8 flex flex-wrap gap-2">
@@ -218,7 +263,6 @@
         <div>
           <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Pet Projects</h2>
         </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
       </div>
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -258,7 +302,6 @@
           <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Product &amp; Research</h2>
           <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">Internships and applied work — supply chain, public sector, and the non-profit systems in between.</p>
         </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
       </div>
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -298,7 +341,6 @@
         <div>
           <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Software Development</h2>
         </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
       </div>
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -339,7 +381,6 @@
           <h2 class="font-display text-3xl tracking-tight sm:text-4xl">UI/UX</h2>
           <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">End-to-end design projects, most taken from user research through to a tested prototype.</p>
         </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">5 projects</p>
       </div>
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -491,7 +532,6 @@
         <div>
           <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Graphic Design</h2>
         </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">2 projects</p>
       </div>
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -556,7 +596,6 @@
         <div>
           <h2 class="font-display text-3xl tracking-tight sm:text-4xl">Videography</h2>
         </div>
-        <p class="shrink-0 font-mono text-xs text-slate-400">1 project</p>
       </div>
 
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -642,6 +681,15 @@
 
   /* ---------------- Footer year ---------------- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function () {
+  var sel = document.getElementById('tagJump');
+  if (!sel) return;
+  sel.addEventListener('change', function () {
+    if (sel.value) window.location.href = 'tags.html#' + sel.value;
+  });
 })();
 </script>
 </body>
