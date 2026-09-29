@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pantry Pal — Niik Seah</title>
-<meta name="description" content="A mobile app that tackles food waste by simplifying pantry management and meal planning — designed for 18–24 year olds, and aimed at the point of purchase rather than the point of disposal." />
+<meta name="description" content="A mobile app that tackles food waste by simplifying pantry management and meal planning." />
 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -195,7 +195,7 @@
 
     <div class="reveal mt-8">
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Pantry Pal</h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A mobile app that tackles food waste by simplifying pantry management and meal planning — designed for 18–24 year olds, and aimed at the point of purchase rather than the point of disposal.</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A mobile app that tackles food waste by simplifying pantry management and meal planning.</p>
     </div>
 
     <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4">
@@ -244,6 +244,19 @@
 <!-- ==================== BODY ==================== -->
 <section class="pb-20 sm:pb-24">
   <div class="mx-auto max-w-4xl px-5 sm:px-8">
+
+    <div class="reveal mt-16" data-view="tldr">
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Overview</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Pantry Pal is a mobile app designed for youths aged 18-24 to simplify pantry management and meal planning while reducing food waste. Key features include:</p>
+      <ol class="mt-4 list-decimal space-y-2 pl-6 text-[17px] leading-relaxed text-slate-600 marker:font-mono marker:text-sm marker:text-accent-600">
+        <li>Meal Planner</li>
+        <li>Family Integration</li>
+        <li>Expiry Date Tracker</li>
+        <li>Diet Tracker</li>
+        <li>Ease of Input of Expiry Dates of Groceries</li>
+      </ol>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">This project was done solo for the course <a href="https://nusmods.com/courses/NM4259/mobile-interaction-design" target="_blank" rel="noopener noreferrer" class="font-medium text-accent-700 underline decoration-accent-300 underline-offset-4 transition-colors hover:text-accent-900">NM4259: Mobile Interaction Design</a> taken in National University of Singapore (NUS), up to the 1st hi-fi design.</p>
+    </div>
 
     <div class="reveal mt-16">
       <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Context</p>
@@ -476,6 +489,7 @@
   if (!sw) return;
   var btns = Array.prototype.slice.call(sw.querySelectorAll('button'));
   var extras = Array.prototype.slice.call(document.querySelectorAll('[data-view="full"]'));
+  var tldrOnly = Array.prototype.slice.call(document.querySelectorAll('[data-view="tldr"]'));
 
   function paint(btn, on) {
     btn.setAttribute('aria-selected', String(on));
@@ -487,6 +501,10 @@
 
   function setMode(mode) {
     btns.forEach(function (b) { paint(b, b.dataset.mode === mode); });
+    tldrOnly.forEach(function (el) {
+      el.hidden = mode === 'full';
+      if (mode !== 'full') el.classList.add('is-visible');
+    });
     extras.forEach(function (el) {
       el.hidden = mode !== 'full';
       // These blocks were hidden when the reveal observer first ran, so they
