@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Telegram Bot for Trip Planning — Niik Seah</title>
-<meta name="description" content="A collaboration between NUS Fintech Society and HeyMax to reduce planning chaos in Telegram group chats by turning scattered travel links into a structured, AI-assisted trip summary and interactive map." />
+<meta name="description" content="A collaboration between NUS Fintech Society and HeyMax to facilitate trip planning in Telegram group chats by turning scattered travel links into a structured, AI-generated trip summary and interactive map." />
 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -195,7 +195,7 @@
 
     <div class="reveal mt-8">
       <h1 class="mt-4 font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">Telegram Bot for Trip Planning</h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A collaboration between NUS Fintech Society and HeyMax to reduce planning chaos in Telegram group chats by turning scattered travel links into a structured, AI-assisted trip summary and interactive map.</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">A collaboration between NUS Fintech Society and HeyMax to facilitate trip planning in Telegram group chats by turning scattered travel links into a structured, AI-generated trip summary and interactive map.</p>
     </div>
 
     <dl class="reveal mt-10 grid grid-cols-2 gap-6 border-y border-slate-200 py-6 sm:grid-cols-4">
@@ -215,6 +215,10 @@
         <dt class="font-mono text-xs text-slate-400">Tools</dt>
         <dd class="mt-1.5 space-y-1 text-sm font-medium">
           <span class="flex items-center gap-2"><img src="../images/logos/python.svg" alt="" class="h-4 w-4 shrink-0" />Python</span>
+          <span class="flex items-center gap-2"><img src="../images/logos/leaflet.svg" alt="" class="h-4 w-4 shrink-0" />Leaflet.js</span>
+          <span class="flex items-center gap-2"><img src="../images/logos/apify.svg" alt="" class="h-4 w-4 shrink-0" />Apify</span>
+          <span class="flex items-center gap-2"><img src="../images/logos/dify.svg" alt="" class="h-4 w-4 shrink-0" />Dify</span>
+          <span class="flex items-center gap-2"><img src="../images/logos/n8n.svg" alt="" class="h-4 w-4 shrink-0" />n8n</span>
         </dd>
       </div>
     </dl>
@@ -246,50 +250,63 @@
 
     <div class="reveal mt-14 rounded-2xl border-l-2 border-accent-500 bg-white p-6 sm:p-8">
       <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The problem</p>
-      <p class="mt-4 font-display text-2xl leading-snug">Trip planning on Telegram is fragmented; links are scattered across messages, and people waste too much time manually consolidating places, stays, and activities.</p>
+      <p class="mt-4 font-display text-2xl leading-snug">Trip Planning breaks in the chat</p>
+      <p class="mt-3 text-[17px] leading-relaxed text-slate-600">Young adults, especially university students, usually plan trips on Telegram. Telegram does not have specialised features for trip planning, leading to fragmented and time-consuming collaboration.</p>
+      <p class="mt-3 text-[17px] leading-relaxed text-slate-600">This product direction prioritizes low-friction adoption by embedding planning tools into existing group-chat behavior. Instead of asking users to migrate tools, the bot turns current chat activity into structured travel planning artifacts.</p>
     </div>
 
     <div class="reveal mt-16">
       <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">The solution</p>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Meet users where they already coordinate: inside Telegram, not another standalone planner app.</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">This product direction prioritizes low-friction adoption by embedding planning tools into existing group-chat behavior. Instead of asking users to migrate tools, the bot turns current chat activity into structured travel planning artifacts.</p>
-      <p class="mt-6">
-        <a href="https://t.me/heymax_planner_bot" target="_blank" rel="noopener"
-           class="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">
-          Open the bot in Telegram
-          <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-      </p>
+      <div data-view="full">
+        <h3 class="mt-8 font-display text-2xl leading-snug">A command-led bot with LLM summarisation</h3>
+        <p class="mt-3 text-[17px] leading-relaxed text-slate-600">Unstructured messages are transformed into travel planning artefacts: a comprehensive summary message embedded with links and an AI-generated short description of places, accommodations, and activities.</p>
+      </div>
     </div>
 
     <div class="reveal mt-16">
-      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Core features</p>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Key features</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Pre-processing Q&amp;A</strong> — Captures trip background before planning to ensure summaries are personalised.</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Content analysis</strong> — Shared links are parsed to extract destinations, activities, and accommodation options.</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>AI summary message</strong> — A structured, group-ready trip overview with key recommendations is generated.</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Trip overview</strong> — Flights, rough duration, and key timing cues for faster alignment are highlighted.</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Visual map</strong> — Pinned locations are shown on the map to support visualisation.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Pre-processing user query</strong>: The bot asks contextual questions to personalise and enhance the accuracy of the summarised plan.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Content Analysis</strong>: The bot utilises API calls from various platforms to detect destinations, points of interest, activities, accommodation options, and themes from social media content shared in the chat. By converting raw inspiration into machine-readable data, accuracy is ensured across the workflow and output message.</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><div><strong>Summary message generation</strong>: After data extraction, AI gives a structured, group-ready trip overview.
+          <ul class="mt-3 space-y-2">
+            <li class="flex gap-3"><span class="gs-bullet mt-[8px]"></span><span><strong>Trip Overview</strong>: A clear summary of the trip, including flights, overall duration, and key timings.</span></li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[8px]"></span><span><strong>Activity Discovery</strong>: A list of recommended places to visit, each accompanied with a one-liner.</span></li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[8px]"></span><span><strong>Accommodation Options</strong>: A list of accommodations, each accompanied with a one-liner and estimated costs.</span></li>
+          </ul>
+        </div></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><strong>Visual Map</strong>: After generating a summary, a map with pins of the relevant locations saved will be linked. The map gives users a visual cue of places of interest, facilitating trip planning.</span></li>
       </ul>
     </div>
 
     <div class="mt-16" data-view="full">
-      <div class="reveal"><p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">How it works</p></div>
+      <div class="reveal"><p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">User flow</p></div>
       <ol class="mt-8 space-y-10">
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">01</span>
-          <h3 class="font-display text-xl leading-snug">Pre-processing the query</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">On <code>/plan</code>, the bot asks short contextual questions to personalise the plan and improve the accuracy of the summary. Answers are collected and stored as structured inputs.</p>
+          <h3 class="font-display text-xl leading-snug">Initiation of bot</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">User enters <code>/start</code>, adding the Telegram Bot at any point in the chat.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">02</span>
-          <h3 class="font-display text-xl leading-snug">Content analysis</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The bot calls platform APIs on every shared link and parses the content to detect destinations, points of interest, and themes. Converting raw inspiration into machine-readable data is what keeps accuracy consistent across the rest of the workflow.</p>
+          <h3 class="font-display text-xl leading-snug">Trigger context Q&amp;A</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">User enters <code>/plan</code>, triggering Pre-processing Q&amp;A, asking short contextual questions. Answers are collected and stored as structured inputs.</p>
         </li>
         <li class="reveal relative pl-12">
           <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">03</span>
-          <h3 class="font-display text-xl leading-snug">Summary generation</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The structured inputs — Q&amp;A plus analysed content — are fed to an LLM, which returns a trip overview (flights, duration, key timings), an activity list with a one-liner each, and accommodation options with one-liners and estimated costs.</p>
+          <h3 class="font-display text-xl leading-snug">Confirmation</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">After collating the links, the bot will confirm the list of links. Should the user want to remove any, they can enter <code>/removelink</code>. Should the user want to view the existing list of links, they can enter <code>/links</code>.</p>
+        </li>
+        <li class="reveal relative pl-12">
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">04</span>
+          <h3 class="font-display text-xl leading-snug">Content Analysis</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The bot uses API calls on the shared links (up till <code>/plan</code>) and parses link content to detect destinations, points of interest, and themes. The bot then outputs machine-readable data.</p>
+        </li>
+        <li class="reveal relative pl-12">
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">05</span>
+          <h3 class="font-display text-xl leading-snug">Summary message generation (LLM-powered)</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The structured inputs (Q&amp;A + analysed content) are fed to the LLM to generate a summary message.</p>
           <figure class="mt-5">
             <img src="../images/telegram-trip-planner-summary.webp" loading="lazy" decoding="async"
                  alt="A Telegram message titled Korea Trip Summary, listing a KLM flight with dates and times, four accommodation options with prices, and activities grouped into attractions, food and drinks, and shopping and sightseeing"
@@ -298,34 +315,41 @@
           </figure>
         </li>
         <li class="reveal relative pl-12">
-          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">04</span>
-          <h3 class="font-display text-xl leading-snug">Visual map</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">A live, interactive map is generated with pins for every saved location. Telegram's built-in mini-map was chosen because it supports multiple markers, custom icons, custom info cards, and direct user interaction. The bot returns the summary and the map link into the group chat.</p>
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">06</span>
+          <h3 class="font-display text-xl leading-snug">Visual Map</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">A live and interactive map is generated, allowing users to view different pinned locations and clicking on pins to view more details.</p>
+        </li>
+        <li class="reveal relative pl-12">
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">07</span>
+          <h3 class="font-display text-xl leading-snug">Output</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">The bot returns the summary message and the link to the visual map (rendered in a webpage) into the group chat.</p>
+        </li>
+        <li class="reveal relative pl-12">
+          <span class="absolute left-0 top-0 grid h-8 w-8 place-items-center rounded-full border border-slate-200 bg-white font-mono text-xs text-slate-500">08</span>
+          <h3 class="font-display text-xl leading-snug">Reiterations</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Users can continue sending links. Upon entering <code>/plan</code>, the bot will confirm trip details. If unchanged, an updated summary is generated. Otherwise, it restarts the Q&amp;A before creating a new summary message.</p>
         </li>
       </ol>
     </div>
 
     <div class="reveal mt-16" data-view="full">
-      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Commands</p>
-      <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><code>/start</code> — add the bot at any point in the chat</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><code>/plan</code> — trigger the contextual Q&amp;A and generate a summary</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><code>/links</code> — view the list of links collected so far</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span><code>/removelink</code> — drop a link before the summary is built</span></li>
+      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Technical implementation plan of map</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Telegram&rsquo;s inbuilt mini-map is used because it allows for custom markers.</p>
+      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">The mini-app provides the following functionalities as well:</p>
+      <ul class="mt-4 space-y-3 text-[17px] leading-relaxed text-slate-600">
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Multiple markers</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Custom info cards</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Custom icons</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Handle user interaction</span></li>
       </ul>
-    </div>
-
-    <div class="reveal mt-16" data-view="full">
-      <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Reiteration</p>
-      <p class="mt-4 text-[17px] leading-relaxed text-slate-600">Users keep sending links after a summary exists. On the next <code>/plan</code>, the bot confirms the trip details: if nothing has changed it generates an updated summary directly, and if something has, it restarts the Q&amp;A before building a new one.</p>
     </div>
 
     <div class="reveal mt-16" data-view="full">
       <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">Moving forward</p>
       <ul class="mt-5 space-y-3 text-[17px] leading-relaxed text-slate-600">
         <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Accessibility</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Dark mode</span></li>
-        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Customisable map pins through emojis and tags</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Dark Mode</span></li>
+        <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Customisability of pins on map through emojis and tags</span></li>
         <li class="flex gap-3.5"><span class="gs-bullet gs-bullet--accent mt-[8px]"></span><span>Robustness of API reliability and parsing coverage across link types</span></li>
       </ul>
     </div>
@@ -336,12 +360,8 @@
 <!-- ==================== NEXT / PREV ==================== -->
 <section class="border-t border-slate-200 py-16">
   <div class="mx-auto max-w-5xl px-5 sm:px-8">
-    <div class="reveal flex flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-      <div>
-        <p class="font-display text-2xl leading-snug">More where this came from</p>
-        <p class="mt-1 text-sm text-slate-500">Product, research, interface design, print and one documentary.</p>
-      </div>
-      <a href="../projects.html" class="group inline-flex shrink-0 items-center gap-2 self-start rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-600 sm:self-auto">
+    <div class="reveal flex justify-center">
+      <a href="../projects.html" class="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-600">
         See every project
         <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
