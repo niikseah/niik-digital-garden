@@ -173,58 +173,6 @@
     .tl-body:not([hidden]) { animation: none; }
   }
 
-  /* ── Centred timeline ────────────────────────────────────────────────
-     From lg up the rule runs down the middle and entries alternate sides,
-     each one hanging off the line like a leaf. Below lg it stays a single
-     left-hand rail, since half-width columns are unreadable on a phone. */
-  @media (min-width: 1024px) {
-    .tl-center { position: relative; }
-    .tl-center::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      margin-left: -0.5px;
-      top: .55rem;
-      bottom: 0;
-      width: 1px;
-      background: #e2e8f0;
-    }
-    .tl-center > .tl-item {
-      display: block;
-      width: calc(50% - 2.75rem);
-      border-left: 0;
-      padding-left: 0;
-      padding-bottom: 1.75rem;
-    }
-    /* odd entries hang left of the line and read toward it */
-    .tl-center > .tl-item:nth-child(odd) {
-      margin-right: auto;
-      text-align: right;
-    }
-    .tl-center > .tl-item:nth-child(even) { margin-left: auto; }
-
-    /* the dot sits on the line itself */
-    .tl-center > .tl-item > .tl-dot { top: .55rem; }
-    .tl-center > .tl-item:nth-child(odd) > .tl-dot {
-      left: auto;
-      right: calc(-2.75rem - 6.5px);
-    }
-    .tl-center > .tl-item:nth-child(even) > .tl-dot {
-      left: calc(-2.75rem - 6.5px);
-    }
-
-    /* dates sit above the role once the columns collapse */
-    .tl-center .tl-date { text-align: inherit; margin-bottom: .4rem; }
-    .tl-center .tl-date p { display: inline; }
-    .tl-center .tl-date p + p::before { content: " · "; }
-
-    /* mirror the header row so the chevron faces the line */
-    .tl-center > .tl-item:nth-child(odd) .tl-head { flex-direction: row-reverse; }
-    .tl-center > .tl-item:nth-child(odd) .tl-org { justify-content: flex-end; }
-
-    /* detail always reads left-to-right, whichever side it is on */
-    .tl-center .tl-body { text-align: left; }
-  }
 
   .folder-tabs { scrollbar-width: none; }
   .folder-tabs::-webkit-scrollbar { display: none; }
@@ -435,17 +383,14 @@
     </div>
 
     <h1 class="reveal mt-10 max-w-[24ch] font-display text-[clamp(2.1rem,5.6vw,5.75rem)] leading-[1.06] tracking-[-0.015em] sm:mt-12 sm:max-w-none">
-      Product person wielding <em class="italic text-accent-600">design</em> and
-      <em class="italic text-accent-600">computational&nbsp;thinking</em>, who enjoys tackling
-      ambiguous problems in <span class="whitespace-nowrap">cross-functional</span> teams.
+      Hi, I&rsquo;m Niik! I enjoy tackling messy problems using both
+      <em class="italic text-accent-600">design</em> and
+      <em class="italic text-accent-600">computational&nbsp;thinking</em> to craft user-friendly
+      solutions that just make sense!
     </h1>
 
     <div class="reveal mt-16 flex flex-col gap-8 border-t border-slate-200 pt-7 pb-16 sm:mt-auto sm:flex-row sm:items-end sm:justify-between sm:pb-0">
       <div>
-        <a href="#work" class="group inline-flex items-center gap-2 text-base font-medium text-slate-900 transition-colors hover:text-accent-600">
-          Selected Work
-          <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
         <p class="mt-1.5 font-mono text-sm text-slate-400">2023 &ndash; 26</p>
       </div>
 
@@ -459,7 +404,6 @@
   <div class="mx-auto w-full max-w-[1800px] px-5 sm:px-8 lg:px-12">
     <div class="reveal">
       <p class="gs-eyebrow text-xs font-medium uppercase tracking-[0.2em] text-accent-600">01 — About</p>
-      <h2 class="mt-4 font-display text-4xl tracking-tight sm:text-5xl">An interdisciplinary background capable of creative and computational thinking.</h2>
     </div>
 
     <!-- ── Profile ──────────────────────────────────────────────────── -->
@@ -483,7 +427,7 @@
           <button type="button" role="tab" class="folder-tab shrink-0" id="tab-skills"
                   data-folder="skills" aria-controls="panel-skills" aria-selected="false" tabindex="-1">Skills</button>
           <button type="button" role="tab" class="folder-tab shrink-0" id="tab-licenses"
-                  data-folder="licenses" aria-controls="panel-licenses" aria-selected="false" tabindex="-1">Licenses</button>
+                  data-folder="licenses" aria-controls="panel-licenses" aria-selected="false" tabindex="-1">Certifications</button>
           <button type="button" role="tab" class="folder-tab shrink-0" id="tab-education"
                   data-folder="education" aria-controls="panel-education" aria-selected="false" tabindex="-1">Education</button>
         </div>
@@ -491,22 +435,15 @@
         <div class="folder-body p-6 sm:p-8 lg:p-10">
           <div id="panel-profile" role="tabpanel" aria-labelledby="tab-profile" data-folder-panel="profile">
             <div class="space-y-5 text-[17px] leading-relaxed text-slate-600">
-              <p>Hi there, I&rsquo;m Niik! I&rsquo;ve worked across product management, design, and software development, but
-                product is where my heart is. I love working right where users, business needs, and engineering meet to make
-                sure we&rsquo;re building what actually matters.</p>
-              <p>That range is deliberate. Studying communications alongside computer science means I can sit in a research
-                synthesis, a Figma file, and a codebase in the same week &mdash; and translate between the three when a team
-                needs it.</p>
-              <p>Most of my work starts with getting close to real users, through contextual inquiries, interviews, and
-                testing, then ends with something simple enough that the complexity stops being their problem. The projects
-                here are mostly that loop, run end to end.</p>
-            </div>
-            <hr class="mt-10 w-10 border-slate-300" />
-            <div class="mt-10 space-y-5 text-[17px] leading-relaxed text-slate-600">
-              <p>So far that has meant internships across product management, strategy, and design, and university projects
-                taken from first research through to a tested prototype.</p>
-              <p>I&rsquo;m currently open to Product Management and Product Design roles, and always happy to meet people
-                building thoughtful things.</p>
+              <p>I&rsquo;ve worked across product-related roles: from product management to product design and even
+                software development. At the heart of it, I love working right where users, business needs, and
+                technology meet to ensure what is built actually matters.</p>
+              <p>That range is deliberate. Studying Communications and Computer Science means I can conduct research
+                synthesis, design in Figma, and squash bugs in a codebase in the same week. Sitting at the intersection
+                of teams, I love collaborating cross-functionally to understand the interesting and diverse
+                perspectives people from different backgrounds bring.</p>
+              <p>I&rsquo;m currently open to Product Management and Product Design roles, and always happy to meet
+                people building thoughtful things with intention.</p>
             </div>
           </div>
           <div id="panel-skills" role="tabpanel" aria-labelledby="tab-skills" data-folder-panel="skills" hidden>
@@ -519,9 +456,6 @@
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="M11.915 0 11.7.215C9.515 2.4 7.47 6.39 6.046 10.483c-1.064 1.024-3.633 2.81-3.711 3.551-.093.87 1.746 2.611 1.55 3.235-.198.625-1.304 1.408-1.014 1.939.1.188.823.011 1.277-.491a13.389 13.389 0 0 0-.017 2.14c.076.906.27 1.668.643 2.232.372.563.956.911 1.667.911.397 0 .727-.114 1.024-.264.298-.149.571-.33.91-.5.68-.34 1.634-.666 3.53-.604 1.903.062 2.872.39 3.559.704.687.314 1.15.664 1.925.664.767 0 1.395-.336 1.807-.9.412-.563.631-1.33.72-2.24.06-.623.055-1.32 0-2.066.454.45 1.117.604 1.213.424.29-.53-.816-1.314-1.013-1.937-.198-.624 1.642-2.366 1.549-3.236-.08-.748-2.707-2.568-3.748-3.586C16.428 6.374 14.308 2.394 12.13.215zm.175 6.038a2.95 2.95 0 0 1 2.943 2.942 2.95 2.95 0 0 1-2.943 2.943A2.95 2.95 0 0 1 9.148 8.98a2.95 2.95 0 0 1 2.942-2.942zM8.685 7.983a3.515 3.515 0 0 0-.145.997c0 1.951 1.6 3.55 3.55 3.55 1.95 0 3.55-1.598 3.55-3.55 0-.329-.046-.648-.132-.951.334.095.64.208.915.336a42.699 42.699 0 0 1 2.042 5.829c.678 2.545 1.01 4.92.846 6.607-.082.844-.29 1.51-.606 1.94-.315.431-.713.651-1.315.651-.593 0-.932-.27-1.673-.61-.741-.338-1.825-.694-3.792-.758-1.974-.064-3.073.293-3.821.669-.375.188-.659.373-.911.5s-.466.2-.752.2c-.53 0-.876-.209-1.16-.64-.285-.43-.474-1.101-.545-1.948-.141-1.693.176-4.069.823-6.614a43.155 43.155 0 0 1 1.934-5.783c.348-.167.749-.31 1.192-.425zm-3.382 4.362a.216.216 0 0 1 .13.031c-.166.56-.323 1.116-.463 1.665a33.849 33.849 0 0 0-.547 2.555 3.9 3.9 0 0 0-.2-.39c-.58-1.012-.914-1.642-1.16-2.08.315-.24 1.679-1.755 2.24-1.781zm13.394.01c.562.027 1.926 1.543 2.24 1.783-.246.438-.58 1.068-1.16 2.08a4.428 4.428 0 0 0-.163.309 32.354 32.354 0 0 0-.562-2.49 40.579 40.579 0 0 0-.482-1.652.216.216 0 0 1 .127-.03z"/></svg>Java</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#A8B9CC" aria-hidden="true"><path d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg>C</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="m12.9288 4.2939 3.7997 2.1929c.1366.077.1415.2905 0 .3675l-4.515 2.6076a.4192.4192 0 0 1-.4246 0L7.274 6.8543c-.139-.0745-.1415-.293 0-.3675l3.7972-2.193V0L1.3758 5.5977V16.793l3.7177-2.1456v-4.3858c-.0025-.1565.1813-.2682.318-.1838l4.5148 2.6076a.4252.4252 0 0 1 .2136.3676v5.2127c.0025.1565-.1813.2682-.3179.1838l-3.7996-2.1929-3.7178 2.1457L12 24l9.6954-5.5977-3.7178-2.1457-3.7996 2.1929c-.1341.082-.3229-.0248-.3179-.1838V13.053c0-.1565.087-.2956.2136-.3676l4.5149-2.6076c.134-.082.3228.0224.3179.1838v4.3858l3.7177 2.1456V5.5977L12.9288 0Z"/></svg>Unity3D</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#199900" aria-hidden="true"><path d="M17.69 0c-.355.574-8.432 4.74-10.856 8.649-2.424 3.91-3.116 6.988-2.237 9.882.879 2.893 2.559 2.763 3.516 3.717.958.954 2.257 2.113 4.332 1.645 2.717-.613 5.335-2.426 6.638-7.508 1.302-5.082.448-9.533-.103-11.99A35.395 35.395 0 0 0 17.69 0zm-.138.858l-9.22 21.585-.574-.577Z"/></svg>Leaflet.js</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Web scraping &amp; parsing</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">REST APIs</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Design</h3>
@@ -533,8 +467,11 @@
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Balsamiq</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#9999FF" aria-hidden="true"><path d="M10.15 8.42a2.93 2.93 0 00-1.18-.2 13.9 13.9 0 00-1.09.02v3.36l.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03a1.45 1.45 0 00-.93-1.46zM19.75.3H4.25A4.25 4.25 0 000 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.09 11.65c-.4.56-.96.98-1.61 1.22-.68.25-1.43.34-2.25.34l-.5-.01-.43-.01v3.21a.12.12 0 01-.11.14H5.82c-.08 0-.12-.04-.12-.13V6.42c0-.07.03-.11.1-.11l.56-.01.76-.02.87-.02.91-.01c.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.15.42.23.85.23 1.3 0 .86-.2 1.57-.6 2.13zm6.82-3.15v1.95c0 .08-.05.11-.16.11a4.35 4.35 0 00-1.92.37c-.19.09-.37.21-.51.37v5.1c0 .1-.04.14-.13.14h-1.97a.14.14 0 01-.16-.12v-5.58l-.01-.75-.02-.78c0-.23-.02-.45-.04-.68a.1.1 0 01.07-.11h1.78c.1 0 .18.07.2.16a3.03 3.03 0 01.13.92c.3-.35.67-.64 1.08-.86a3.1 3.1 0 011.52-.39c.07-.01.13.04.14.11v.04z"/></svg>Adobe Premiere Pro</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700 inline-flex items-center gap-2"><svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="#050038" aria-hidden="true"><path d="M17.392 0H13.9L17 4.808 10.444 0H6.949l3.102 6.3L3.494 0H0l3.05 8.131L0 24h3.494L10.05 6.985 6.949 24h3.494L17 5.494 13.899 24h3.493L24 3.672 17.392 0z"/></svg>Miro</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design systems</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Brand identity</li>
+          </ul>
+
+          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Data Analysis</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">SQL</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">User Experience</h3>
@@ -544,7 +481,6 @@
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">User Testing</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Journey mapping</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Heuristic evaluation</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Accessible &amp; responsive design</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">User Research</h3>
@@ -580,18 +516,10 @@
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product documentation</li>
           </ul>
 
-          <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Data Analysis</h3>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">SQL</li>
-          </ul>
-
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Leadership &amp; collaboration</h3>
           <ul class="mt-4 flex flex-wrap gap-2">
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Team leadership</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Leadership</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Cross-functional collaboration</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Workshop facilitation</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Executive presenting</li>
-            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Design mentoring</li>
           </ul>
 
           <h3 class="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Interests</h3>
@@ -599,6 +527,11 @@
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Product</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">UI/UX</li>
             <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Tennis</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Hosting parties</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Making</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Travelling</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Reading</li>
+            <li class="gs-chip cursor-default rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-400 hover:text-accent-700">Movies</li>
           </ul>
           </div>
           <div id="panel-licenses" role="tabpanel" aria-labelledby="tab-licenses" data-folder-panel="licenses" hidden>
@@ -984,92 +917,6 @@
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
         <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="tl-date sm:text-right">
-          <p class="font-mono text-xs text-slate-400">May — Aug 2025</p>
-          <p class="mt-1 text-xs text-slate-400">Singapore</p>
-        </div>
-        <div>
-          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-3">
-            <span class="min-w-0 flex-1">
-              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Product Design Intern</span>
-              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/govtech.png" alt="" class="h-5 w-auto shrink-0" />GovTech</span>
-            </span>
-            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
-          </button>
-          <div id="tl-work-3" class="tl-body" hidden>
-            <div>
-              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
-          </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="tl-date sm:text-right">
-          <p class="font-mono text-xs text-slate-400">Aug — Dec 2024</p>
-          <p class="mt-1 text-xs text-slate-400">Singapore</p>
-        </div>
-        <div>
-          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-4">
-            <span class="min-w-0 flex-1">
-              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UI/UX Design Intern</span>
-              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/dbs.png" alt="" class="h-5 w-auto shrink-0" />DBS Bank</span>
-            </span>
-            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
-          </button>
-          <div id="tl-work-4" class="tl-body" hidden>
-            <div>
-              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
-          </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="tl-date sm:text-right">
-          <p class="font-mono text-xs text-slate-400">May — Jul 2024</p>
-          <p class="mt-1 text-xs text-slate-400">Singapore</p>
-        </div>
-        <div>
-          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-5">
-            <span class="min-w-0 flex-1">
-              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UX Design Intern</span>
-              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/micron.svg" alt="" class="h-5 w-auto shrink-0" />Micron Technology</span>
-            </span>
-            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
-          </button>
-          <div id="tl-work-5" class="tl-body" hidden>
-            <div>
-              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
-            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
-          </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-
-    </ol>
-
-    <div class="reveal mt-20">
-      <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">Co-curricular activities</h3>
-    </div>
-
-    <ol class="tl-center mt-8 mx-auto max-w-6xl space-y-0">
-
-      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
-        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
-        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Aug 2025 – May 2026</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -1122,6 +969,32 @@
       <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
         <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
         <div class="tl-date sm:text-right">
+          <p class="font-mono text-xs text-slate-400">May — Aug 2025</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-3">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">Product Design Intern</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/govtech.png" alt="" class="h-5 w-auto shrink-0" />GovTech</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-work-3" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Translated ambiguous business questions across 7 organizations into precise, actionable requirements by analyzing complex workflows, delivering research synthesis that directly informed key product and business decisions.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Distilled 450+ responses from a 6,000-participant research initiative into data-driven requirements, defining the MVP scope for 70% of target users.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Facilitated cross-functional collaboration between Product Owners, Business Analysts, and Engineers to drive the project from research to concept validation.</li>
+          </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
           <p class="font-mono text-xs text-slate-400">Sep 2024 – May 2025</p>
           <p class="mt-1 text-xs text-slate-400">Singapore</p>
         </div>
@@ -1140,6 +1013,58 @@
               <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Crafted user-centred admin portals and analytics dashboards for volunteer engagement tracking, donation reporting, and automated donor communications, including receipts and thank-you workflows.</li>
               <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Established a design system and brand guidelines aligned with CWA's mission, delivering accessible, mobile-responsive interfaces with consistent visual identity.</li>
             </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
+          <p class="font-mono text-xs text-slate-400">Aug — Dec 2024</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-4">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UI/UX Design Intern</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/dbs.png" alt="" class="h-5 w-auto shrink-0" />DBS Bank</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-work-4" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Designed digital experiences and promotional assets for internal innovation campaigns, contributing to a 30% increase in employee engagement.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Spearheaded innovation challenges, facilitating cross-functional brainstorming that generated 50+ concepts and accelerated time-to-market for new product ideation by 25%.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Orchestrated 3 large-scale innovation events with 300+ attendees each, driving a 40% increase in participation in intrapreneurial initiatives.</li>
+          </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="tl-item reveal group relative grid gap-2 border-l border-slate-200 pb-5 pl-8 sm:grid-cols-[160px,1fr] sm:gap-8 sm:pl-12" data-open="false">
+        <span class="tl-dot absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2 border-slate-50 bg-slate-300 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent-500"></span>
+        <div class="tl-date sm:text-right">
+          <p class="font-mono text-xs text-slate-400">May — Jul 2024</p>
+          <p class="mt-1 text-xs text-slate-400">Singapore</p>
+        </div>
+        <div>
+          <button type="button" class="tl-head flex w-full items-start gap-3 text-left" aria-expanded="false" aria-controls="tl-work-5">
+            <span class="min-w-0 flex-1">
+              <span class="tl-role block font-display text-2xl leading-snug transition-colors">UX Design Intern</span>
+              <span class="tl-org mt-1 flex flex-wrap items-center gap-2.5 text-sm font-medium text-accent-600"><img src="images/logos/micron.svg" alt="" class="h-5 w-auto shrink-0" />Micron Technology</span>
+            </span>
+            <span class="mt-2.5 block shrink-0 text-slate-400"><span class="tl-chev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </button>
+          <div id="tl-work-5" class="tl-body" hidden>
+            <div>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Redesigned an internal website for over 200 users, enhancing user experience and interface functionality.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Presented 4 redesign proposals to stakeholders and supervisors, incorporating user feedback across design iterations.</li>
+            <li class="flex gap-3"><span class="gs-bullet mt-[7px]"></span>Developed training materials for PRM to bridge gaps in workforce training ahead of product launch.</li>
+          </ul>
             </div>
           </div>
         </div>
